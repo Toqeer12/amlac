@@ -14,6 +14,7 @@ unset($_SESSION['fulname']);
 
 }
 
+
 ?>
 
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -118,9 +119,11 @@ article {
 <!-- BEGIN BODY -->
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
-  <?php 
-   
-   include 'header.php';?>
+<?php
+    include 'header_admin.php';
+    include 'raw_detail.php';
+    
+    ?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
    <div id="container" class="row-fluid">
@@ -138,8 +141,9 @@ article {
 			</div>
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
-<?php 
-include 'header_menu.php';
+	
+    <?php 
+include 'owner_header_menu.php';
 
 ?>
 			<!-- END SIDEBAR MENU -->
@@ -171,7 +175,7 @@ include 'header_menu.php';
                      Job Titles
                      <!--<small>Managed Table Sample</small>-->
                   </h3>
- 
+                      <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
             </div>
          
@@ -202,7 +206,7 @@ include 'header_menu.php';
                              <tr>
                                  <th> #</th>
                                  <th class="hidden-phone"> Amount</th>
-                                 <th> Type</th>
+                                 <!--<th>Type</th>-->
                                  <th>Date</th>
                                  <th>Statement</th>
                                  <th>Customer</th>
@@ -211,7 +215,7 @@ include 'header_menu.php';
                              </thead>
                              
                               <?php 		
-                                    $sql= "SELECT * From service_bill WHERE cid='".$_SESSION['Id']."'";   
+                                    $sql= "SELECT * From paid_amount WHERE cid='".$_SESSION['Id']."'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
 									 {
@@ -222,18 +226,17 @@ include 'header_menu.php';
                                     <?php
   
                                         echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['amount'] . "</td>";
-                                        echo "<td>" . $row['type'] . "</td>";
-                                        echo "<td>" . $row['datee'] . "</td>";
-                                        echo "<td>" . $row['notes'] . "</td>";
-                                    $sql2= "SELECT * From clients WHERE id='".$row['vendor']."'";   
+                                        echo "<td>" . $row['paid_amount'] . "</td>";                               
+                                        echo "<td>" . $row['acutal_paid_date'] . "</td>";
+                                        echo "<td>" . $row['statement'] . "</td>";
+                                    $sql2= "SELECT * From clients WHERE id='".$row['owner_id']."'";   
 									$result2=mysql_query($sql2)or  die('Invalid query: ' . mysql_error());
 									if($result2)
 									 {
 								        
 									while($row2 = mysql_fetch_assoc($result2)) {
                                         echo "<td>" . $row2['real_name'] . "</td>";
-                                          echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['type']."&datee=".$row['datee']."&vendor=".$row2['real_name']."'>Print</a></td>";
+                                           echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['paid_amount']."&type=".$row['statement']."&datee=".$row['acutal_paid_date']."&vendor=".$row2['real_name']."'>Print</a></td>";
                                         echo "</tr>"; }
 									 }
                                     }

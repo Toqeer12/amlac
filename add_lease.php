@@ -203,7 +203,7 @@ echo "string".$data222=$rowsqlserivce_classes['script_title'];
                   <div class="control-group">
                       <label class="control-label">Writing of Contract</label>
                       <div class="controls">
-                         <input name="writecontract"id="writecontract" type="date" pattern="[0-9]+" placeholder="452xxxxx" required/>
+                         <input name="writecontract"id="writecontract" type="date" pattern="[0-9]+" placeholder="452xxxxx"  onchange="notify(this)"required/>
                       </div>
                   </div>
                          <div class="control-group">
@@ -646,7 +646,8 @@ function popuptitle()
             }
 		   else if(result.cid=='11')
 		   {
-         	  window.location = "job_title.php?id="+result.ownerid+"&property="+result.property+"&unit="+result.unit;
+         	//  window.location = "job_title.php?id="+result.ownerid+"&property="+result.property+"&unit="+result.unit;
+               window.location = "send_notification.php?id="+result.ownerid+"&property="+result.property+"&unit="+result.unit;
 				 	
 		   }
            else
@@ -662,6 +663,8 @@ function popuptitle()
 		});	
 	
 	}
+    
+     
 </script>
    <!-- END JAVASCRIPTS -->   
 </body>

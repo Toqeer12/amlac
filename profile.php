@@ -35,7 +35,8 @@ unset($_SESSION['fulname']);
 
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-
+   <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
+    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
    <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
 </head>
 <!-- END HEAD -->
@@ -211,7 +212,7 @@ include 'raw_detail.php';
    <script src="js/jquery-1.8.3.min.js"></script>
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="js/jquery.blockui.js"></script>
- 
+    <script src="assets/main/javascript/jquery.toastmessage.js"></script>
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
@@ -233,9 +234,9 @@ $('input[name=fruit]').click(function() {
 		cache: false,
 		success: function(result)
 		{  debugger;
-		   if(result.cid=='0')
+		   if(result.id=='0')
            {
-               alert("Notify is Updated Successfully");
+            $().toastmessage('showErrorToast', "Property Already in Lease");
            }
 		 
    

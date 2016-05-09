@@ -28,13 +28,13 @@ unset($_SESSION['fulname']);
    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
    <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
    <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
+ 
 <style>
     table#tableSection {
         display: table;
@@ -506,8 +506,8 @@ include 'header_menu.php';
                              <thead>
                              <tr>
                                  <th> Number</th>
-                                 <th class="hidden-phone"> Amount</th>
-                                 <th> Due Date</th>
+                                 <th>Amount</th>
+                                 <th>Due Date</th>
                                  <th>Paid Amount</th>
                                  <th>Status</th>
                                  <th>Unit</th>
@@ -640,9 +640,8 @@ include 'header_menu.php';
   <?php
   
   echo "<td>" . $row['id'] . "</td>";
-
   echo "<td>" . $row['datee'] . "</td>";
-echo "<td>" . $row['amount_paid'] . "</td>";
+  echo "<td>" . $row['amount_paid'] . "</td>";
   ?>
   <td><input type="button" onClick="callme(this)" data-id="<?php echo $row['id'];?>" data-owner="<?php echo $row['owner'];?>" data-property="<?php echo $row['propertyid'];?>" data-unit="<?php echo $_GET['unit']?>"value="View"/></td> 
   <?php 
@@ -672,21 +671,41 @@ echo "<td>" . $row['amount_paid'] . "</td>";
                              </div>
                              
                     <div id='preview3'>
-        
+                                    <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Update Date/Time</th>
+                                    <th>Detail</th>
+                                    <th>View</th>
+                                    <th>Print</th>
+                                </tr>
+                                </thead>
+                                 <tbody>
                                   <?php 
                                   require('db.php');
-                               $sqlserivce_classes=mysql_query("select * from user_uploads where user_id_fk='".$_GET['property']."'");
-                        while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
+                               $sqlserivce_classes=mysql_query("select * from user_uploads where prop_id='".$_GET['property']."'");
+                                while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
                         {
                         $data=$rowsqlserivce_classes['image_name'];
+                          echo "<tr>";
+                            echo "<td>".$rowsqlserivce_classes['id']."</td>";
+                            echo "<td>".$rowsqlserivce_classes['created']."</td>";
+                            echo "<td>".$rowsqlserivce_classes['remark']."</td>";
+                             echo "<td><a href='#myPopup' data-rel='popup' data-position-to='window'> view</a>/td>";
+                              echo "<td>Print</td>";
+                            echo "</tr>";
                         ?>
-                        <img src="<?php echo 'images/'.$data; ?> " style="height: 100px; width: 150px;" />
+                        <!--<img src="<?php echo 'images/'.$data; ?> " style="height: 100px; width: 150px;" />-->
                         <?php
                         
                         }
                         
                         ?>
-                        
+<a href="#popupPhotoLandscape" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Photo landscape</a>
+
+
+
                     </div>
                           </div>
     </article>
@@ -721,9 +740,12 @@ echo "<td>" . $row['amount_paid'] . "</td>";
 <h3> Upload Logo</h3>
 
 
-<input name="uploadedimage" type="file">
+<input name="uploadedimage" type="file"></br>
+<input name="remark" type="text"></br>
 <input name="propid" type="hidden" value="<?php echo $_GET['property']?>">
 <input name="ownerid" type="hidden" value="<?php echo $_GET['id']?>">
+<input name="renter" type="hidden" value="<?php echo $_GET['renter']?>">
+<input name="unit" type="hidden" value="<?php echo $_GET['unit']?>">
 <input name="Upload Now" type="submit" value="Upload Image">
 
 
@@ -735,12 +757,7 @@ echo "<td>" . $row['amount_paid'] . "</td>";
    </div>
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
-   <div id="footer">
-       2013 &copy; Admin Lab Dashboard.
-      <div class="span pull-right">
-         <span class="go-top"><i class="icon-arrow-up"></i></span>
-      </div>
-   </div>
+ 
    <!-- END FOOTER -->
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
@@ -756,6 +773,7 @@ echo "<td>" . $row['amount_paid'] . "</td>";
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
    <script src="js/scripts.js"></script>
+ 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
 <script src="assets/main/javascript/jquery.toastmessage.js"></script>
@@ -900,6 +918,14 @@ $(document).ready(function() {
     preloader: false,
     modalload2: true
   });
+});
+$( document ).on( "pagecreate", function() {
+    $( ".photopopup" ).on({
+        popupbeforeposition: function() {
+            var maxHeight = $( window ).height() - 60 + "px";
+            $( ".photopopup img" ).css( "max-height", maxHeight );
+        }
+    });
 });
 </script>
 

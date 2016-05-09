@@ -432,8 +432,8 @@ else if($_GET['id']=='20')
 	$property = $_POST['property'];
 	$vardate  = date("Y-m-d");
 	$cid 	  = $_SESSION['Id'];
-		 	$sql2="INSERT INTO `property_expense`(`owner`, `propname`, `unitt`, `type`, `vendor`, `bill`, `amount`, `notes`, `datee`, `property`, `vardate`, `cid`) 
-			VALUES ('$owner','$propname','$unitt','$type','$vendor','$bill','$amount','$notes','$datee','$property','$vardate','$cid');";
+		 	$sql2="INSERT INTO `property_expense`(`owner`, `propname`, `unitt`, `type`, `vendor`, `bill`, `amount`, `notes`, `datee`, `property`, `vardate`, `cid`, `owner_id`) 
+			VALUES ('$owner','$propname','$unitt','$type','$vendor','$bill','$amount','$notes','$datee','$property','$vardate','$cid','$ownerId');";
 			$result=mysql_query($sql2);
 			 $id=mysql_insert_id();
 

@@ -98,25 +98,27 @@ include 'owner_header_menu.php';
                                      <th>Sr No</th>
                                      <th>Property Name</th>
                                      <th class="hidden-phone">Unit #</th>
-                                     <th class="hidden-phone">Inst Amount</th>
-                                     <th class="hidden-phone">Annual Lease</th>
-                                     <th class="hidden-phone">Commision Amount</th>
-                                     <th class="hidden-phone">Status</th>
+                                     <th class="hidden-phone">Writing Contract Date</th>
+                                     <th class="hidden-phone">Start Contract Date</th>
+                                     <th class="hidden-phone">End Contract Date</th>
+                                     <th class="hidden-phone">Duration</th>
+                                     <th class="hidden-phone">Schudule Month</th>
                                 </tr>
                             </thead>
                                    <tbody>
                                <?php
-                               $propertyUnit = viewpropertyUnitowner($varowner,$varreal);
+                               $propertyUnit = viewpropertylease($varowner,$varreal);
                                for ($i = 0; $i < count($propertyUnit); $i++) {
 
                                   ?>                                           
                                 <td><?php  echo $propertyUnit[$i]['id'];?></td>
                                 <td><?php  echo propertyname($propertyUnit[$i]['property_name']);?></td>     
-                                <td><?php  echo $propertyUnit[$i]['block_no'];?></td>     
-                                <td><?php  echo $propertyUnit[$i]['ins_amount'];?></td>     
-                                <td><?php  echo $propertyUnit[$i]['annul_lease'];?></td>   
-                                <td><?php  echo $propertyUnit[$i]['comission_amount'];?></td>   
-                                <td><?php  echo $propertyUnit[$i]['status'];?></td> 
+                                <td><?php  echo $propertyUnit[$i]['unit'];?></td>     
+                                <td><?php  echo $propertyUnit[$i]['write_con_dat'];?></td>     
+                                <td><?php  echo $propertyUnit[$i]['start_date'];?></td>   
+                                <td><?php  echo $propertyUnit[$i]['ending_date'];?></td>   
+                                <td><?php  echo $propertyUnit[$i]['duration'];?></td> 
+                                <td><?php  echo $propertyUnit[$i]['schudle_month'];?></td> 
 
                                 </tbody>           
    <?php }?>

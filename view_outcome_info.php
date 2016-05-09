@@ -118,9 +118,10 @@ article {
 <!-- BEGIN BODY -->
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
-  <?php 
-   
-   include 'header.php';?>
+ <?php
+    include 'header_admin.php';
+     
+    ?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
    <div id="container" class="row-fluid">
@@ -139,10 +140,9 @@ article {
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
 <?php 
-include 'header_menu.php';
+include 'owner_header_menu.php';
 
-?>
-			<!-- END SIDEBAR MENU -->
+?>	<!-- END SIDEBAR MENU -->
 		</div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
@@ -171,7 +171,16 @@ include 'header_menu.php';
                      Job Titles
                      <!--<small>Managed Table Sample</small>-->
                   </h3>
- 
+                 <!--  <ul class="breadcrumb">
+                       <li>
+                           <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+                       </li>
+                       <li>
+                           <a href="#">Data Tables</a> <span class="divider">&nbsp;</span>
+                       </li>
+                       <li><a href="#">Managed Tables</a><span class="divider-last">&nbsp;</span></li>
+                   </ul>-->
+                  <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
             </div>
          
@@ -210,8 +219,10 @@ include 'header_menu.php';
                              </tr>
                              </thead>
                              
-                              <?php 		
-                                    $sql= "SELECT * From service_bill WHERE cid='".$_SESSION['Id']."'";   
+                              <?php 	require('connect.php');
+                                  $varowner=$_SESSION['Id'];
+                                  $varreal=$_SESSION['real_state'];	
+                                    $sql= "SELECT * From service_bill WHERE cid='$varreal' AND owner='$varowner'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
 									 {
@@ -233,7 +244,7 @@ include 'header_menu.php';
 								        
 									while($row2 = mysql_fetch_assoc($result2)) {
                                         echo "<td>" . $row2['real_name'] . "</td>";
-                                          echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['type']."&datee=".$row['datee']."&vendor=".$row2['real_name']."'>Print</a></td>";
+                                          echo "<td><a href='#'>Print</a></td>";
                                         echo "</tr>"; }
 									 }
                                     }
@@ -261,7 +272,11 @@ include 'header_menu.php';
 </section>    </div>
             
 
-            <!-- END ADVANCED TABLE widget-->
+            <!-- 
+                
+                actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['type']."&datee=".$row['datee']."&vendor=".$row2['real_name']."
+                
+                END ADVANCED TABLE widget-->
 
             <!-- END PAGE CONTENT-->
          </div>

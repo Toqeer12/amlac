@@ -43,8 +43,12 @@ if(move_uploaded_file($temp_name, $target_path))
 		 $time=time();
 		 $var=$_POST['propid'];
          $var2=$_POST['ownerid'];
-	     mysql_query("INSERT INTO user_uploads(image_name,user_id_fk,created) VALUES('$imagename','".$_POST['propid']."','$time')");
-		 header("location:job_title.php?id=$var2&property=$var");
+		 $var3=$_POST['unit'];
+		 $var4=$_POST['renter'];
+		 $var5=$_POST['remark'];
+		 $time=date("Y-m-d");
+	     mysql_query("INSERT INTO user_uploads(image_name,prop_id,created,owner_id,remark) VALUES('$imagename','".$_POST['propid']."','$time','".$_POST['ownerid']."','$var5')");
+		 header("location:job_title.php?id=$var2&property=$var&unit=$var3&renter=$var4");
 		}
 
 	

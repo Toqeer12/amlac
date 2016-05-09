@@ -17,7 +17,7 @@ if($type=='admin'||$type=='super_admin')
 
 if(!empty($Username)&&!empty($Password))
 	{ 
-		$sql= "SELECT * From registration WHERE email='$Username' AND pin='$encry' ";   
+		$sql= "SELECT * From  registration WHERE email='$Username' AND pin='$encry' ";   
 		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 			if($result)
 				 {

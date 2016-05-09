@@ -451,5 +451,45 @@ function admin_notification3($var)
         return $array9; 
 }
 
- 
+ function propertyname($id)
+{
+    global $array6;
+        $sql= "SELECT * From add_property Where  id='$id' ";   
+		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+
+		if($result) 
+        {
+			 if(mysql_num_rows($result) > 0)
+				 {
+                 while($member  = mysql_fetch_assoc($result))
+                    {
+                        
+                    
+                            $array6 =$member['propty_name'];
+                    }
+                 }
+        }
+        return $array6;
+    
+}
+function viewpropertylease($owner,$cid)
+{
+        global $array7;
+        $sql= "SELECT * From rent_property Where  owner='$owner' And cid='$cid'";   
+		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+
+		if($result) 
+        {
+		 if(mysql_num_rows($result) > 0)
+                {
+                        while($member  = mysql_fetch_assoc($result))
+                        {
+                        
+                    
+                            $array7[]=$member;
+                        }
+                 }
+        }
+        return $array7;
+}
 ?>
