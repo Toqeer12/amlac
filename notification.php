@@ -124,7 +124,7 @@ article {
    include 'header.php';?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
     <div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -148,7 +148,7 @@ include 'raw_detail.php';
 		</div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->

@@ -62,7 +62,7 @@ unset($_SESSION['fulname']);
    include 'header.php';?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->   
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
          <div class="sidebar-toggler hidden-phone"></div>

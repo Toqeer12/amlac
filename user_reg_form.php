@@ -3,6 +3,7 @@
 <?php
 
 session_start();
+$_SESSION['rtl']='rtl';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -72,7 +73,7 @@ unset($_SESSION['fulname']);
    </div>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -94,8 +95,8 @@ include 'header_menu.php';
       <!-- END SIDEBAR MENU -->
     </div>
       <!-- END SIDEBAR -->
-      <!-- BEGIN PAGE -->  
-      <div id="main-content">
+      <!-- BEGIN PAGE -->   
+      <div id="main-content"  <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->   
@@ -131,9 +132,9 @@ include 'header_menu.php';
    
           </div>
           <div class="widget-body">
-            <form id="loginform" class="form-horizontal" action="property_validate.php?id=2" method="POST">
+            <form id="loginform" class="form-horizontal" action="property_validate.php?id=2" method="POST" <?php echo $_SESSION['rtl'];?>>
             
-              <div class="span4">
+              <div class="span4" <?php echo $_SESSION['rtl'];?>>
                   <strong>Basic Info</strong><br />
           
                   <div class="control-group">
@@ -207,7 +208,7 @@ while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
                   </div>
 
               </div>
-              <div class="span4">
+              <div class="span4" <?php echo $_SESSION['rtl'];?>>
 <br>
 
                    <div class="control-group">

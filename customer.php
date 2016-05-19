@@ -6,7 +6,8 @@
 
 <?php
 session_start();
- 
+  $_SESSION['rtl']='rtl';
+
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -44,7 +45,7 @@ unset($_SESSION['fulname']);
     ?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->   
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
          <div class="sidebar-toggler hidden-phone"></div>

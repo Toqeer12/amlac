@@ -7,7 +7,7 @@
                     <ul class="sub">
                         <li class=""><a class="" href="user_reg_form.php">Add New Properties</a></li>
                          <li><a class="" href="add_client.php">Add New Client</a></li>
-                   <li class=""><a class="" href="add_lease_contract.php">Adding Investment Property</a></li>
+                  <!-- <li class=""><a class="" href="add_lease_contract.php">Adding Investment Property</a></li>-->
                    <li class=""><a class="" href="add_real_stat_unit.php">Real State Unit</a></li>
                    <li class=""><a class="" href="add_lease.php">Add New Lease</a></li>
 

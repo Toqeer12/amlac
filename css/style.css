@@ -3838,3 +3838,50 @@ jQuery UI Datepicker(new in v1.2.2)
     padding: 6px 10px;
 }
 
+
+[rtl]
+{
+    direction: rtl;    
+}
+[rtl] #main-content
+{
+    margin-right: 215px;
+    margin-left: 0;
+}
+[rtl] .span4
+{
+    float: right;
+}
+[rtl] .form-horizontal .control-label
+{
+    text-align:right;
+    float:right;
+ }
+[rtl] .form-horizontal .controls
+{
+     margin-left: 0;
+    margin-right:180px;
+}
+[rtl] .control-label
+{
+    float:right;
+}
+
+.control-label
+{
+    float:left;
+    width:200px;
+}
+.row-fluid .span44
+{
+    width:50%;
+}
+ [rtl] .row-fluid .span12
+{
+   float:right;
+}
+  [rtl] .row-fluid .span6
+{
+   float:right;
+}
+ 

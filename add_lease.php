@@ -2,6 +2,8 @@
 
 <?php
 session_start();
+ $_SESSION['rtl']='rtl';
+
 if(!(isset($_SESSION['user']))){
 header("location:index.php");
 unset($_SESSION['user']);
@@ -77,7 +79,7 @@ unset($_SESSION['user']);
   
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -100,7 +102,7 @@ include 'header_menu.php';
     </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->   
@@ -125,9 +127,9 @@ include 'header_menu.php';
    
           </div>
           <div class="widget-body">
-       <form id="newsletterform" class="form-horizontal"  method="POST">
+       <form id="newsletterform" class="form-horizontal"  method="POST" <?php echo $_SESSION['rtl'];?>>
              
-              <div class="span4">
+              <div class="span4" <?php echo $_SESSION['rtl'];?>>
                  <strong>Basic Info</strong><br />
 
                   <div class="control-group">
@@ -199,7 +201,7 @@ echo "string".$data222=$rowsqlserivce_classes['script_title'];
 
               </div>
               <br>
-              <div class="span6">
+              <div class="span6" <?php echo $_SESSION['rtl'];?>>
                   <div class="control-group">
                       <label class="control-label">Writing of Contract</label>
                       <div class="controls">

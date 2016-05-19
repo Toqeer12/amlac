@@ -6,7 +6,7 @@
 
 <?php
 session_start();
- 
+  $_SESSION['rtl']='rtl';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -43,7 +43,7 @@ unset($_SESSION['fulname']);
    include 'header.php';?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid"  <?php echo $_SESSION['rtl'];?>> 
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
          <div class="sidebar-toggler hidden-phone"></div>
@@ -63,7 +63,7 @@ include 'header_menu.php';
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
-      <div id="main-content">
+      <div id="main-content"  <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->
@@ -207,7 +207,7 @@ include 'header_menu.php';
       <!-- END PAGE -->
    </div>
    <!-- END CONTAINER -->
-   <!-- BEGIN FOOTER -->
+   <!-- BEGIN FOOTER  
    <div id="footer">
        2013 &copy; Admin Lab Dashboard.
       <div class="span pull-right">

@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <?php
 session_start();
- 
+
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -122,7 +122,7 @@ article {
    include 'header.php';?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
     <div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -145,7 +145,7 @@ include 'header_menu.php';
 		</div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->
@@ -198,7 +198,7 @@ include 'header_menu.php';
     <article id="tab3">
       
       
-                  <div class="span6">
+                  <div class="span6" <?php echo $_SESSION['rtl'];?>>
                     <!-- BEGIN SAMPLE TABLE widget-->       
                   <div class="widget">
                      <div class="widget-title">
@@ -254,7 +254,7 @@ include 'header_menu.php';
                   </div>
       </div>
       
-        <div class="span6">
+        <div class="span6" <?php echo $_SESSION['rtl'];?>>
                     <!-- BEGIN SAMPLE TABLE widget-->       
                   <div class="widget">
                      <div class="widget-title">

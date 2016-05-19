@@ -2,7 +2,7 @@
 
 <?php
 session_start();
- 
+ $_SESSION['rtl']='rtl';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -71,10 +71,10 @@ unset($_SESSION['fulname']);
        <!-- BEGIN TOP NAVIGATION BAR -->
  
        <!-- END TOP NAVIGATION BAR -->
-   </div>*/?>
+   </div>  
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -97,7 +97,7 @@ include 'header_menu.php';
     </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->   
@@ -133,9 +133,9 @@ include 'header_menu.php';
    
           </div>
           <div class="widget-body">
-           <form id="loginform" class="form-horizontal"  method="POST">
+           <form id="loginform" class="form-horizontal"  method="POST" <?php echo $_SESSION['rtl'];?>>
              
-              <div class="span4">
+              <div class="span4" <?php echo $_SESSION['rtl'];?>>
                  <strong>Basic Info</strong><br />
 
                   <div class="control-group">
@@ -181,43 +181,43 @@ include 'header_menu.php';
               
                         <div class="widget-body">
    
-              <div class="span4">
+              <div class="span4" <?php echo $_SESSION['rtl'];?>>
                  <strong>Other details</strong><br />
 
                   <div class="control-group">
-                      <label class="control-label" style="float: left; width: 200px;">Email</label>
+                      <label class="control-label"  >Email</label>
                       <div class="controls">
                         <input name="email"id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" type="text" placeholder="example@gmail.com" required/>
                       </div>
                   </div>
                   
                   <div class="control-group">
-                      <label class="control-label" style="float: left;width: 200px;">Account Number</label>
+                      <label class="control-label" >Account Number</label>
                       <div class="controls">
             		 	<input name="accountno"id="accountno" type="tel" pattern="^\d{3}\d{6}\d{3}$" placeholder="971xxxxx" required/>
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label" style="float: left;width: 200px;">Fax No</label>
+                      <label class="control-label" >Fax No</label>
                       <div class="controls">
             		 	<input name="fax"id="fax" type="tel" pattern="^\d{3}\d{6}\d{3}$" placeholder="971xxxxx" required/>
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label" style="float: left;width: 200px;">POBox</label>
+                      <label class="control-label" >POBox</label>
                       <div class="controls">
             		 	<input name="pbox"id="pbox" type="tel" pattern="[0-9]+" required/>
                       </div>
                   </div>
                        <div class="control-group">
-                      <label class="control-label"  style="float: left;width: 200px;">Passport No</label>
+                      <label class="control-label"  >Passport No</label>
                       <div class="controls">
                       <input name="passport"id="passport" pattern="[a-zA-Z0-9\s]+" type="text" placeholder="gvxxxxx" required/>
 
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label"  style="float: left;width: 200px;">Job Title</label>
+                      <label class="control-label"  >Job Title</label>
                       <div class="controls">
                       <input name="jtitle"id="jtitle" type="text" pattern="[a-zA-Z\s]+" placeholder="admin" required/>
 
@@ -225,9 +225,9 @@ include 'header_menu.php';
                   </div>
               </div>
          <br>
-              <div class="span6">
+              <div class="span6" <?php echo $_SESSION['rtl'];?>>
                   <div class="control-group" style="margin-top: 10px;">
-                      <label class="control-label" style="float: left;width: 200px;">Bank Name</label>
+                      <label class="control-label">Bank Name</label>
                       <div class="controls">
                           <select  name="bank" id="bank" >
                             <option value="0">Select Bank</option>
@@ -250,19 +250,19 @@ include 'header_menu.php';
                    </div>
                   </div>
                   <div class="control-group" style="margin-top: 10px;">
-                      <label class="control-label" style=" float: left; width: 200px;">Phone Number</label>
+                      <label class="control-label" >Phone Number</label>
                       <div class="controls">
                        <input name="phone"id="phone" type="num" pattern="[0-9]+" placeholder="452xxxxx" required/>
                       </div>
                   </div>
                   <div class="control-group" style="margin-top: 30px;">
-                      <label class="control-label" style=" float: left; width: 200px;">Address</label>
+                      <label class="control-label" >Address</label>
                       <div class="controls">
                        <input name="address"id="address" type="text" pattern="[a-zA-Z0-9/s]+" placeholder="452xxxxx" required/>
                       </div>
                   </div>
                   <div class="control-group" style="margin-top: 30px;">
-                      <label class="control-label" style=" float: left; width: 200px;">Nationality</label>
+                      <label class="control-label">Nationality</label>
                       <div class="controls">
                         <select id="nationality" name="nationality">
 <!--                         <option value="">Property Type</option>
@@ -275,7 +275,7 @@ include 'header_menu.php';
                       </div>
                   </div>
                                     <div class="control-group">
-                      <label class="control-label" style=" float: left; width: 200px;">Sponsor</label>
+                      <label class="control-label" >Sponsor</label>
                       <div class="controls">
                           <select  name="sponsor" id="sponsor" >
             <option value="0">Select Sponsor</option>
@@ -320,7 +320,7 @@ include 'header_menu.php';
            <div class="row-fluid">                      
                         <div class="widget-body">
    
-              <div class="span4">
+              <div class="span4" <?php echo $_SESSION['rtl'];?>>
   
                   <div class="control-group">
                       <label class="control-label" style="float: left; width: 200px;">Sponsor Name</label>

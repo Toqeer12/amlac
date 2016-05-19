@@ -1,6 +1,7 @@
 
           <?php
     session_start();       
+     $_SESSION['rtl']='rtl';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -11,7 +12,7 @@ unset($_SESSION['fulname']);
 
 } ?> 
             <div class="row-fluid">
-               <div class="span6">
+               <div class="span44" <?php echo $_SESSION['rtl'];?>>
 <label class="control-label">Choose Units</label>
                   <div class="widget">
                      <div class="widget-body">
