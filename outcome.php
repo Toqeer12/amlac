@@ -3,7 +3,6 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <?php
 session_start();
- $_SESSION['rtl']='rtl';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");

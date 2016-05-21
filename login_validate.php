@@ -33,6 +33,8 @@ if(!empty($Username)&&!empty($Password))
 								$_SESSION['company'] = $member['comp_name'];
 								$_SESSION['Id'] = $member['Id'];
 							    $_SESSION['fulname'] = $member['full_name'];
+								$_SESSION['language']='English';
+								$_SESSION['rtl']='rtl';
 							   	$var=$member['exp_date'];
 							   if($var<=$vardate)
 							   {

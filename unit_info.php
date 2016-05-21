@@ -8,7 +8,6 @@
 
 session_start();
 $session_id='1';
- $_SESSION['rtl']='';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");

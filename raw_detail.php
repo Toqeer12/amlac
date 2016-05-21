@@ -492,4 +492,25 @@ function viewpropertylease($owner,$cid)
         }
         return $array7;
 }
+
+
+
+function GetProperty($lang,$keyword)
+
+{
+  
+    $xml=simplexml_load_file("language.xml") or die("Error: Cannot create object");
+ 
+         foreach ($xml->language[$lang]->key as $movie) 
+        { 
+            if($keyword==$movie['name'])
+            {
+                            echo 'Firstname: '.$movie['value'].'<br />'; 
+
+            }
+           
+ 
+        }   
+}
+
 ?>

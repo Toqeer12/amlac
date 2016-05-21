@@ -2,8 +2,8 @@
 
 <?php
 
+ include 'session.php';
 
-include 'session.php';
 ?>
 
 <html>
@@ -70,136 +70,11 @@ include 'session.php';
 				<div id="top_menu" class="nav notify-row">
                     <!-- BEGIN NOTIFICATION -->
 					<ul class="nav top-menu">
-                        <!-- BEGIN SETTINGS 
-                        <li class="dropdown">
-                            <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Settings">
-                                <i class="icon-cog"></i>
-                            </a>
-                        </li>-->
-						
-					
-                        <!-- END SETTINGS -->
-                        <!-- BEGIN INBOX DROPDOWN
-                        <li class="dropdown" id="header_inbox_bar">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-envelope-alt"></i>
-                                <span class="badge badge-important">5</span>
-                            </a>
-                            <ul class="dropdown-menu extended inbox">
-                                <li>
-                                    <p>You have 5 new messages</p>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Dulal Khan</span>
-									<span class="time">Just now</span>
-									</span>
-									<span class="message">
-									    Hello, this is an example messages please check
-									</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Rafiqul Islam</span>
-									<span class="time">10 mins</span>
-									</span>
-									<span class="message">
-									 Hi, Mosaddek Bhai how are you ?
-									</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Sumon Ahmed</span>
-									<span class="time">3 hrs</span>
-									</span>
-									<span class="message">
-									    This is awesome dashboard templates
-									</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Dulal Khan</span>
-									<span class="time">Just now</span>
-									</span>
-									<span class="message">
-									    Hello, this is an example messages please check
-									</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">See all messages</a>
-                                </li>
-                            </ul>
-                        </li>icon-bell-alt
-                        <!-- END INBOX DROPDOWN -->
-						<!-- BEGIN NOTIFICATION DROPDOWN -->
-						<!--<li class="dropdown" id="header_notification_bar">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-							<i class="icon-bell-alt"></i>
-							<span class="badge badge-warning">7</span>
-							</a>
-							<ul class="dropdown-menu extended notification">
-								<li>
-									<p>You have 7 new notifications</p>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bolt"></i></span>
-									Server #3 overloaded.
-									<span class="small italic">34 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-bell"></i></span>
-									Server #10 not respoding.
-									<span class="small italic">1 Hours</span>
-									</a>
-								</li>
-                                <li>
-                                    <a href="#">
-                                        <span class="label label-important"><i class="icon-bolt"></i></span>
-                                        Database overloaded 24%.
-                                        <span class="small italic">4 hrs</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="label label-success"><i class="icon-plus"></i></span>
-                                        New user registered.
-                                        <span class="small italic">Just now</span>
-                                    </a>
-                                </li>
-								<li>
-									<a href="#">
-									<span class="label label-info"><i class="icon-bullhorn"></i></span>
-									Application error.
-									<span class="small italic">10 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">See all notifications</a>
-								</li>
-							</ul>
-						</li>
-						 END NOTIFICATION DROPDOWN -->
+ 
 
 					</ul>
-					                                <span class="username"><?php echo $varcom?></span>
-
-                </div>
+			  <span class="username"><?php echo $varcom?></span>
+    </div>
                     <!-- END  NOTIFICATION -->
 					
                 <div class="top-nav ">
@@ -217,6 +92,8 @@ include 'session.php';
                             </a>
                         </li>-->
                         <!-- END SUPPORT -->
+						
+
 						<!-- BEGIN USER LOGIN DROPDOWN -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -228,6 +105,7 @@ include 'session.php';
 								<li><a href="profile.php"><i class="icon-user"></i> My Profile</a></li>
 								<li><a href="create_user.php"><i class="icon-tasks"></i> Create User</a></li>
 								<li><a href="update_password.php"><i class="icon-tasks"></i> Change Password</a></li>
+								<li><a href="language_selector.php"><i class="icon-tasks"></i><?php  echo $_SESSION['language'];?></a></li>
 								<li><a id="button2" href="#"><i class="icon-calendar"></i>Upload Logo</a></li>
 								<li class="divider"></li>
 								<li><a href="logout.php"><i class="icon-key"></i> Log Out</a></li>
