@@ -5,7 +5,7 @@
 session_start();
  
   if($_SESSION['exp']=='invalid'){
-
+include 'session.php';
  header("location:login.php");
 unset($_SESSION['user']);
 unset($_SESSION['company']);
@@ -21,7 +21,7 @@ unset($_SESSION['fulname']);
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>Job Title</title>
+   <title><?php echo $var;?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -169,7 +169,7 @@ include 'header_menu.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Job Titles
+                    <?php GetProperty('expvoucher',$_SESSION['rtl']);?>
                      <!--<small>Managed Table Sample</small>-->
                   </h3>
                       <!-- END PAGE TITLE & BREADCRUMB-->
@@ -181,7 +181,7 @@ include 'header_menu.php';
  
   <ul class="tabs">
 
-    <li><a href="#tab4">Receipt Vouchers</a></li>
+    <li><a href="#tab4">   <?php GetProperty('receiptvoucher',$_SESSION['rtl']);?></a></li>
 
   </ul>
   <div class="clr"></div>
@@ -195,19 +195,19 @@ include 'header_menu.php';
                     <!-- BEGIN SAMPLE TABLE widget-->       
                   <div class="widget">
                      <div class="widget-title">
-                        <h4>Expense Voucher</h4>
+                        <h4><?php GetProperty('expvoucher',$_SESSION['rtl']);?></h4>
                      </div>
                      <div class="widget-body">
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
                              <tr>
                                  <th> #</th>
-                                 <th class="hidden-phone"> Amount</th>
+                                 <th class="hidden-phone"> <?php GetProperty('amount',$_SESSION['rtl']);?></th>
                                  <!--<th>Type</th>-->
-                                 <th>Date</th>
-                                 <th>Statement</th>
-                                 <th>Customer</th>
-                                 <th>Print</th>
+                                 <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('statement',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              

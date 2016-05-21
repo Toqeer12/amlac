@@ -4,18 +4,17 @@
 require('connect.php');
 
  
-if(isset($_POST['name'])&&isset($_POST['pass']))
+if(isset($_POST['email']))
 {
-$Username=$_POST['name'];
-$Password=$_POST['pass'];
-  
+$Username=$_POST['email'];
+   
 $encry=md5($Password);
 
 	
 
 if(!empty($Username)&&!empty($Password))
 	{ 
-		$sql= "SELECT * From  registration WHERE email='$Username' AND pin='$encry' ";   
+		$sql= "SELECT * From  registration WHERE email='$Username'  ";   
 		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 			if($result)
 				 {
@@ -72,7 +71,7 @@ if(!empty($Username)&&!empty($Password))
 											if($errflag)
 											{
 												$_SESSION['message'] = 'User Name or Password is invalid!';
-												header("location: login.php");
+												header("location: main_page.php");
 												exit();
 											}
 		 

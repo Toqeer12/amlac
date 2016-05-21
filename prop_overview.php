@@ -2,11 +2,10 @@
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
-
+ 
 <?php
 session_start();
-
+include 'session.php';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -20,7 +19,7 @@ unset($_SESSION['fulname']);
     ?>
 <head>
    <meta charset="utf-8" />
-   <title>Basic Tables</title>
+   <title><?php echo $var?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -30,9 +29,19 @@ unset($_SESSION['fulname']);
    <link href="css/style.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
+   <style>
+                .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+       </style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -85,60 +94,31 @@ include 'header_menu.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Properties Overview
-                    
+                <?php GetProperty('propertyover',$_SESSION['rtl']);?>                    
                   </h3>
-
                   <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->                     
-                      <?php 
-          require('connect.php');
-		  $sqlserivce_classes=mysql_query("select Count(*) as total from add_property Where cid='".$_SESSION['Id']."'");
-		  while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-				{
-				$rowsqlserivce_classes['total'];
-				?>
-			
-		 
+                     
             <div class="row-fluid">
                             <a class="icon-btn span2" href="#">
                                 <i class="icon-group"></i>
-                                <div>Property</div>
-                                <span class="badge badge-important"><?php echo $rowsqlserivce_classes['total'];?></span>
+                                <div><?php GetProperty('properties',$_SESSION['rtl']);?></div>
+                                <span class="badge badge-important"><?php echo PropertyCount($_SESSION['Id']);?></span>
                             </a>
-     		<?php
-				}
-						  $sqlserivce_classes=mysql_query("select Count(*) as total from real_state_unit Where status='unrented' And cid='".$_SESSION['Id']."'");
-						  while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-							{
-							$rowsqlserivce_classes['total'];
-							?>
-						
-							
-                            <a class="icon-btn span2" href="#">
+	                        <a class="icon-btn span2" href="#">
                                 <i class="icon-barcode"></i>
-                                <div>Units</div>
-                                <span class="badge badge-important"><?php echo $rowsqlserivce_classes['total'];?></span>
+                                <div><?php GetProperty('unitss',$_SESSION['rtl']);?></div>
+                                 <span class="badge badge-important"><?php echo UnitCount($_SESSION['Id']);?></span>
                             </a>            	
-     		<?php
-				}
-					  $sqlserivce_classes=mysql_query("select Count(*) as total from rent_property Where cid='".$_SESSION['Id']."'");
-						  while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-							{
-							$rowsqlserivce_classes['total'];
-							?>
-			  
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-bar-chart"></i>
-                                <div>Leases</div>
-                                <span class="badge badge-important"><?php echo $rowsqlserivce_classes['total'];?></span>
-                            </a>
-				<?php
-							}
-				?>
+			    <a class="icon-btn span2" href="#">
+                       <i class="icon-bar-chart"></i>
+                         <div><?php GetProperty('lease',$_SESSION['rtl']);?></div>
+                            <span class="badge badge-important"><?php echo LeaseCount($_SESSION['Id']);?></span>
+                </a>
+			 
      
                         </div>     
             <div class="row-fluid">
@@ -158,39 +138,30 @@ include 'header_menu.php';
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th>Property Name</th>
-                                 <th>Property Address</th>
-                                 <th>Number of Free Units</th>
+                                 <th><?php GetProperty('propertyname',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('address',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('numfreeunit',$_SESSION['rtl']);?></th>
                               
                               </tr>
                            </thead>
                            <tbody>
+                                
 					    <?php 		
-					    $sql= "SELECT * From add_property where cid='".$_SESSION['Id']."'";   
-                        $result5=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-                        if($result5)
-                         {
-                    
-                           	while($member=mysql_fetch_array($result5))
-							{	
-                               ?>
-                              <tr>
-                                 <td><?php echo $member['id']?></td>
-                                 <td><a href="prop_info.php?id=<?php echo $member['id'] ?>"><?php echo $member['propty_name']?></a></td>
-                                 <td><?php echo $member['address']?></td>
-                                 <?php 
-										$sql= "SELECT *  From real_state_unit WHERE property_name='".$member['id']."' And status='unrented' And cid='".$_SESSION['Id']."'";   
-                        				$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-                        				if($result)
-                        					 {
-      					  						 if(mysql_num_rows($result) >= 0) 
-                            						{?>
-														<td><?php echo  mysql_num_rows($result);?></td>
-                              </tr>
-                                      		  <?php }
-						 					 }
-							}
-					  }?>
+                          $var=$_SESSION['Id'];
+
+                        $selectproperty = SelectProperty($var);
+                        echo count($selectproperty);
+                        for($i=0; $i < count($selectproperty); $i++)
+                        { ?>
+                        <tr>
+                                 <td><?php echo $selectproperty[$i]['id'];?></td>
+                                 <td><a href="prop_info.php?id=<?php echo $selectproperty[$i]['id'] ?>"><?php echo $selectproperty[$i]['propty_name']?></a></td>
+                                 <td><?php echo $selectproperty[$i]['address']?></td>
+                                 <td><?php echo NumFreeUnit($selectproperty[$i]['id'],$var);?></td>
+
+					<?php  }?>
+                      
+                            </tr>                      
                            </tbody>
                         </table>
                      </div>
@@ -203,87 +174,41 @@ include 'header_menu.php';
                     <div class="widget">
                         <div class="widget-title">
                             <h4><i class="icon-reorder"></i>Latest Unit</h4>
-
                         </div>
                         <div class="widget-body">
+                            <div class="loader"></div>
+
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Unit</th>
-                                    <th>Property</th>
-                                    <th>Type</th>
-                                    <th>Renter Name</th>
+                                    <th><?php GetProperty('unitss',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('properties',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('propertytype',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('renter',$_SESSION['rtl']);?></th>
                                 </tr>
                                 </thead>
-                    <?php 
-						$sql= "SELECT * From real_state_unit where cid='".$_SESSION['Id']."'";   
-                        $result4=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-						
-					while($member=mysql_fetch_array($result4))
-					{		?> 
-                    <tbody>
                                 <tr>
-                                    <td><?php echo $member['id'];?></td>
-                                    <td><?php echo $member['block_no'];?></td>
-										<?php
-                                       			 $sql= "SELECT *  From add_property WHERE id='".$member['property_name']."' And cid='".$_SESSION['Id']."'";   
-												 $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-												if($result)
-												 {
-														   if(mysql_num_rows($result) >= 0) 
-															{
-																$member2 = mysql_fetch_assoc($result);?>
-													
-																	<td><a href="unit_info.php?unit=<?php echo $member['block_no'] ?>&id=<?php echo $member2['id'] ?>"><?php echo $member2['propty_name'];?></a></td>
-																	<?php
-																	$sql= "SELECT *  From property_type WHERE id='".$member['property_type']."'";   
-																	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-																	if($result)
-																	 {
-																	   if(mysql_num_rows($result) >= 0) 
-																			{
-																			$member5 = mysql_fetch_assoc($result);?>
-																			<td class="hidden-phone"><?php echo $member5['prop_type'] ?></td>
-																			<?php
-																	
-																			}
-																	  }
-																	
-																	?>
-																	  <?php
-																		$sql= "SELECT *  From rent_property WHERE property_name='".$member['property_name']."' And unit='".$member['block_no']."' And cid='".$_SESSION['Id']."' ";   
-																		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-																		if($result)
-																		 {
-																		   if(mysql_num_rows($result) >= 0) 
-																			{
-																				$member1 = mysql_fetch_assoc($result);?>
-																			 <?php
-																					$sql= "SELECT *  From clients WHERE id='".$member1['renter']."' And cid='".$_SESSION['Id']."'";   
-																					$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-																					if($result)
-																					 {
-																							 if(mysql_num_rows($result) >= 0) 
-																								{
-																										$member4 = mysql_fetch_assoc($result);?>
-																										<td><span><?php echo $member4['real_name']?></span></td>
-																							 <?php
-																								}
-																					 }
-																			}
-																		}
-													?>
-												</tr>	
-                            
-											<?php 
-								
-													 
-																}
-													}
-					         
-						 }?>
-                                          			 </tbody>
+                    <?php 
+                      $var=$_SESSION['Id'];
+
+                  
+                    $realstateunit=Real_State_Unit_2($var);                    
+                    for($i=0; $i< count($realstateunit); $i++)
+					{		?> 
+                    <tbody>                                
+                                    <td><?php echo $realstateunit[$i]['id'];?></td>
+                                    <td><?php echo $realstateunit[$i]['block_no'];?></td>
+	                                <td><a href="unit_info.php?unit=<?php echo $realstateunit[$i]['block_no'] ?>&id=<?php echo $realstateunit[$i]['id'] ?>"><?php 
+                                    $var2=$realstateunit[$i]['property_name'];
+                                    echo Property_View($var2,$var);?></a>
+                                    </td>
+                                    <td class="hidden-phone"><?php echo Property_Type_overview($var) ?></td>
+                                    <td><span><?php echo Property_Renter($realstateunit[$i]['property_name'],$realstateunit[$i]['block_no'],$var)?></span></td>
+                                	<?php 									         
+					}?>
+                                     </tr>	
+                    </tbody>
                             </table>
                         </div>
                     </div>
@@ -315,6 +240,9 @@ include 'header_menu.php';
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
    <script src="js/scripts.js"></script>
    <script>
+          	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
       jQuery(document).ready(function() {       
          // initiate layout and plugins
          App.init();

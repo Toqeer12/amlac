@@ -1,6 +1,7 @@
 <!doctype html>
 
 <?php
+					  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  
 
  include 'session.php';
 
@@ -9,7 +10,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
+<title><?php echo $var?></title>
    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
    <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
@@ -46,7 +47,7 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
-				<a class="brand" href="index.php">
+				<a class="brand" href="main_page.php">
 
 					<?php 
 					require('connect.php');
@@ -73,26 +74,18 @@
  
 
 					</ul>
-			  <span class="username"><?php echo $varcom?></span>
+			  <span class="username"><?php echo $varcom ?></span>
+              
+              
     </div>
-                    <!-- END  NOTIFICATION -->
-					
-                <div class="top-nav ">
-                    <ul class="nav pull-right top-menu" >
-                        <!-- BEGIN SUPPORT 
-                        <li class="dropdown mtop5">
 
-                            <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Chat">
-                                <i class="icon-comments-alt"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown mtop5">
-                            <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Help">
-                                <i class="icon-headphones"></i>
-                            </a>
-                        </li>-->
-                        <!-- END SUPPORT -->
-						
+
+                    <!-- END  NOTIFICATION -->
+
+                <div class="top-nav ">
+                    					           
+
+                    <ul class="nav pull-right top-menu" >
 
 						<!-- BEGIN USER LOGIN DROPDOWN -->
 						<li class="dropdown">
@@ -105,10 +98,29 @@
 								<li><a href="profile.php"><i class="icon-user"></i> My Profile</a></li>
 								<li><a href="create_user.php"><i class="icon-tasks"></i> Create User</a></li>
 								<li><a href="update_password.php"><i class="icon-tasks"></i> Change Password</a></li>
-								<li><a href="language_selector.php"><i class="icon-tasks"></i><?php  echo $_SESSION['language'];?></a></li>
-								<li><a id="button2" href="#"><i class="icon-calendar"></i>Upload Logo</a></li>
+ 								<li><a id="button2" href="#"><i class="icon-calendar"></i>Upload Logo</a></li>
 								<li class="divider"></li>
 								<li><a href="logout.php"><i class="icon-key"></i> Log Out</a></li>
+							</ul>
+						</li>
+						<!-- END USER LOGIN DROPDOWN -->
+					</ul>
+					<!-- END TOP NAVIGATION MENU -->
+				</div>
+                                 <div class="top-nav ">
+                    					           
+
+                    <ul class="nav pull-right top-menu" >
+
+						<!-- BEGIN USER LOGIN DROPDOWN -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="img/avatar-mini.png" alt=""/>
+							<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="language_selector.php?id=<?php echo urlencode($actual_link); ?>"><i class="icon-tasks"></i><?php  echo $_SESSION['language'];?></a></li>
+							
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->

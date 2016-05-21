@@ -1,7 +1,8 @@
+ 
 <?php
 session_start();
 require('session.php');
-require('WriteHTML.php');
+require('pdf/WriteHTML.php');
 require('connect.php');
 
 		$select_query = "SELECT `images_path` FROM  `images_tbl` where cid=$id";
@@ -23,7 +24,7 @@ $pdf->SetFont('Arial','B',12);
 $pdf->WriteHTML('<para><h1>Sandh No</h1><br></para><br><br>');
 $pdf->WriteHTML('<para><h3>On ' . $_GET['stdatee'] . 'The owner Identification Number '. $_GET['emiid'] .' and Mobile Number  '.$_GET['mobile'].' leased units</h3><br></para>');
 $pdf->SetFont('Arial','B',12); 
-$htmlTable='<TABLE>
+$htmlTable='<TABLE dir=rtl>
 <TR>
 <TD>Property Name:</TD>
 <TD>Unit Number:</TD>
@@ -53,3 +54,4 @@ $pdf->WriteHTML('<para><div><h3>Name and signature of the witness first</h3></di
 $pdf->WriteHTML('<para><div><h3>Name and signature of the witness second</h3></div> </para><br><br>');
 $pdf->Output(); 
 ?>
+ 

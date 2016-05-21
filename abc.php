@@ -33,18 +33,6 @@ unset($_SESSION['fulname']);
     <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-   
-   <style>
-           .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
-}
-       </style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -113,7 +101,7 @@ include 'header_menu.php';
                                        <!--BEGIN TABS-->
                                        <div class="tabbable tabbable-custom tabs-left">
                                            <!-- Only required for left/right tabs -->
-                                            <ul class="nav nav-tabs tabs-left">
+                                           <ul class="nav nav-tabs tabs-left">
                                                <li class="active"><a href="#tab_3_1" data-toggle="tab">All Tenants</a></li>
                                                <li><a href="#tab_3_2" data-toggle="tab"><?php GetProperty('owner',$_SESSION['rtl']);?></a></li>
                                                <li><a href="#tab_3_3" data-toggle="tab"><?php GetProperty('renter',$_SESSION['rtl']);?></a></li>
@@ -166,7 +154,7 @@ include 'header_menu.php';
             </div> 
             </div>
             </div>
- <div class="loader"></div>
+                                              
  <div class="tab-pane" id="tab_3_2">
  <p>Owner</p>
   <div class="row-fluid">
@@ -178,7 +166,7 @@ include 'header_menu.php';
                      <div class="widget-body">
                         <table class="table table-hover" style="width: 500px;">
                            <thead>
-                                                 <tr>
+                              <tr>
                                  <th>#</th>
                                  <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
                                  <th><?php GetProperty('em_id',$_SESSION['rtl']);?></th>
@@ -195,11 +183,11 @@ include 'header_menu.php';
                                ?>
                               <tr>
                                  <td><?php echo $member2[$i]['id']?></td>
-                                 <td><?php echo $member2[$i]['real_name'] ?></td>
-                                 <td><?php echo $member2[$i]['emi_id']?></td>
-								 <td><?php echo $member2[$i]['mob_no']?></td>
-                                 <td><a href="update_client.php?id=<?php echo $member2[$i]['id'];?>">Edit</a></td>
-                                 <td> <a href="#" data-id="<?php echo $member2[$i]['id']?>" data-type="owner" onclick="customercall(this)">Delete</a></td>
+                                 <td><?php echo $member2['real_name'] ?></td>
+                                 <td><?php echo $member2['emi_id']?></td>
+								 <td><?php echo $member2['mob_no']?></td>
+                                 <td><a href="update_client.php?id=<?php echo $member2['id'];?>">Edit</a></td>
+                                 <td> <a href="#" data-id="<?php echo $member2['id']?>" data-type="owner" onclick="customercall(this)">Delete</a></td>
                             </tr>
                       <?php
 							}
@@ -225,7 +213,8 @@ include 'header_menu.php';
                   <div class="widget" style="width: 500px;" >
                      <div class="widget-body">
                         <table class="table table-hover" style="width: 500px;">
-              <tr>
+                           <thead>
+                              <tr>
                                  <th>#</th>
                                  <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
                                  <th><?php GetProperty('em_id',$_SESSION['rtl']);?></th>
@@ -236,21 +225,34 @@ include 'header_menu.php';
                            </thead>
                            <tbody>
 					    <?php 		
-                        $renter = Dis_Rent_Property($_SESSION['Id']);
-                        for($i=0;$i<count($renter); $i++)
-                         {	
+					    $sql= "SELECT DISTINCT renter FROM `rent_property` where cid='".$_SESSION['Id']."'";   
+                        $result5=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+                        if($result5)
+                         {
+                    
+                           	while($member=mysql_fetch_array($result5))
+							{						   
+                                     $sql= "SELECT * From clients where id='".$member['renter']."'";   
+                                     $result6=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+                                    if($result6)
+                                      {
+                    
+                                    	while($member2=mysql_fetch_array($result6))
+							                {	
                                ?>
                               <tr>
-                                 <td><?php echo $renter[$i]['id']?></td>
-                                 <td><?php echo $renter[$i]['real_name'] ?></td>
-                                 <td><?php echo $renter[$i]['emi_id']?></td>
-								 <td><?php echo $renter[$i]['mob_no']?></td>
-                                 <td><a href="update_client.php?id=<?php echo $renter[$i]['id'];?>">Edit</a></td>
-                                 <td> <a href="#" data-id="<?php echo $renter[$i]['id']?>" data-type="renter" onclick="customercall(this)">Delete</a></td>
+                                 <td><?php echo $member2['id']?></td>
+                                 <td><?php echo $member2['real_name'] ?></td>
+                                 <td><?php echo $member2['emi_id']?></td>
+								 <td><?php echo $member2['mob_no']?></td>
+                              <td><a href="update_client.php?id=<?php echo $member2['id'];?>"> Edit</a></td>
+                                 <td> <a href="#" data-id="<?php echo $member2['id']?>" data-type="renter" onclick="customercall(this)">Delete</a></td>
                             </tr>
                       <?php
 							}
-                        ?>
+                                      }
+                            }
+					  }?>
                 
                            </tbody>
                         </table>
@@ -261,9 +263,9 @@ include 'header_menu.php';
         
             </div> 
             </div>
-                                               </div>
-                                                   <div class="tab-pane" id="tab_3_4">
-                                                   <p>Vendor</p>
+    </div>
+  <div class="tab-pane" id="tab_3_4">
+  <p>Vendor</p>
  <div class="row-fluid">
                <div class="span6" style="width: 1000px;">
                   <!-- BEGIN SAMPLE TABLE widget-->
@@ -275,7 +277,7 @@ include 'header_menu.php';
                            <thead>
                               <tr>
                                  <th>#</th>
-                                  <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
+                                           <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
                                  <th><?php GetProperty('em_id',$_SESSION['rtl']);?></th>
                                  <th><?php GetProperty('mobileno',$_SESSION['rtl']);?></th>
                                  <th><?php GetProperty('edit',$_SESSION['rtl']);?></th>
@@ -285,19 +287,25 @@ include 'header_menu.php';
                            <tbody>
 					    <?php 		
 				   
-            $vendor = viewVendor(1);
-            for($i=0; $i < count($vendor); $i++)
-            { ?>
+                                     $sql= "SELECT * From clients where vendor='1'";   
+                                     $result6=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+                                    if($result6)
+                                      {
+                    
+                                    	while($member2=mysql_fetch_array($result6))
+							                {	
+                               ?>
                               <tr>
-                                 <td><?php echo $vendor[$i]['id']?></td>
-                                 <td><?php echo $vendor[$i]['real_name'] ?></td>
-                                 <td><?php echo $vendor[$i]['emi_id']?></td>
-								 <td><?php echo $vendor[$i]['mob_no']?></td>
-                                 <td><a href="update_client.php?id=<?php echo $vendor[$i]['id'];?>"> Edit</a></td>
-                                 <td> <a href="#" data-id="<?php echo $vendor[$i]['id']?>" data-type="vendor" onclick="customercall(this)">Delete</a></td>
+                                 <td><?php echo $member2['id']?></td>
+                                 <td><?php echo $member2['real_name'] ?></td>
+                                 <td><?php echo $member2['emi_id']?></td>
+								 <td><?php echo $member2['mob_no']?></td>
+                                 <td><a href="update_client.php?id=<?php echo $member2['id'];?>"> Edit</a></td>
+                                <td> <a href="#" data-id="<?php echo $member2['id']?>" data-type="vendor" onclick="customercall(this)">Delete</a></td>
                             </tr>
                       <?php
-
+						
+                            }
 					  }?>
                 
                            </tbody>
@@ -351,10 +359,6 @@ include 'header_menu.php';
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script src="js/scripts.js"></script>
    <script>
-                $(window).load(function() {
-	$(".loader").fadeOut("slow");
-})
-   
       jQuery(document).ready(function() {       
          // initiate layout and plugins
          App.init();
@@ -368,14 +372,11 @@ include 'header_menu.php';
            debugger;
            var ob=obj.getAttribute("data-id");
            var obtype=obj.getAttribute("data-type");
-           var dataString= {deleteId: ob,
-                            deletetype:obtype};  
+           var dataString= 'deleteId=' + ob+'&datatype='+obtype;  
       $.ajax({
 		url : "client_validate.php?id=109",
 		type: "POST",
-		data : JSON.stringify(dataString),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
+		data : dataString,
 		cache: false,
 		success: function(result)
 		{

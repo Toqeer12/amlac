@@ -1275,6 +1275,16 @@ var App = function () {
             jQuery('#loginform').slideDown(200);
             jQuery('#forgotform').slideUp(200);
         });
+            jQuery('#back_login').click(function () {
+            jQuery('#loginform').show(200);
+            jQuery('#forgotform').hide();;
+        });
+         jQuery('#back_login').click(function () {
+            jQuery('#forgetform').slideDown(200);
+         });
+          jQuery('#register').click(function () {
+            jQuery('#loginform').slideDown(800);
+         });
     }
 
     var handleFixInputPlaceholderForIE = function () {

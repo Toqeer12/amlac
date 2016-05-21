@@ -2,7 +2,7 @@
 
 <?php
 session_start();
- 
+ include 'session.php';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -22,7 +22,7 @@ unset($_SESSION['fulname']);
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>Form Layouts</title>
+   <title><?php echo $var?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -51,6 +51,15 @@ unset($_SESSION['fulname']);
   height: 500px;
   background: #eee;
   font-size: 8px;}
+            .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 <!-- END HEAD -->
@@ -66,7 +75,7 @@ unset($_SESSION['fulname']);
    </div>*/?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -89,14 +98,14 @@ include 'header_menu.php';
     </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->   
             <div class="row-fluid">
                <div class="span12">
                   <h3 class="page-title">
-                  Expense
+                <?php GetProperty('expense',$_SESSION['rtl']);?>
                    
                   </h3>
 
@@ -105,22 +114,19 @@ include 'header_menu.php';
 
            <div class="row-fluid">
       <div class="widget">
-          <div class="widget-title">
-              <h4><i class="icon-reorder"></i>Add Service Bill</h4>
-   
-          </div>
+  
           <div class="widget-body">
           
-           <button type="button" class="btn btn-primary"  data-owner="<?php echo $_GET['owner']?>" data-prop="<?php echo $_GET['property'] ?>" dataunit="<?php $_GET['unit'] ?>" onClick="vender(this)">Add Vender</button>       
+           <button type="button" class="btn btn-primary"  data-owner="<?php echo $_GET['owner']?>" data-prop="<?php echo $_GET['property'] ?>" dataunit="<?php $_GET['unit'] ?>" onClick="vender(this)"><?php GetProperty('addvendor',$_SESSION['rtl']);?></button>       
            <br>
 
             <form id="loginform" class="form-horizontal" method="POST">
             
               <div class="span4">
-                  <strong>Basic Info</strong><br />
+                  <strong><?php GetProperty('basicinfo',$_SESSION['rtl']);?></strong><br />
           
                   <div class="control-group">
-                      <label class="control-label">Customer Name</label>
+                      <label class="control-label"><?php GetProperty('customer',$_SESSION['rtl']);?></label>
                       <div class="controls">
                     <?php
 					require('connect.php');
@@ -149,13 +155,13 @@ include 'header_menu.php';
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label">Type</label>
+                      <label class="control-label"><?php GetProperty('type',$_SESSION['rtl']);?></label>
                       <div class="controls">
  						<input name="servicebill"id="servicebill" type="text" value="Service Bill"   readonly/>
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label">Vender</label>
+                      <label class="control-label"><?php GetProperty('vendor',$_SESSION['rtl']);?></label>
                       <div class="controls">
                                 <select  name="vendor" id="vendor" >
                                 <option value="">Select Vender</option>
@@ -178,7 +184,7 @@ include 'header_menu.php';
                       </div>
                   </div>
                     <div class="control-group">
-                      <label class="control-label">Amount</label>
+                      <label class="control-label"><?php GetProperty('amount',$_SESSION['rtl']);?></label>
                       <div class="controls">
                   <input name="amount"id="amount" type="text" placeholder="Property No" required/>
            
@@ -188,7 +194,7 @@ include 'header_menu.php';
 							<input name="property"id="property" type="hidden" value="<?php echo $_GET['property'];?>" required/>
                             <input name="unit"id="unit" type="hidden" value="<?php echo $_GET['unit'];?>" required/>
                    <div class="control-group">
-                      <label class="control-label">Notes</label>
+                      <label class="control-label"><?php GetProperty('notes',$_SESSION['rtl']);?></label>
                       <div class="controls">
                    		<textarea rows="4" cols="50" id="notes"></textarea>
                       </div>
@@ -201,7 +207,7 @@ include 'header_menu.php';
 
               </div>
               <div class="clearfix"></div>
-              <input type="button" id="login-btn"  comp-id="<?php echo $_SESSION['Id']?>" onClick="servicebillpost(this)" class="btn btn-primary" value="Submit" />
+              <input type="button" id="login-btn"  comp-id="<?php echo $_SESSION['Id']?>" onClick="servicebillpost(this)" class="btn btn-primary" value="<?php GetProperty('submit',$_SESSION['rtl']);?>" />
               </div>
               <div class="form-actions">
                   

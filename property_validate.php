@@ -18,27 +18,12 @@ $about_him=$_POST["about"];
 $id=$_SESSION['Id'];
 $lat=$_POST['latitude'];
 $longi=$_POST['longitude'];
-$sql= "SELECT * From clients WHERE Email='$user'";   
-$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-if($result) {
-			if(mysql_num_rows($result) > 0) {
-			$errflag = true;
-			if($errflag) {
-			$_SESSION['message'] = 'User Name or Password is invalid!';
-				header("location: user_reg_form.php");
-				exit();
-			}
-}
-else
-{
+
 $sql="INSERT INTO `add_property`(`address`,`property_type`,`year_build`,`block_no`,`about_him`,`owner_id`,`inst_no`,`land_no`,`date_inst`,`propty_name`,`cid`, `lat`, `longi`)
  VALUES ('$address','$property_type','$year_build','$blockno','$about_him','$owner_id','$inst_no','$land_no','$date_inst','$propty_name','$id','$lat','$longi');";
 $result=mysql_query($sql);
 $id=mysql_insert_id();
-header("Location:prop_info.php?id=".$id);
-
-}
-}
+ header("Location:prop_info.php?id=".$id);
 
 }
 else

@@ -2,7 +2,7 @@
 
 <?php
 session_start();
- 
+ include 'session.php';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -47,18 +47,25 @@ unset($_SESSION['fulname']);
 
 #modal {
   margin: 0 auto;
-  padding: 0.5em;
-  width: 300px;
+   width: 300px;
   height:600px;
   background: #eee;
   font-size: 8px;}
   #modal3 {
   margin: 0 auto;
-  padding: 0.5em;
-  width: 300px;
+   width: 300px;
   height: 400px;
   background: #eee;
   font-size: 8px;}
+      .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 <!-- END HEAD -->
@@ -122,44 +129,28 @@ include 'header_menu.php';
             <div class="span6" >
                   <!-- BEGIN SAMPLE TABLE widget-->            
                  <div class="widget">
-                             <div class="widget-title">
-                                <h4><i class="icon-cogs"></i>Advance Table</h4>
-                                       </div>
+                          
                             <div class="widget-body" style="width: 40px;">
                                <form id="newsletterform" class="form-horizontal"  method="POST">
-                                     
+                                             <div class="loader"></div>
                                       <div class="span6">
                                           
                                       <div class="control-group">
-                                              <label class="control-label">Renter</label>
+                                              <label class="control-label"><?php GetProperty('renter',$_SESSION['rtl']);
+
+?></label>
                                               <div class="controls">
                                                			<select  id="renter" name="renter" onChange="changerenter(this)" required>
                                                               <option value="0">Select Renter</option>
-                                                            <?php 
-                                                            require('connect.php');
-                                                            $sqlserivce_classes=mysql_query("select Distinct renter from rent_property where cid='".$_SESSION['Id']."'");
-                                                            while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-                                                                {
-                                                                    $data=$rowsqlserivce_classes['renter'];                                                              
-                                                                    $sql= "SELECT * From clients Where id='$data'";   
-                                                                    $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-                                                                    if($result)
-                                                                    {
-                                                                
-                                                                        if(mysql_num_rows($result) > 0) 
-                                                                        {
-                                                                            $member = mysql_fetch_assoc($result);
-                                                                            $dataname=$member['real_name'];
-                                                                    ?>
-                                                                
-                                                                    <option value="<?php echo $member['id'];?>"><?php echo $dataname;?></option>
-                                                                    
-                                                                    
-                                                                               <?php
-                                                                        }
+                                                              <?php 
+                                                                    $var=$_SESSION['Id'];
+                                                                    $leaserrenter= LoadRenterFinance($var);
+                                                                    for ($i=0; $i < count($leaserrenter); $i++)
+                                                                    {?>
+                                                                    <option value="<?php echo $leaserrenter[$i]['id'];?>"><?php echo $leaserrenter[$i]['real_name'];?></option>
+                                                                    <?php
                                                                     }
-                                                               
-                                                               ?>
+                                                                    ?>
                                                                 </select>      
                                               </div>
                                           </div>
@@ -172,11 +163,11 @@ include 'header_menu.php';
                                       <br>
                                       <div class="clearfix"></div>
                                       <div class="form-actions">
-                                           <input name="submit" type="button" class="btn btn-primary" value="Submit" onClick="updaterent(this)"/>
+                                           <input name="submit" type="button" class="btn btn-primary" value="<?php GetProperty('submit',$_SESSION['rtl']);
+
+?>" onClick="updaterent(this)"/>
                                       </div>
-                                                           <?php
-                                                           }
-                                                           ?>      
+                                                          
 
                                   </form>
                              </div>
@@ -223,7 +214,10 @@ include 'header_menu.php';
 
    <script type="text/javascript">
    
-   
+      
+    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+}) 
 $(document).ready(function() {
  
   $('#button3').magnificPopup({

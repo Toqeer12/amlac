@@ -3,18 +3,26 @@
 <?php
 
 session_start();
-  if($_SESSION['exp']=='invalid'){
-
- header("location:login.php");
-unset($_SESSION['user']);
-unset($_SESSION['company']);
-unset($_SESSION['Id']);
-unset($_SESSION['fulname']);
-
+include 'session.php';
+if($_SESSION['exp']=='invalid'){
+	
+	
+	header("location:login.php");
+	
+	unset($_SESSION['user']);
+	
+	unset($_SESSION['company']);
+	
+	unset($_SESSION['Id']);
+	
+	unset($_SESSION['fulname']);
+	
+	
 }
 
-    
-    ?>
+
+
+?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -22,7 +30,7 @@ unset($_SESSION['fulname']);
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>Form Layouts</title>
+   <title><?php echo $var ?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -59,6 +67,15 @@ unset($_SESSION['fulname']);
   height: 400px;
   background: #eee;
   font-size: 8px;}
+      .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 <!-- END HEAD -->
@@ -67,55 +84,41 @@ unset($_SESSION['fulname']);
    <!-- BEGIN HEADER -->
 
    <?php 
-   include 'header.php';?>
+include 'header.php';
+?>
        <!-- BEGIN TOP NAVIGATION BAR -->
  
        <!-- END TOP NAVIGATION BAR -->
-   </div>*/?>
+   </div>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];
+?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
       <div class="sidebar-toggler hidden-phone"></div>
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
-      <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-      <div class="navbar-inverse">
-        <form class="navbar-search visible-phone">
-          <input type="text" class="search-query" placeholder="Search" />
-        </form>
-      </div>
-      <!-- END RESPONSIVE QUICK SEARCH FORM -->
-      <!-- BEGIN SIDEBAR MENU -->
+
 <?php 
 include 'header_menu.php';
+
 
 ?>
       <!-- END SIDEBAR MENU -->
     </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];
+?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->   
             <div class="row-fluid">
                <div class="span12">
                    <!-- BEGIN THEME CUSTOMIZER-->
-<!--                    <div id="theme-change" class="hidden-phone">
-                       <i ></i>
-                        <span class="settings">
-                            <span class="text">Theme:</span>
-                            <span class="colors">
-                                <span class="color-default" data-style="default"></span>
-                                <span class="color-gray" data-style="gray"></span>
-                                <span class="color-purple" data-style="purple"></span>
-                                <span class="color-navy-blue" data-style="navy-blue"></span>
-                            </span>
-                        </span>
-                   </div> -->
+
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
                    Add Client
@@ -128,33 +131,41 @@ include 'header_menu.php';
             <!-- BEGIN PAGE CONTENT-->
            <div class="row-fluid">
       <div class="widget">
-          <div class="widget-title">
-              <h4><i class="icon-reorder"></i>Update Client</h4>
-   
-          </div>
+  
           <div class="widget-body">
-           <form id="loginform" class="form-horizontal"  method="POST">
+           <form id="loginform" class="form-horizontal"  method="POST"  <?php echo $_SESSION['rtl'];
+
+
+?>>
              
-              <div class="span4">
-                 <strong>Basic Info</strong><br />
+              <div class="span4" <?php echo $_SESSION['rtl'];
+
+
+?>>
+                 <strong><?php GetProperty('basicinfo',$_SESSION['rtl']);?></strong><br />
 <?php
-		  $sql= "SELECT * From clients WHERE id='".$_GET['id']."'";   
-          $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-	      if($result)
-		   {
-				if(mysql_num_rows($result) > 0)
-				 {
-					 
-						$member = mysql_fetch_assoc($result);?>
+$sql= "SELECT * From clients WHERE id='".$_GET['id']."'";
+
+$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+
+if($result)
+{
+	
+	if(mysql_num_rows($result) > 0)
+	{
+		
+		
+		$member = mysql_fetch_assoc($result);
+		?>
                   <div class="control-group">
-                      <label class="control-label">Real Name</label>
+                      <label class="control-label"><?php GetProperty('realname',$_SESSION['rtl']);?></label>
                       <div class="controls">
                         <input name="realname"id="realname" pattern="[a-zA-Z\s]+" type="text" value="<?php echo $member['real_name']?>" required/>
                       </div>
                   </div>
                   
                   <div class="control-group">
-                      <label class="control-label">Mobile Number</label>
+                      <label class="control-label"><?php GetProperty('mobileno',$_SESSION['rtl']);?></label>
                       <div class="controls">
             		 <input name="mobile"id="mobile" type="tel" pattern="^\d{3}\d{6}\d{3}$" value="<?php echo $member['mob_no']?>"required/>
                       </div>
@@ -165,71 +176,71 @@ include 'header_menu.php';
               <br>
               <div class="span6">
                   <div class="control-group">
-                      <label class="control-label">Personal Id No</label>
+                      <label class="control-label"><?php GetProperty('em_id',$_SESSION['rtl']);?></label>
                       <div class="controls">
                          <input name="idnum"id="idnum" type="num" pattern="[0-9]+" value="<?php echo $member['emi_id']?>" required/>
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label">Service Vendor</label>
+                      <label class="control-label"><?php GetProperty('vendor',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       <input type="checkbox" name="vender" id="vendor" onChange="venderservice(this)"> Is Vender </br>
-
-                      </div>
-                  </div>
+                 </div>
+                </div>
  
-                  </div>
+             </div>
                   <br>
                   <br>
               </div> 
               
               <?php
-              }
-              }?>
+}
+
+}
+?>
 
                 <div id="result">
               </div>
-              
-              
-                        <div class="widget-body">
-   
-              <div class="span4">
-                 <strong>Other details</strong><br />
+                  <div class="loader"></div>
+
+              <div class="widget-body">
+              <div class="span4" <?php echo $_SESSION['rtl'];?>>
+                 <strong><?php GetProperty('otherdetail',$_SESSION['rtl']);?></strong><br />
 
                   <div class="control-group">
-                      <label class="control-label" style="float: left; width: 200px;">Email</label>
+                      <label class="control-label" ><?php GetProperty('email',$_SESSION['rtl']);?></label>
                       <div class="controls">
                         <input name="email"id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" type="text" value="<?php echo $member['email']?>" required/>
                       </div>
                   </div>
                   
                   <div class="control-group">
-                      <label class="control-label" style="float: left;width: 200px;">Account Number</label>
+                      <label class="control-label"  ><?php GetProperty('accountno',$_SESSION['rtl']);?></label>
                       <div class="controls">
             		 	<input name="accountno"id="accountno" type="tel" pattern="^\d{3}\d{6}\d{3}$" value="<?php echo $member['account_no']?>" required/>
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label" style="float: left;width: 200px;">Fax No</label>
+                      <label class="control-label" ><?php GetProperty('fax',$_SESSION['rtl']);?></label>
                       <div class="controls">
             		 	<input name="fax"id="fax" type="tel" pattern="^\d{3}\d{6}\d{3}$" value="<?php echo $member['fax']?>" required/>
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label" style="float: left;width: 200px;">POBox</label>
+                      <label class="control-label" ><?php GetProperty('pbox',$_SESSION['rtl']);?></label>
                       <div class="controls">
             		 	<input name="pbox"id="pbox" type="tel" pattern="[0-9]+" value="<?php echo $member['pbox']?>" required/>
                       </div>
                   </div>
                        <div class="control-group">
-                      <label class="control-label"  style="float: left;width: 200px;">Passport No</label>
+                      <label class="control-label"   ><?php GetProperty('passport',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       <input name="passport"id="passport" pattern="[a-zA-Z0-9\s]+" type="text" value="<?php echo $member['passport']?>" required/>
 
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label"  style="float: left;width: 200px;">Job Title</label>
+                      <label class="control-label" ><?php GetProperty('jobtitle',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       <input name="jtitle"id="jtitle" type="text" pattern="[a-zA-Z\s]+" value="<?php echo $member['job_title']?>" required/>
 
@@ -238,44 +249,54 @@ include 'header_menu.php';
               </div>
               
          <br>
-              <div class="span6">
+              <div class="span6" <?php echo $_SESSION['rtl'];
+
+
+?>>
                   <div class="control-group" style="margin-top: 10px;">
-                      <label class="control-label" style="float: left;width: 200px;">Bank Name</label>
+                      <label class="control-label" >Bank Name</label>
                       <div class="controls">
                           <select  name="bank" id="bank" >
                             <option value="">Select Bank</option>
                           <?php 
-                          require('connect.php');
-                         $sqlserivce_classes=mysql_query("select * from bank_detail Where cid='".$_SESSION['Id']."'");
-                       	 while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-                       	 {
-                       		 $data222=$rowsqlserivce_classes['bank_name'];
-                        ?>
-                        <option value="<?php echo $rowsqlserivce_classes['id'];?>"><?php echo $data222;?></option>
+require('connect.php');
+
+$sqlserivce_classes=mysql_query("select * from bank_detail Where cid='".$_SESSION['Id']."'");
+
+while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
+{
+	
+	$data222=$rowsqlserivce_classes['bank_name'];
+	
+	?>
+                        <option value="<?php echo $rowsqlserivce_classes['id'];
+?>"><?php echo $data222;
+?></option>
                         <?php
-                        
-                        }
-                        
-                        ?>
+
+}
+
+
+?>
 
   </select>    
   <input name="desig"id="button" type="image" src="img/PLUS.jpg" placeholder="Owner" required/>
                    </div>
                   </div>
                   <div class="control-group" style="margin-top: 10px;">
-                      <label class="control-label" style=" float: left; width: 200px;">Phone Number</label>
+                      <label class="control-label"   ><?php GetProperty('phoneno',$_SESSION['rtl']);?></label>
                       <div class="controls">
                        <input name="phone"id="phone" type="num" pattern="[0-9]+" value="<?php echo $member['phone_no']?>" required/>
                       </div>
                   </div>
                   <div class="control-group" style="margin-top: 30px;">
-                      <label class="control-label" style=" float: left; width: 200px;">Address</label>
+                      <label class="control-label"  ><?php GetProperty('addresscust',$_SESSION['rtl']);?></label>
                       <div class="controls">
                        <input name="address"id="address" type="text" pattern="[a-zA-Z0-9/s]+" value="<?php echo $member['resi_address']?>" required/>
                       </div>
                   </div>
                   <div class="control-group" style="margin-top: 30px;">
-                      <label class="control-label" style=" float: left; width: 200px;">Nationality</label>
+                      <label class="control-label"  ><?php GetProperty('nationality',$_SESSION['rtl']);?></label>
                       <div class="controls">
                         <select id="nationality" name="nationality" readonly>
 <!--                         <option value="">Property Type</option>
@@ -286,24 +307,32 @@ include 'header_menu.php';
                       </div>
                   </div>
                                     <div class="control-group">
-                      <label class="control-label" style=" float: left; width: 200px;">Sponsor</label>
+                      <label class="control-label" ><?php GetProperty('sponsor',$_SESSION['rtl']);?></label>
                       <div class="controls">
                           <select  name="sponsor" id="sponsor" >
           
           <?php 
-          require('connect.php');
-          echo "here";
-		 $sqlserivce_classes=mysql_query("select * from sponsor Where id='".$member['sponsor']."'");
-		while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-		{
-		echo "string".$data222=$rowsqlserivce_classes['sponsor_name'];
-		?>
-		<option value="<?php echo $rowsqlserivce_classes['id'];?>"><?php echo $data222;?></option>
+require('connect.php');
+
+echo "here";
+
+$sqlserivce_classes=mysql_query("select * from sponsor Where id='".$member['sponsor']."'");
+
+while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
+{
+	
+	$data222=$rowsqlserivce_classes['sponsor_name'];
+	
+	?>
+		<option value="<?php echo $rowsqlserivce_classes['id'];
+?>"><?php echo $data222;
+?></option>
 		<?php
-		
-		}
-		
-		?>
+
+}
+
+
+?>
 
   </select>
                        <input name="desig"id="button3" type="image" src="img/PLUS.jpg" placeholder="Owner" required/>
@@ -318,7 +347,7 @@ include 'header_menu.php';
         <div id="result2">
               </div> 
               <div class="form-actions">
-                   <input name="submit" type="button"  data-id="<?php echo $member['id']?>"class="btn btn-primary" value="Update" onClick="Submit(this)"/>
+                   <input name="button" type="button"  data-id="<?php echo $member['id']?>"class="btn btn-primary" value="Update" onClick="Submit(this)"/>
               </div>
                   </form>
   </div>
@@ -450,7 +479,9 @@ include 'header_menu.php';
    <script src="js/scripts.js"></script>
 
    <script type="text/javascript">
-   
+      $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
    
 $(document).ready(function() {
  
@@ -581,7 +612,13 @@ var dataString= 'realname=' + realname + '&idnum=' + emid + '&email=' + email + 
 		{            
             //window.location="update_client.php?id="+result.id;            
             $().toastmessage('showSuccessToast', "Record Updated Successfully");
-		},
+            if(result)
+            {
+                
+            
+            window.location = "customer.php";
+            }	
+    },
 		error: function (jqXHR, textStatus, errorThrown)
 		{
 	 				debugger;

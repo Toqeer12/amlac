@@ -110,6 +110,15 @@ article {
   height:500px;
   background: #eee;
   font-size: 8px;}
+         .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
   </style>
 </head>
 
@@ -170,16 +179,7 @@ include 'header_menu.php';
                      Job Titles
                      <!--<small>Managed Table Sample</small>-->
                   </h3>
-                 <!--  <ul class="breadcrumb">
-                       <li>
-                           <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
-                       </li>
-                       <li>
-                           <a href="#">Data Tables</a> <span class="divider">&nbsp;</span>
-                       </li>
-                       <li><a href="#">Managed Tables</a><span class="divider-last">&nbsp;</span></li>
-                   </ul>-->
-                  <!-- END PAGE TITLE & BREADCRUMB-->
+ 
                </div>
             </div>
          
@@ -209,12 +209,12 @@ include 'header_menu.php';
                              <thead>
                              <tr>
                                  <th> #</th>
-                                 <th class="hidden-phone"> Amount</th>
-                                 <th> Type</th>
-                                 <th>Date</th>
-                                 <th>Statement</th>
-                                 <th>Customer</th>
-                                 <th>Print</th>
+                                 <th class="hidden-phone"> <?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('type',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('statement',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              
@@ -253,7 +253,7 @@ include 'header_menu.php';
                      </div>
                   </div>
       </div>
-      
+                            <div class="loader"></div>
         <div class="span6" <?php echo $_SESSION['rtl'];?>>
                     <!-- BEGIN SAMPLE TABLE widget-->       
                   <div class="widget">
@@ -265,13 +265,13 @@ include 'header_menu.php';
                              <thead>
                              <tr>
                                  <th> #</th>
-                                 <th class="hidden-phone"> Amount</th>
-                                 <th>Type</th>
-                                  <th>Bill #</th>
-                                 <th>Date</th>
-                                 <th>Statement</th>
-                                 <th>Customer</th>
-                                 <th>Print</th>
+                                 <th class="hidden-phone"> <?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('type',$_SESSION['rtl']);?></th>
+                                  <th><?php GetProperty('billnumber',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('statement',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              
@@ -334,25 +334,10 @@ include 'header_menu.php';
       <!-- END PAGE -->
     
    </div>
-   <!-- END CONTAINER -->
-   <!-- BEGIN FOOTER -->
-   <div id="footer">
-       2013 &copy; Admin Lab Dashboard.
-      <div class="span pull-right">
-         <span class="go-top"><i class="icon-arrow-up"></i></span>
-      </div>
-   </div>
-   <!-- END FOOTER -->
-   <!-- BEGIN JAVASCRIPTS -->
-   <!-- Load javascripts at bottom, this will reduce page load time -->
+
    <script src="js/jquery-1.8.3.min.js"></script>
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="js/jquery.blockui.js"></script>
-   <!-- ie8 fixes -->
-   <!--[if lt IE 9]>
-   <script src="js/excanvas.js"></script>
-   <script src="js/respond.js"></script>
-   <![endif]-->   
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
@@ -362,6 +347,9 @@ include 'header_menu.php';
 <script src="assets/main/javascript/jquery.toastmessage.js"></script>
    
 <script type="text/javascript">
+ $(window).load(function() {
+	$(".loader").fadeOut("slow");
+}) 
     function callme2(obj)
     {debugger;
          var price    = (document.getElementById("anual")).innerHTML;
@@ -381,6 +369,8 @@ include 'header_menu.php';
       
     </script>
 <script>
+       
+   
 $(function() {
   $('ul.tabs li:first').addClass('active');
   $('.block article').hide();

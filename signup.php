@@ -34,7 +34,17 @@ Website: http://thevectorlab.net/
 
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="build/toastr.css" rel="stylesheet" type="text/css" />
-
+ <style>
+     .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+     </style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -50,21 +60,41 @@ Website: http://thevectorlab.net/
   <!-- BEGIN LOGIN -->
   <div id="login">
     <!-- BEGIN LOGIN FORM -->
-    <form id="form" class="form-vertical" action="signup_validate.php" method="POST">
+    <form id="form" class="form-vertical" action="" method="POST">
       <div class="lock">
       </div>
 	  <span class="help-inline">
   <?php
 session_start();
+
+
+
+
 if (isset($_SESSION['message']))
 {
-
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
+	
+	
+	
+	
+	
+	echo $_SESSION['message'];
+	
+	
+	
+	
+	unset($_SESSION['message']);
+	
+	
+	
+	
 }
 
-	  
-	  ?>
+
+
+
+
+
+?>
 	  
 	  </span>
       <div class="control-wrap">
@@ -378,12 +408,12 @@ if (isset($_SESSION['message']))
               </div>
 			</div>
 		        <div class="block-hint pull-right">
-                          <a href="login.php" class="" id="forget-password"><h6>Login!!</h6></a>
+                          <a href="index.php" class="" id="forget-password"><h6>Login!!</h6></a>
 
 					  </div>
       </div>
-
-      <input type="submit" id="login-btn" class="btn btn-block login-btn" value="Submit"/>
+<div class="loader"></div>
+      <input type="button" id="login-btn" class="btn btn-block login-btn" value="Submit" onclick="sign_up(this)"/>
 	  
     </form>
 
@@ -404,24 +434,25 @@ if (isset($_SESSION['message']))
    <script src="js/respond.js"></script>
    <![endif]-->
    <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- Magnific Popup core JS file -->
-   <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-   <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
-   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script src="assets/main/javascript/jquery.toastmessage.js"></script>
    <script src="js/scripts.js"></script>
    <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
 
    <script src="toastr.js"></script>
- <script type="text/javascript">
-  
-  function signup(obj)
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
+  function sign_up(obj)
   {
+      
       debugger;
-        var fullname=$("#user_name").val();
+         var fullname=$("#user_name").val();
         var email=$("#user_email").val();
         var compname=$("#comp_name").val();
         var mobile=$("#tel_num").val();
@@ -429,18 +460,31 @@ if (isset($_SESSION['message']))
         var address=$("#addres").val();
         var city=$("#city").val();     
         
-        var dataString= 'fullname='+ fullname + '&email='+ email+ '&compname='+ compname  + '&mobile='+ mobile  + '&pin='+ pin + '&address='+ address + '&city='+ city; 
-	 $.ajax({
+         var jsonData={
+                          fullname: fullname ,
+                          email: email,
+                          compname: compname,
+                          mobile: mobile, 
+                          pin: pin ,
+                          address: address ,
+                          city: city
+         }
+         
+         
+ 	 $.ajax({
 		url : "client_validate.php?id=444",
 		type: "POST",
-		data : dataString,
+		data : JSON.stringify(jsonData),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
 		cache: false,
 		success: function(result)
 		{  debugger;
             
-                window.location = "login.php";
-            
-
+            if(result.id=='1')
+            {               
+                                window.location.href = "index.php";
+            }  
 		},
 		error: function (jqXHR, textStatus, errorThrown)
 		{

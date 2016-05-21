@@ -1,51 +1,52 @@
-      <ul class="sidebar-menu">
+     <?php include'raw_detail.php';?>
+	 
+	  <ul class="sidebar-menu">
         <li class="has-sub active">
           <a href="javascript:;" class="">
-              <span class="icon-box"> <i class="icon-dashboard"></i></span> Real State Section
+              <span class="icon-box"> <i class="icon-dashboard"></i></span> <?php GetProperty('realstatesection',$_SESSION['rtl']); ?>
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li class=""><a class="" href="user_reg_form.php">Add New Properties</a></li>
-                         <li><a class="" href="add_client.php">Add New Client</a></li>
-                  <!-- <li class=""><a class="" href="add_lease_contract.php">Adding Investment Property</a></li>-->
-                   <li class=""><a class="" href="add_real_stat_unit.php">Real State Unit</a></li>
-                   <li class=""><a class="" href="add_lease.php">Add New Lease</a></li>
+                        <li class=""><a class="" href="add_property.php"><?php GetProperty('addnewproperty',$_SESSION['rtl']); ?></a></li>
+                         <li><a class="" href="add_client.php"><?php GetProperty('addclienttitle',$_SESSION['rtl']); ?></a></li>
+                   <li class=""><a class="" href="add_real_stat_unit.php"><?php GetProperty('addnewunit',$_SESSION['rtl']); ?></a></li>
+                   <li class=""><a class="" href="add_lease.php"><?php GetProperty('addnewlease',$_SESSION['rtl']); ?>e</a></li>
 
                     </ul>
         </li>
 				<li class="has-sub active">
 					<a href="javascript:;" class="">
-					    <span class="icon-box"> <i class="icon-book"></i></span> Overview
+					    <span class="icon-box"> <i class="icon-book"></i></span> <?php GetProperty('overview',$_SESSION['rtl']); ?>
 					    <span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li><a class="" href="prop_overview.php">Properties</a></li>
-						<li><a class="" href="lease_overview.php">Lease</a></li>
-                        <li><a class="" href="customer.php">Customer</a></li>
+						<li><a class="" href="prop_overview.php"><?php GetProperty('properties',$_SESSION['rtl']); ?></a></li>
+						<li><a class="" href="lease_overview.php"><?php GetProperty('lease',$_SESSION['rtl']); ?></a></li>
+                        <li><a class="" href="customer.php"><?php GetProperty('addcustomer',$_SESSION['rtl']); ?></a></li>
 					</ul>
 				</li>
 				<li class="has-sub active">
 					<a href="javascript:;" class="">
-					    <span class="icon-box"> <i class="icon-book"></i></span> Finance
+					    <span class="icon-box"> <i class="icon-book"></i></span> <?php GetProperty('finance',$_SESSION['rtl']); ?>
 					    <span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li><a class="" href="finance.php">Pay Lease Payment</a></li>
-						<li><a class="" href="voucher.php">Vouchers</a></li>
-                        <li><a class="" href="#">Office Record</a></li>
-					   	<li><a class="" href="outcome.php">Outcome</a></li>
-                       <li><a class="" href="income.php">Income</a></li>
+						<li><a class="" href="finance.php"><?php GetProperty('leasepayment',$_SESSION['rtl']); ?></a></li>
+						<li><a class="" href="voucher.php"><?php GetProperty('voucher',$_SESSION['rtl']); ?></a></li>
+                   <!--     <li><a class="" href="#"><?php GetProperty('outcome',$_SESSION['rtl']); ?></a></li>-->
+					   	<li><a class="" href="outcome.php"><?php GetProperty('outcome',$_SESSION['rtl']); ?></a></li>
+                       <li><a class="" href="income.php"><?php GetProperty('income',$_SESSION['rtl']); ?></a></li>
 					</ul>
 				</li>
 				 <li class="has-sub active">
 					<a href="javascript:;" class="">
-					    <span class="icon-box"> <i class="icon-book"></i></span> Notifications
+					    <span class="icon-box"> <i class="icon-book"></i></span> <?php GetProperty('notify',$_SESSION['rtl']); ?>
 					    <span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li><a class="" href="notification.php">Notification</a></li>
+						<li><a class="" href="notification.php"><?php GetProperty('notify',$_SESSION['rtl']); ?></a></li>
  
 					</ul>
 				</li>
-        <li><a class="" href="logout.php"><span class="icon-box"><i class="icon-user"></i></span> Login Page</a></li>
+        <li><a class="" href="logout.php"><span class="icon-box"><i class="icon-user"></i></span> <?php GetProperty('logout',$_SESSION['rtl']); ?></a></li>
       </ul>

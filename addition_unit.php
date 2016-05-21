@@ -14,12 +14,12 @@ unset($_SESSION['fulname']);
      
      ?>
      
-     
+     <?php include 'raw_detail.php'; ?>
      
         <div class="row-fluid">
             <div class="span4">
                   <div class="control-group">
-                      <label class="control-label">Unit Description</label>
+                      <label class="control-label"><?php GetProperty('unitdesc',$_SESSION['rtl']);?></label>
                       <div class="controls">
                               <select id="desc" name="desc">
                             <option value="Singal">Singal</option>
@@ -29,13 +29,13 @@ unset($_SESSION['fulname']);
                       </div>
                   </div>
               <div class="control-group">
-                      <label class="control-label">No of Bathrooms</label>
+                      <label class="control-label"><?php GetProperty('washrom',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       <input name="broom"id="broom" type="num"  placeholder="0" Value="" required/>
                       </div>
                   </div>
                <div class="control-group">
-                      <label class="control-label">Water Meter Number</label>
+                      <label class="control-label"><?php GetProperty('watermeter',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       <input name="wmeter"id="wmeter" type="num"  placeholder="0" Value="" required/>
                       </div>
@@ -44,26 +44,26 @@ unset($_SESSION['fulname']);
               <div class="span4">
 
               <div class="control-group">
-                      <label class="control-label">No of Rooms</label>
+                      <label class="control-label"><?php GetProperty('numroom',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       <input name="room"id="room" type="num"  placeholder="0" Value="" required/>
                       </div>
                   </div>
                            <div class="control-group">
-                      <label class="control-label">Electricity Meter Number</label>
+                      <label class="control-label"><?php GetProperty('electricmeter',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       <input name="emeter"id="emeter" type="num"  placeholder="0" Value="" required/>
                       </div>
                   </div>
 
                                     <div class="control-group">
-                      <label class="control-label">Finishing Status</label>
+                      <label class="control-label"><?php GetProperty('frishstatus',$_SESSION['rtl']);?></label>
                       <div class="controls">
-                              <select id="developprocess" name="developprocess">
+                            <select id="developprocess" name="developprocess">
                             <option value="Standard">Standard</option>
                             <option value="Conditioned">Conditioned</option>
                             <option value="Conditioned and furnished">Conditioned and furnished</option>
-                            </select>
+                           </select>
                       </div>
                   </div>
                
@@ -71,4 +71,4 @@ unset($_SESSION['fulname']);
                 
                    
              </div>    
-                 <strong><a onClick="return  empty()">Basic Details</a></strong><br />
+  <strong><a onClick="return  empty()"><?php GetProperty('basicinfo',$_SESSION['rtl']);?>   </a></strong><br />

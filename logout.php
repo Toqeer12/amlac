@@ -2,11 +2,11 @@
 session_start();
 if(session_destroy())
 {
-header("Location: login.php");
+header("Location: index.php");
 }
 else
 {
-header("Location: index_2.html");
+header("Location: main_page.php");
 
 }
 ?>

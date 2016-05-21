@@ -6,6 +6,7 @@
 
 <?php
 session_start();
+include 'session.php';
 $session_id='1';
  
   if($_SESSION['exp']=='invalid'){
@@ -22,7 +23,7 @@ unset($_SESSION['fulname']);
     ?>
 <head>
    <meta charset="utf-8" />
-   <title>Tabs & Accordions</title>
+   <title><?php echo $var;?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -32,12 +33,11 @@ unset($_SESSION['fulname']);
    <link href="css/style.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-      <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-
+   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
+   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+   <link href="build/toastr.css" rel="stylesheet" type="text/css" />
 
 
    
@@ -50,7 +50,15 @@ unset($_SESSION['fulname']);
   height: 500px;
   background: #eee;
   font-size: 8px;}
-
+  .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 <!-- END HEAD -->
@@ -64,7 +72,7 @@ unset($_SESSION['fulname']);
    include 'header.php';?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->   
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
          <div class="sidebar-toggler hidden-phone"></div>
@@ -84,7 +92,7 @@ include 'header_menu.php';
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->
@@ -131,7 +139,7 @@ include 'header_menu.php';
                                  <!--BEGIN TABS-->
                                  <div class="tabbable tabbable-custom">
                                     <ul class="nav nav-tabs">
-                                       <li class="active"><a href="#tab_1_1" data-toggle="tab">General Information</a></li>
+                                       <li class="active"><a href="#tab_1_1" data-toggle="tab"><?php GetProperty('generalinfo',$_SESSION['rtl']);?></a></li>
                                       <!--  <li><a href="#tab_1_4" data-toggle="tab">Leases</a></li>
                                        <li><a href="#tab_1_3" data-toggle="tab">Documents</a></li>-->
                                     </ul>
@@ -143,8 +151,10 @@ include 'header_menu.php';
                   <div class="widget">
           
                      <div class="widget-body">
+                                            <div class="loader"></div>
+
                         <table class="table table-striped table-bordered dataTable">
-                        <strong> General Information </strong>
+                        <strong><?php GetProperty('generalinfo',$_SESSION['rtl']);?></strong>
                         <?php 		$sql= "SELECT * From clients WHERE id='".$_GET['id']."'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
@@ -157,39 +167,39 @@ include 'header_menu.php';
                                            <thead>
                                         
                                               <tr>
-                                                 <th>Customer Name</th>
+                                                 <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
                                                  <th class="hidden-phone"> <?php echo $member['real_name']; ?></th>
                                               </tr>
                                               <tr>
-                                              	 <th> Personal Id</th>
+                                              	 <th> <?php GetProperty('em_id',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['emi_id']; ?></td>
                                               </tr>
                                               <tr>
-                                              	 <th>Mobile Number</th>
+                                              	 <th><?php GetProperty('mobileno',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['mob_no']; ?></td>
                                              </tr>
                                              <tr>
-                                                 <th>Email</th>
+                                                 <th><?php GetProperty('mobileno',$_SESSION['rtl']);?> </th>
                                                  <td><?php echo $member['email']; ?></td>
                                             </tr>
                                             <tr>
-                                                 <th>Phone</th>
+                                                 <th><?php GetProperty('phoneno',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['phone_no']; ?></td>
                                            </tr>
                                            <tr>
-                                                 <th>Fax Number</th>
+                                                 <th><?php GetProperty('fax',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['fax']; ?></td>
                                            </tr>     
                                            <tr>
-                                                 <th>Address</th>
+                                                 <th><?php GetProperty('addresscust',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['resi_address']; ?></td>
                                           </tr>
                                            <tr>
-                                                 <th>Company Activity</th>
+                                                 <th><?php GetProperty('cname',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['c_name']; ?></td>
                                           </tr>
                                                                                      <tr>
-                                                 <th>Company Name</th>
+                                                 <th><?php GetProperty('cactivity',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['company_act']; ?></td>
                                           </tr>
                                           
@@ -210,7 +220,7 @@ include 'header_menu.php';
           
                      <div class="widget-body">
                         <table class="table table-striped table-bordered dataTable">
-                        <strong> Customer Lease </strong>
+                        <strong> <?php GetProperty('custlease',$_SESSION['rtl']);?></strong>
                         <?php 		$sql= "SELECT * From rent_property WHERE renter='".$_GET['id']."'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
@@ -227,7 +237,7 @@ include 'header_menu.php';
                                                
                                                  <th class="hidden-phone"> Lease # <?php echo $member['id']; ?></th>
                                                  <th class="hidden-phone"> With Anual Lease <?php echo $member['payment']; ?></th>
-                                                <th><a href="job_title.php?id=<?php echo $member['owner'] ?>&property=<?php echo $member['property_name']?>&unit=<?php echo $member['unit']?>&renter=<?php echo $member['renter']?>"">View</a></th>
+                                                    <th><a href="job_title.php?id=<?php echo $member['owner'] ?>&property=<?php echo $member['property_name']?>&unit=<?php echo $member['unit']?>&renter=<?php echo $member['renter']?>"">View</a></th>
 
                                               </tr>
                                 
@@ -257,7 +267,7 @@ include 'header_menu.php';
           
                      <div class="widget-body">
                         <table class="table table-striped table-bordered dataTable">
-                        <strong> Rented Unit </strong>
+                        <strong><?php GetProperty('rentunit',$_SESSION['rtl']);?></strong>
                         <?php 		$sql= "SELECT * From rent_property WHERE renter='".$_GET['id']."'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
@@ -355,17 +365,16 @@ include 'header_menu.php';
    <script src="js/jquery.blockui.js"></script>
    <script src="assets/fancybox/source/jquery.fancybox.pack.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-   <!-- ie8 fixes -->
-   <!--[if lt IE 9]>
-   <script src="js/excanvas.js"></script>
-   <script src="js/respond.js"></script>
-   <![endif]-->
-
+ 
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script src="js/scripts.js"></script>
-   <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
 
 	<script>			
+             $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
+   
 $(document).ready(function() {
  debugger;
   $('#buttonloadunit').magnificPopup({
@@ -383,6 +392,7 @@ $(document).on('click', '.popup-modal-dismiss', function (e) {
   });
 </script>
    <script>
+ 
       jQuery(document).ready(function() {       
          // initiate layout and plugins
          App.init();

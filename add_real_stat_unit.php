@@ -2,6 +2,7 @@
 
 <?php
 session_start();
+include 'session.php';
    if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -20,7 +21,7 @@ unset($_SESSION['fulname']);
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>Form Layouts</title>
+   <title><?php echo $var?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -31,28 +32,34 @@ unset($_SESSION['fulname']);
    <link href="css/style.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
  <!--  <link rel="stylesheet" href="dist/magnific-popup.css"> -->
-<script src="assets/main/javascript/jquery.toastmessage.js"></script>
-   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="toastr.js"></script>
 
+   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
+<link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
 
 
 #modal {
   margin: 0 auto;
-  padding: 0.5em;
-  width: 500px;
+   width: 500px;
   height: 100px;
   background: #eee;
   font-size: 8px;}
+       .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 <!-- END HEAD -->
@@ -98,21 +105,10 @@ include 'header_menu.php';
             <div class="row-fluid">
                <div class="span12">
                    <!-- BEGIN THEME CUSTOMIZER-->
-<!--                    <div id="theme-change" class="hidden-phone">
-                       <i ></i>
-                        <span class="settings">
-                            <span class="text">Theme:</span>
-                            <span class="colors">
-                                <span class="color-default" data-style="default"></span>
-                                <span class="color-gray" data-style="gray"></span>
-                                <span class="color-purple" data-style="purple"></span>
-                                <span class="color-navy-blue" data-style="navy-blue"></span>
-                            </span>
-                        </span>
-                   </div> -->
+
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
-                   Unit Information
+                   <?php GetProperty('unitinfo',$_SESSION['rtl']);?>
                    
                   </h3>
 
@@ -122,48 +118,44 @@ include 'header_menu.php';
             <!-- BEGIN PAGE CONTENT-->
            <div class="row-fluid">
       <div class="widget">
-          <div class="widget-title">
-              <h4><i class="icon-reorder"></i>Real State Unit Data</h4>
-   
-          </div>
+ 
           <div class="widget-body">
             <form id="loginform" class="form-horizontal" action="real_stat_validate.php" method="POST" <?php echo $_SESSION['rtl'];?>>
-            
+            <div class="loader"></div>
               <div class="span4" <?php echo $_SESSION['rtl'];?>>
     <div class="control-group">
-                      <label class="control-label">Property</label>
+                      <label class="control-label"><?php GetProperty('property',$_SESSION['rtl']);?></label>
          <div class="controls">
                  <select  id="propteryname" name="propteryname">
                     <option value="0">Select Property</option>
-                  <?php 
-                  require('connect.php');
-                   $sqlserivce_classes=mysql_query("select * from add_property Where cid='".$_SESSION['Id']."'");
-                  while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-                    {
-                        $data =$rowsqlserivce_classes['propty_name'];
-                        ?>
-                        <option value="<?php echo $rowsqlserivce_classes['id'];?>"><?php echo $data;?></option>
-                        <?php
-                    }
+                <?php 
+                    $var=$_SESSION['Id'];
+                    $propert = SelectProperty($var);
+                    for($i=0; $i < count($propert); $i++)
+                    {           
                     ?>
+				<option value="<?php echo $propert[$i]['id'];?>"><?php echo $propert[$i]['propty_name'];?></option>
+                <?php
+                    }
+?>
                 </select>
         </div>
    </div>
 
                   <div class="control-group">
-                      <label class="control-label">Unit Number</label>
+                      <label class="control-label"><?php GetProperty('unitnum',$_SESSION['rtl']);?></label>
                       <div class="controls">
-                       <input name="blockno"id="blockno" type="num" placeholder="Block No"   required/>
+                       <input name="blockno"id="blockno" type="text" pattern="[a-bA-Z0-9]+" placeholder="Block No"   required/>
                       </div>
                   </div>
                  <div class="control-group">
-                      <label class="control-label">Annual Rent Amount</label>
+                      <label class="control-label"><?php GetProperty('annualrent',$_SESSION['rtl']);?></label>
                       <div class="controls">
-                  <input name="anuallease"id="anuallease" type="num" pattern="[0-9]+" placeholder="0" onchange="comission3(this)" equired/>
+                  <input name="anuallease"id="anuallease" type="text" pattern="[0-9]+" placeholder="0" onchange="comission3(this)" equired/>
                       </div>
                   </div>
-                                                      <div class="control-group">
-                      <label class="control-label">Commission Type</label>
+                <div class="control-group">
+                      <label class="control-label"><?php GetProperty('comisiontype',$_SESSION['rtl']);?></label>
                       <div class="controls">
                             <select id="ctype" name="ctype" onChange="comission(this)">
                             <option value="">Choose Type</option>
@@ -173,11 +165,10 @@ include 'header_menu.php';
            
                       </div>
                   </div>
-                                                            <div class="control-group">
-                      <label class="control-label">Unit Area</label>
+                 <div class="control-group">
+                      <label class="control-label"><?php GetProperty('unitarea',$_SESSION['rtl']);?></label>
                       <div class="controls">
-          <input name="unitarae"id="unitarae" type="num" pattern="[0-9]+" placeholder="0" required/>
-           
+                         <input name="unitarae"id="unitarae" type="text" pattern="[0-9]+" placeholder="0" required/>
                       </div>
                   </div>
  
@@ -185,44 +176,40 @@ include 'header_menu.php';
               </div>
               <div class="span4" <?php echo $_SESSION['rtl'];?>>
                   <div class="control-group">
-                      <label class="control-label">Property Type</label>
+                      <label class="control-label"><?php GetProperty('propertytype',$_SESSION['rtl']);?></label>
                       <div class="controls">
                             <select id="ptype" name="ptype">
                      
-          <?php 
-          require('connect.php');
-		  $sqlserivce_classes=mysql_query("select * from property_type");
-		  while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
-			{
-				echo "string".$data=$rowsqlserivce_classes['prop_type'];
-			?>
-				<option value="<?php echo $rowsqlserivce_classes['id'];?>"><?php echo $data;?></option>
-			<?php
-
-			}
-
-			?>
+            <?php
+            
+                    $property_type = Property_Type();
+                    for($i=0; $i < count($property_type); $i++)
+                    {           
+                    ?>
+				<option value="<?php echo $property_type[$i]['id'];?>"><?php echo $property_type[$i]['prop_type'];?></option><?php
+                    }
+            ?>	
 
   			</select><input name="desig"id="buttonaddproperty" type="image" src="img/PLUS.jpg" placeholder="Owner" required/>
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label">Amount of Insurance</label>
+                      <label class="control-label"><?php GetProperty('insurance',$_SESSION['rtl']);?></label>
                       <div class="controls">
-                      <input name="insamount"id="insamount" type="num" placeholder="0"  required/>
+                      <input name="insamount"id="insamount" type="text" placeholder="0"  required/>
                       </div>
                   </div>
                 
                   <div class="control-group">
-                      <label class="control-label">Commission</label>
+                      <label class="control-label"><?php GetProperty('comison',$_SESSION['rtl']);?></label>
                       <div class="controls">
-                      <input name="comision"id="comision" pattern="[0-9]+" type="num" placeholder="0" onchange="comission2(this)" required/>          
+                      <input name="comision"id="comision" pattern="[0-9]+" type="text" placeholder="0" onchange="comission2(this)" required/>          
                       </div>
                   </div>
                  <div class="control-group">
-                      <label class="control-label"> Commission Amount</label>
+                      <label class="control-label"><?php GetProperty('comisionamount',$_SESSION['rtl']);?></label>
                       <div class="controls">
-                      <input name="tcom" id="tcom" type="num" placeholder="0" onchange="comission3(this)" readonly />
+                      <input name="tcom" id="tcom" type="text" placeholder="0" onchange="comission3(this)" readonly />
                       </div>
                   </div>
                  
@@ -234,7 +221,7 @@ include 'header_menu.php';
               
               		<div id="addition">
             </div>
-              <strong><a id="info" onClick="return  addinfo()">Advance Details</a></strong><br />
+              <strong><a id="info" onClick="return  addinfo()"><?php GetProperty('advance',$_SESSION['rtl']);?></a></strong><br />
               <br>
                  <input align="center" style="margin-left:100px"type="submit" id="login-btn" class="btn btn-primary" value="Submit" />
               </div>
@@ -247,14 +234,14 @@ include 'header_menu.php';
         <input class="popup-modal-dismiss" action="#" type="image" src="img/cross-sign.jpg" placeholder="Owner" required/>
         <!-- <a class="popup-modal-dismiss" href="#">Dismiss</a> -->
     <h4>Add New Property Title</h4>
-<div class="row-fluid">
+<div class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <div class="widget">
            <div class="widget-body">
        
              
-              <div class="span4">
+              <div class="span45"  >
                   <div class="control-group">
-                      <label class="control-label">Property Title</label>
+                      <label class="control-label"><?php GetProperty('propertytype',$_SESSION['rtl']);?></label>
                       <div class="controls">
                         <input name="scripttitle"id="scripttitle" pattern="[a-zA-Z\s]+" type="text" placeholder="Jhon" required/>
                       </div>
@@ -391,32 +378,22 @@ include 'header_menu.php';
   <script src="js/jquery-1.8.3.min.js"></script>
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
    <script src="js/jquery.blockui.js"></script>
-   <!-- ie8 fixes -->
-   <!--[if lt IE 9]>
-   <script src="js/excanvas.js"></script>
-   <script src="js/respond.js"></script>
-   <![endif]-->
-   <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<!-- Magnific Popup core JS file -->
-<script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-
-<script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
+ 
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
+   <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
    <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
+   <script src="assets/main/javascript/jquery.toastmessage.js"></script>
    <script src="js/scripts.js"></script>
-
-   // <script>
-   //    jQuery(document).ready(function() {       
-   //       // initiate layout and plugins
-         
-   //    });
-   // </script>
+   <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
+   <script src="toastr.js"></script>
 
 
    <script type="text/javascript">
-
+	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
 $(document).ready(function() {
  
   $('#buttonaddproperty').magnificPopup({
@@ -426,8 +403,7 @@ $(document).ready(function() {
     modal: true
   });
 
-App.init();
-  
+   
 });
 
 $(document).on('click', '.popup-modal-dismiss', function (e) {
@@ -485,6 +461,7 @@ $.ajax({
 	
 	   $select.append('<option value="' + result.id+ '">' +result.text + '</option>');
 	    $.magnificPopup.close();
+          $().toastmessage('showSuccessToast', "Title is Added Successfully");	
     }
 	else
 	{

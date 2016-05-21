@@ -97,6 +97,15 @@ article {
   border-top: gray solid 1px;
   padding: 0 1em;
 }
+       .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 
@@ -109,7 +118,7 @@ article {
    include 'header.php';?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
     <div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -132,7 +141,7 @@ include 'header_menu.php';
 		</div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->

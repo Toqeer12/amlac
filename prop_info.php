@@ -6,22 +6,20 @@
 
 <?php
 session_start();
- 
-  if($_SESSION['exp']=='invalid'){
-
- header("location:login.php");
+include 'session.php';
+if($_SESSION['exp']=='invalid'){
+header("location:login.php");
 unset($_SESSION['user']);
 unset($_SESSION['company']);
 unset($_SESSION['Id']);
 unset($_SESSION['fulname']);
-
 }
 
     
     ?>
 <head>
    <meta charset="utf-8" />
-   <title>Tabs & Accordions</title>
+   <title><?php echo $var;?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -31,12 +29,12 @@ unset($_SESSION['fulname']);
    <link href="css/style.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-      <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-<link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
+   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
+   <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
+   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+   <link href="build/toastr.css" rel="stylesheet" type="text/css" />
 
     
     <style type="text/css">
@@ -49,6 +47,15 @@ unset($_SESSION['fulname']);
   height:500px;
   background: #eee;
   font-size: 8px;}
+           .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
   </style>
 </head>
 <!-- END HEAD -->
@@ -75,9 +82,7 @@ unset($_SESSION['fulname']);
          <!-- END RESPONSIVE QUICK SEARCH FORM -->
          <!-- BEGIN SIDEBAR MENU -->
 <?php 
-include 'header_menu.php';
-
-?>
+include 'header_menu.php';?>
          <!-- END SIDEBAR MENU -->
       </div>
       <!-- END SIDEBAR -->
@@ -137,12 +142,12 @@ include 'header_menu.php';
                                  <!--BEGIN TABS-->
                                  <div class="tabbable tabbable-custom">
                                     <ul class="nav nav-tabs">
-                                       <li class="active"><a href="#tab_1_1" data-toggle="tab">General Information</a></li>
-                                       <li><a href="#tab_1_2" data-toggle="tab">Property Units</a></li>
-                                       <li><a href="#tab_1_3" data-toggle="tab">Property Expenses</a></li>
-                                       <li><a href="#tab_1_4" data-toggle="tab">Leases</a></li>
-                                  <!--     <li><a href="#tab_1_5" data-toggle="tab">Financial Activity</a></li>-->
-                                       <li><a href="#tab_1_6" data-toggle="tab">Documents</a></li>
+                                       <li class="active"><a href="#tab_1_1" data-toggle="tab"><?php GetProperty('generalinfo',$_SESSION['rtl']);?></a></li>
+                                       <li><a href="#tab_1_2" data-toggle="tab"><?php GetProperty('propertyunit',$_SESSION['rtl']);?></a></li>
+                                       <li><a href="#tab_1_3" data-toggle="tab"><?php GetProperty('propertyexp',$_SESSION['rtl']);?></a></li>
+                                       <li><a href="#tab_1_4" data-toggle="tab"><?php GetProperty('lease',$_SESSION['rtl']);?></a></li>
+                                  <li><a href="#tab_1_5" data-toggle="tab">Financial Activity</a></li>
+                                       <li><a href="#tab_1_6" data-toggle="tab"><?php GetProperty('document',$_SESSION['rtl']);?></a></li>
                                     </ul>
                                     <div class="tab-content">
           <div class="tab-pane active" id="tab_1_1">
@@ -152,8 +157,10 @@ include 'header_menu.php';
                   <div class="widget">
           
                      <div class="widget-body">
+                          <div class="loader"></div>
+
                         <table class="table table-striped table-bordered dataTable">
-                        <strong> Basic Information </strong>
+                        <strong><?php GetProperty('basicinfo',$_SESSION['rtl']);?></strong>
                         <?php 		$sql= "SELECT * From add_property WHERE id='".$_GET['id']."' ";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
@@ -166,36 +173,34 @@ include 'header_menu.php';
                                            <thead>
                                         
                                               <tr>
-                                                 <th> Property Name</th>
+                                                 <th><?php GetProperty('propertyname',$_SESSION['rtl']);?></th>
                                                  <th class="hidden-phone"> <?php echo $member['propty_name']; ?></th>
                                               </tr>
                                               <tr>
-                                                 <th > Property Id	</th>
+                                                 <th > <?php GetProperty('propertyid',$_SESSION['rtl']);?>	</th>
                                                  <td><?php echo $member['id']; ?></td>            
                                               </tr>
                                               <tr>
-                                              	 <th> Address</th>
+                                              	 <th> <?php GetProperty('address',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['address']; ?></td>
                                               </tr>
                                               <tr>
-                                                 <th>Type</th>
+                                                 <th><?php GetProperty('propertytype',$_SESSION['rtl']);?></th>
                                                  <?php 
 												 $sql= "SELECT * From property_type WHERE id='".$member['property_type']."'";   
 												 $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 												if($result)
 												 {
-								
-													if(mysql_num_rows($result) > 0) 
+                                                    if(mysql_num_rows($result) > 0) 
 													{
-														$member2 = mysql_fetch_assoc($result);?>
-                                                        <td><?php echo $member2['prop_type']; ?></td>
-                                                        <?php
+                                                    $member2 = mysql_fetch_assoc($result);?>
+                                                    <td><?php echo $member2['prop_type']; ?></td>
+                                                    <?php
 													}
 												 }?>
-                                 
                                               </tr>
                                               <tr>     
-                                                 <th >For Property</th>
+                                                 <th ><?php GetProperty('forproperty',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['about_him'] ?></td>
                                               </tr>
                                            </thead>
@@ -212,7 +217,7 @@ include 'header_menu.php';
           
                      <div class="widget-body">
                         <table class="table table-striped table-bordered dataTable">
-                        <strong> Owner Information </strong>
+                        <strong><?php GetProperty('ownerinfo',$_SESSION['rtl']);?></strong>
                         <?php 		$sql= "SELECT * From clients WHERE id='".$member['owner_id']."' ";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
@@ -225,29 +230,27 @@ include 'header_menu.php';
                                            <thead>
                                         
                                               <tr>
-                                                 <th> Owner Name</th>
+                                                 <th><?php GetProperty('ownername',$_SESSION['rtl']);?></th>
                                                  <th class="hidden-phone"> <?php echo $member3['real_name']; ?></th>
                                               </tr>
                                               <tr>
-                                                 <th > Personal Id Number</th>
+                                                 <th><?php GetProperty('em_id',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member3['emi_id']; ?></td>            
                                               </tr>
                                               <tr>
-                                              	 <th> Mobile Number</th>
+                                              	 <th><?php GetProperty('mobileno',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member3['mob_no']; ?></td>
-                                       
                                               </tr>
-                                       
-                                              <tr>     
-                                                 <th >Property No</th>
+                                               <tr>     
+                                                 <th ><?php GetProperty('propertyno',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['land_no'] ?></td>
                                               </tr>
                                                         <tr>     
-                                                 <th >Deed No</th>
+                                                 <th ><?php GetProperty('deedno',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['inst_no'] ?></td>
                                               </tr>
                                                         <tr>     
-                                                 <th >Deed Date</th>
+                                                 <th ><?php GetProperty('deeddate',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['date_inst'] ?></td>
                                               </tr>
                                            </thead>
@@ -307,21 +310,21 @@ include 'header_menu.php';
                          <table class="table table-striped table-bordered dataTable">
                              <thead>
                              <tr>
-                                 <th> Unit Number</th>
-                                 <th class="hidden-phone"> Type</th>
-                               
-                                 <th>Annual Rent Amount</th>
-                                 <th>Status</th>
-                                 <th>View</th>
+                                 <th><?php GetProperty('unitnum',$_SESSION['rtl']);?></th>
+                                 <th class="hidden-phone"> <?php GetProperty('propertytype',$_SESSION['rtl']);?></th>                           
+                                 <th><?php GetProperty('annualrent',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('status',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
                                  <!--<th>Edit</th>-->
-                                 <th>Delete</th>
+                                 <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              <tbody >
                              
-                              <?php 		$sql= "SELECT * From real_state_unit WHERE property_name='".$_GET['id']."'";   
-									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-									if($result)
+                              <?php 
+                              $sql= "SELECT * From real_state_unit WHERE property_name='".$_GET['id']."'";   
+							  $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+							 if($result)
 									 {
 								
 									while($row = mysql_fetch_assoc($result)) {
@@ -338,9 +341,7 @@ include 'header_menu.php';
 													if(mysql_num_rows($result) > 0) 
 													{
 														$member2 = mysql_fetch_assoc($result);
-													 	 echo "<td>" .$member2['prop_type']. "</td>";
-                                                          
-                                                          
+													 	 echo "<td>" .$member2['prop_type']. "</td>";  
                                                     }
                                                           
                                                 }
@@ -394,14 +395,13 @@ include 'header_menu.php';
                              <thead>
                              <tr>
                                  <th> #</th>
-                                 <th class="hidden-phone"> Type</th>
-                                 <th> Bill Number</th>
-                                 <th>Amount</th>
-                                 
-                                 <th>Statement</th>
-                                  <th>Date</th>
-                                  <th>Customer</th>
-                                  <th>View</th>
+                                 <th class="hidden-phone"><?php GetProperty('type',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('billnumber',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('billnumber',$_SESSION['rtl']);?></th>         
+                                 <th><?php GetProperty('statment',$_SESSION['rtl']);?></th>
+                                  <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                  <th><?php GetProperty('customer',$_SESSION['rtl']);?></th>
+                                  <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              
@@ -446,15 +446,15 @@ include 'header_menu.php';
                                           </div>
                                    <div class="widget-body">
                      				<table class="table table-striped table-bordered dataTable">
-                                	<strong> Lease Unit </strong>
+                                	<strong> <?php GetProperty('lease',$_SESSION['rtl']);?> </strong>
                                    	<tbody style="border: 1px solid black;"> 
                                         <thead>
                                         
                                           <tr>
-                                             <th>Lease Unit</th>
-                                             <th class="hidden-phone"> Type</th>
-                                               <th class="hidden-phone"> Amount</th>
-                                                 <th class="hidden-phone"> Commission</th>
+                                             <th><?php GetProperty('lease',$_SESSION['rtl']);?></th>
+                                             <th class="hidden-phone"> <?php GetProperty('type',$_SESSION['rtl']);?></th>
+                                               <th class="hidden-phone"> <?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                                 <th class="hidden-phone"> <?php GetProperty('comison',$_SESSION['rtl']);?></th>
                                                
                                           </tr>
                                           <tr>                   
@@ -521,6 +521,10 @@ include 'header_menu.php';
                                   <?php 
                                   require('db.php');
                                $sqlserivce_classes=mysql_query("select * from user_uploads where user_id_fk='".$_GET['id']."'");
+                                      if($result)
+                                          {
+                                               if(mysql_num_rows($result) > 0) 
+                                                   {
                         while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
                         {
                         $data=$rowsqlserivce_classes['image_name'];
@@ -529,7 +533,8 @@ include 'header_menu.php';
                         <?php
                         
                         }
-                        
+                                                   }
+                                          }
                         ?>
                         
                     </div>
@@ -653,7 +658,9 @@ include 'header_menu.php';
    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
    <script type="text/javascript">
-   
+   	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
    
 $(document).ready(function() {
  

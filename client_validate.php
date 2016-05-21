@@ -16,7 +16,7 @@ $title=$_POST["jtitle"];
 $fax=$_POST["fax"];
 $id=$_SESSION['Id'];
 $encryp=md5(FLOOR( 1000 + ( RAND( ) *8999 ) ));
-$sql= "SELECT * From clients WHERE Email='$email'";   
+$sql= "SELECT * From clients WHERE email='$email'";   
 $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	if($result) {
 				if(mysql_num_rows($result) > 0)
@@ -28,7 +28,7 @@ $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 				else
 				{
 				$sql="INSERT INTO `clients`(`real_name`, `emi_id`, `mob_no`, `phone_no`, `email`, `passport`, `pbox`, `resi_address`, `job_title`, `fax`,`cid`,`account_no`, `bank_name`, `nation`, `c_name`, `notes`, `company_act`, `sponsor`, `vendor`, `password`)
-				 VALUES ('$realname','$emid','$contact','$phone','$email','$passport','$pbox','$address','$title','$fax','$id','','','','','','','','','$encryp');";
+				 VALUES ('$realname','$emid','$contact','$phone','$email','$passport','$pbox','$address','$title','$fax','$id','','','','','','','0','0','$encryp');";
 				$result=mysql_query($sql);
 				 $id=mysql_insert_id();
 				$data = array('id' => $id, 'text' => $realname);
@@ -453,46 +453,106 @@ else if($_GET['id']=='20')
 }
 else if($_GET['id']=='109')
 {
-    $delId = $_POST['deleteId'];
+	$x=json_decode($HTTP_RAW_POST_DATA);
 
-            
+ $delId=$x->{'deleteId'}; 
+  $type=$x->{'deletetype'}; 
+
+             if($type=='renter')
+			{
+				
+			
            $sql= "SELECT * From rent_property WHERE renter='$delId'";   
 		   $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-		   if($result)
-		    {
-				if(mysql_num_rows($result) > 0)
-				 { 
-					$member = mysql_fetch_assoc($result);
-				$data = array('delid' => "0");
-				header('Content-Type: application/json');
-				echo json_encode($data);
-				 }
-                 else {
-                     $sqldelete="DELETE FROM `clients` WHERE id='$delId'";
-                     $result=mysql_query($sqldelete)or  die('Invalid query: ' . mysql_error());
-                     if($result)
-                     {
-                        $data = array('delid' => "1");
-                        header('Content-Type: application/json');
-                        echo json_encode($data); 
-                     }
+			if($result)
+				{
+							if(mysql_num_rows($result) > 0)
+							{ 
+								$member = mysql_fetch_assoc($result);
+							$data = array('delid' => "0");
+							header('Content-Type: application/json');
+							echo json_encode($data);
+							}
+							else 
+							{
+								$sqldelete="DELETE FROM `clients` WHERE id='$delId'";
+								$result=mysql_query($sqldelete)or  die('Invalid query: ' . mysql_error());
+								if($result)
+								{
+									$data = array('delid' => "1");
+									header('Content-Type: application/json');
+									echo json_encode($data); 
+								}
 
-                 }
+							}
+				}
+			}
+			else if($type=='owner')
+			{
+				
+				$sql= "SELECT * From add_property WHERE owner_id='$delId'";   
+				$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+				if($result)
+				{
+							if(mysql_num_rows($result) > 0)
+							{ 
+								$member = mysql_fetch_assoc($result);
+							$data = array('delid' => "0");
+							header('Content-Type: application/json');
+							echo json_encode($data);
+							}
+							else 
+							{
+								$sqldelete="DELETE FROM `clients` WHERE id='$delId'";
+								$result=mysql_query($sqldelete)or  die('Invalid query: ' . mysql_error());
+								if($result)
+								{
+									$data = array('delid' => "1");
+									header('Content-Type: application/json');
+									echo json_encode($data); 
+								}
+							}
+				}
+			}
+			else {
+				$sql= "SELECT * From clients WHERE vendor='$delId'";   
+				$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+				if($result)
+				{
+							if(mysql_num_rows($result) > 0)
+							{ 
+								$member = mysql_fetch_assoc($result);
+							$data = array('delid' => "0");
+							header('Content-Type: application/json');
+							echo json_encode($data);
+							}
+							else 
+							{
+								$sqldelete="DELETE FROM `clients` WHERE id='$delId'";
+								$result=mysql_query($sqldelete)or  die('Invalid query: ' . mysql_error());
+								if($result)
+								{
+									$data = array('delid' => "1");
+									header('Content-Type: application/json');
+									echo json_encode($data); 
+								}
+							}
+				}
 			}
 }
 else if ($_GET['id']=='444')
 {
 	
+$x=json_decode($HTTP_RAW_POST_DATA);
 
-$fname=$_POST['fullname'];
-$contact=$_POST['mobile'];
-$cname=$_POST['compname'];
-$user=$_POST['email'];
-$pass=$_POST['pin'];
-$address=$_POST['address'];
-$city=$_POST['city'];
-$type=$_POST['type'];
-$com=$_POST['com'];
+ $fname=$x->{'fullname'}; 
+$contact=$x->{'mobile'};
+ $cname=$x->{'compname'};
+$user=$x->{'email'};
+$pass=$x->{'pin'};
+$address=$x->{'address'};
+$city=$x->{'city'};
+
 $encryp=md5($pass);
 date_default_timezone_set('Asia/Dubai');
 $time = date("h:i:sa");
@@ -514,8 +574,8 @@ $expdate = date("Y-m-d",$datee);
  
                  }
 				 else {
-					 $sql="INSERT INTO `Registration`(`full_name`, `email`, `comp_name`, `phone_no`, `city`, `pin`, `reg_date`, `exp_date`, `reg_time`, `type`,	`comp_id`) VALUES 
-					('$fname','$user','$cname','$contact','$city','$encryp','$date','$expdate','$time','$type','$com');";
+					 $sql="INSERT INTO `Registration`(`full_name`, `email`, `comp_name`, `phone_no`, `city`, `pin`, `reg_date`, `exp_date`, `reg_time`, `type`,`comp_id`) VALUES 
+					('$fname','$user','$cname','$contact','$city','$encryp','$date','$expdate','$time','','');";
 					$result=mysql_query($sql);
 					if($result)
 					{

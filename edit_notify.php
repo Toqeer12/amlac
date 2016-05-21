@@ -50,7 +50,7 @@ unset($_SESSION['fulname']);
    </div>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -72,15 +72,14 @@ include 'header_menu.php';
 
     </div>
 
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
 
 
             <div class="row-fluid">
                <div class="span12">
 
                   <h3 class="page-title">
-                  Notification Scheduling 
-                   
+               <?php GetProperty('notifcationschdule',$_SESSION['rtl']);?>
                   </h3>
 
                </div>
@@ -93,10 +92,10 @@ include 'header_menu.php';
             <form id="loginform" class="form-horizontal"  method="POST">
             
               <div class="span4">
-                  <strong>Basic Info</strong><br />
+                  <strong><?php GetProperty('basicinfo',$_SESSION['rtl']);?></strong><br />
  
                   <div class="control-group">
-                      <label class="control-label">Receiver</label>
+                      <label class="control-label"><?php GetProperty('receiver',$_SESSION['rtl']);?></label>
                       <div class="controls">
                           
                        &nbsp; <input type="checkbox" id="own" name="vehicle" value="owner">&nbsp;&nbsp;&nbsp;Owner 
@@ -107,32 +106,32 @@ include 'header_menu.php';
 
     
                   <div class="control-group">
-                      <label class="control-label">Notification Time</label>
+                      <label class="control-label"><?php GetProperty('notificationtime',$_SESSION['rtl']);?></label>
                       <div class="controls">
                        <input name="notitime"id="notitime" type="num" pattern="[0-9]+" value="" required/>
                       </div>
                   </div>
 
                   <div class="control-group">
-                      <label class="control-label">Notification Text Owner</label>
+                      <label class="control-label"><?php GetProperty('ownertext',$_SESSION['rtl']);?></label>
                       <div class="controls">
                      <textarea rows="2" cols="100" id="owner" name="owner" placeholder="Owner Text*"></textarea>
                       </div>
                       </div>
                       <div class="control-group">
-                           <label class="control-label">Notification Text Renter</label>
+                           <label class="control-label"><?php GetProperty('rentertext',$_SESSION['rtl']);?></label>
                       <div class="controls">
                      <textarea rows="2" cols="100" id="renter" name="renter" placeholder="Renter Text*"></textarea>
                       </div>
                       </div>
                       <div class="control-group">
-                           <label class="control-label">Notification Text Agent</label>
+                           <label class="control-label"><?php GetProperty('officetext',$_SESSION['rtl']);?></label>
                        <div class="controls">
                      <textarea rows="2" cols="100" id="agent" name="agent" placeholder="Agent Text*"></textarea>
                         </div>
                       </div>
                       <div class="control-group">
-                           <label class="control-label">Status</label>
+                           <label class="control-label"><?php GetProperty('status',$_SESSION['rtl']);?></label>
                       <div class="controls">
                       &nbsp; <input type="checkbox" id="chk2" name="vehicle" value="activate">&nbsp;&nbsp;&nbsp;Activate 
                         </div>
@@ -140,7 +139,7 @@ include 'header_menu.php';
                   </div>
               </div>
               <div class="clearfix"></div>                         
-              <input type="submit" id="login-btn" class="btn btn-primary" value="Submit" data-id="<?php  echo $_GET['id'];?>" onclick="getValueUsingClass(this)"/>
+              <input type="button" id="login-btn" class="btn btn-primary" value="<?php GetProperty('submit',$_SESSION['rtl']);?>" data-id="<?php  echo $_GET['id'];?>" onclick="getValueUsingClass(this)"/>
               </div>   
           </div>
       </div>

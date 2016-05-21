@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <?php
 session_start();
- 
+ include 'session.php'; 
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -21,7 +21,7 @@ unset($_SESSION['fulname']);
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>Job Title</title>
+   <title><?php echo $var;?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -112,6 +112,18 @@ article {
   height:500px;
   background: #eee;
   font-size: 8px;}
+  
+  
+  
+           .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
   </style>
 </head>
 
@@ -195,182 +207,136 @@ include 'header_menu.php';
                <div class="span6" <?php echo $_SESSION['rtl'];?>>
                   <!-- BEGIN SAMPLE TABLE widget-->
                   <div class="widget">
-                     <div class="widget-title">
-                        <h4><i class="icon-cogs"></i>Advance Table</h4>
-     
-                     </div>
-                       <input name="print" type="submit" value="Print" onClick="callme2(this)"/>
+           <div class="loader"></div>
+                       <input name="print" type="submit" value="print" onClick="callme2(this)"/>
                      <div class="widget-body">
                         <table class="table table-striped table-bordered dataTable">
                         <strong> Lease Information </strong>
-                        <?php 		$sql= "SELECT * From rent_property WHERE owner='".$_GET['id']."' AND property_name='".$_GET['property']."' And unit='".$_GET['unit']."'";   
-									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-									if($result)
-									 {
-								
-										if(mysql_num_rows($result) > 0) 
-										{
-											$member = mysql_fetch_assoc($result);?>
+                        <?php 		
+                        $owner=$_GET['id'];
+                        $propertyName=$_GET['property'];
+                        $unit=$_GET['unit'];
+                        $member = ViewOwnerRenter($owner,$propertyName,$unit);  
+                        for($i=0; $i<count($member); $i++)
+                        {?>
                                            <tbody style="border: 1px solid black;"> 
-                                           <thead>
-                                        
+                                           <thead> 
                                               <tr>
-                                                 <th> Writing Date</th>
-                                                 <th class="hidden-phone"> <?php echo $member['write_con_dat']; ?></th>
+                                                 <th> <?php GetProperty('writingdate',$_SESSION['rtl']);?></th>
+                                                 <th class="hidden-phone"> <?php echo $member[$i]['write_con_dat']; ?></th>
                                               </tr>
                                               <tr>
-                                                 <th > Rent start date	</th>
-                                                 <td id="stdate"><?php echo $member['start_date']; ?></td>
+                                                 <th ><?php GetProperty('rentstartdate',$_SESSION['rtl']);?>	</th>
+                                                 <td id="stdate"><?php echo $member[$i]['start_date']; ?></td>
                                               </tr>
                                               <tr>
-                                                 <th > Duration</th>
-                                                 <td><?php echo $member['duration'].' Month'; ?></td>
+                                                 <th><?php GetProperty('durationcontract',$_SESSION['rtl']);?></th>
+                                                 <td><?php echo $member[$i]['duration'].' Month'; ?></td>
                                               </tr>
                                               <tr>
-                                                 <th>End Date</th>
-                                                 <td id="too"><?php echo $member['ending_date']; ?></td>
+                                                 <th><?php GetProperty('endcontract',$_SESSION['rtl']);?></th>
+                                                 <td id="too"><?php echo $member[$i]['ending_date']; ?></td>
                                               </tr>
                                               <tr>
-                                                 <th >Payment Method</th>
-                                                 <td><?php echo $member['schudle_month'].'  Month'; ?></td>
+                                                 <th ><?php GetProperty('schudle_month',$_SESSION['rtl']);?></th>
+                                                 <td><?php echo $member[$i]['schudle_month'].'  Month'; ?></td>
                                               </tr>
                                               <tr>
-                                               <th >Price</th>
-                                            <td id="anual"><?php echo $member['payment'].'  AED'; ?></td>
-                                               
+                                                <th ><?php GetProperty('price',$_SESSION['rtl']);?></th>
+                                                <td id="anual"><?php echo $member[$i]['payment'].'  AED'; ?></td>
                                               </tr></thead>
                                            </tbody>
                         </table>
-                  <br>
+                         <br>
                         </br>
                          <table class="table table-striped table-bordered dataTable">
-                         <strong> Owner Information </strong>
-                           <tbody style="border: 1px solid black;"> 
-                           <thead>
+                         <strong><?php GetProperty('ownerinfo',$_SESSION['rtl']);?> </strong>
+                         <tbody style="border: 1px solid black;"> 
+                         <thead>
                         
                               <tr>
-                                 <th>Property Name</th>
-                                 <?php 
-								 $price=$member['property_name'];
-                                 $sql= "SELECT * From add_property WHERE id='$price'";   
-									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-									if($result)
-									 {
-									 	
-										if(mysql_num_rows($result) > 0) 
-										{
-											$member = mysql_fetch_assoc($result);?>
-											<td id="propname"><?php echo $member['propty_name']; ?></td>
+                                 <th><?php GetProperty('propertyname',$_SESSION['rtl']);?></th>
+                       <td id="propname"><?php echo Property_View($member[$i]['property_name'],$_SESSION['Id']); ?></td>
                               </tr>
                                <tr>
-                                 <th >Owner Name</th>
-										<?php $var= $member['owner_id']; 
-									    $sql= "SELECT * From clients WHERE id='$var'";   
-									    $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-									    if($result)
-									     {
-									 	
-										    if(mysql_num_rows($result) > 0) 
-										        {
-											    	$member = mysql_fetch_assoc($result);?>
-											        <td><?php echo $member['real_name']; ?></td>                                
+                                 <th ><?php GetProperty('owner',$_SESSION['rtl']);?></th>
+                                    <td><?php echo RenterName($member[$i]['owner']); ?></td>                                
                               </tr>
                               <tr>
-                                 <th >Personal ID</th>
-                                 <td id="emiid"><?php echo $member['emi_id']; ?></td>
+                                 <th ><?php GetProperty('em_id',$_SESSION['rtl']);?></th>
+                               <td id="emiid"><?php echo RenterEmid($member[$i]['owner']); ?></td>       
                               </tr>
                               <tr>
-                                 <th>Mobile Number</th>
-                                 <td id="mob"><?php echo $member['mob_no']; ?></td>
+                                 <th><?php GetProperty('mobileno',$_SESSION['rtl']);?></th>
+                               <td id="mob"><?php echo RenterMob($member[$i]['owner']); ?></td>       
                               </tr>
                               <tr>		
-                              <?php			}
-									 }
-                                        }
-                                     
-                                       
-                                  } ?>
-                            
+                              <?php			}                    
+                              ?>
                          </thead>
                          </tbody>
                          </table>         
-                         <?php }
-			 }?>
+           
                      
                         <br>
  			 <table class="table table-striped table-bordered dataTable">
-                        <strong> Renter Information </strong>
+                        <strong> <?php GetProperty('renterinfo',$_SESSION['rtl']);?> </strong>
                            <tbody style="border: 1px solid black;"> 
                                 <thead>
                                 
-                                  <tr>
-                                     <th>Renter Name</th>
-                                        <?php 		$sql= "SELECT * From rent_property WHERE owner='".$_GET['id']."' AND property_name='".$_GET['property']."' And unit='".$_GET['unit']."'";   
-									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-									if($result)
-									 {
-								
-										if(mysql_num_rows($result) > 0) 
-										{
-											$member = mysql_fetch_assoc($result);?>
-                                            							<?php $var= $member['renter']; 
-											
-									$sql= "SELECT * From clients WHERE id='$var'";   
-									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
-									if($result)
-									 {
-									 	
-										if(mysql_num_rows($result) > 0) 
-										{
-												$member = mysql_fetch_assoc($result);?>
-											<td><?php echo $member['real_name']; ?></td>
-                         
-                                  </tr>
-                                  <tr>                   
-                                     <th >Personal ID</th>
-                                    <td id="temiid"><?php echo $member['emi_id']; ?></td>
-                                  </tr>
-                                  <tr>
-                                     <th>Mobile Number</th>
-                                     <td id="tmob"> <?php echo $member['mob_no']; ?></td>
-                                  </tr>
-                                  <tr>                   <?php
-										}
-									 }
-										}
-										}?>
+                        <tr>
+                        <th><?php GetProperty('renter',$_SESSION['rtl']);?></th>
+                        <?php                     
+                        $owner=$_GET['id'];
+                        $propertyName=$_GET['property'];
+                        $unit=$_GET['unit'];
+                        $member2 = ViewOwnerRenter($owner,$propertyName,$unit);  
+                          for($i=0; $i<count($member2); $i++)
+						 {?>
+							<td><?php echo RenterName($member[$i]['owner']); ?></td>
+                           </tr>
+                           <tr>                   
+                           <th ><?php GetProperty('em_id',$_SESSION['rtl']);?></th>
+                           <td id="temiid"><?php echo RenterEmid($member[$i]['owner']); ?></td>
+                           </tr>
+                           <tr>
+                           <th><?php GetProperty('mobileno',$_SESSION['rtl']);?></th>
+                            <td id="tmob"> <?php echo RenterMob($member[$i]['owner']); ?></td>
+                           </tr>
+                            <?php
+							}
+						?>
                                </thead>
                            </tbody>
       			 </table>
-                 
-                                         <br>
+                     <br>
  			 <table class="table table-striped table-bordered dataTable">
                         <strong> Lease Unit </strong>
                            <tbody style="border: 1px solid black;"> 
                                 <thead>
                                 
                                   <tr>
-                                     <th>Lease Unit</th>
-                                     <th class="hidden-phone"> Type</th>
-                                       <th class="hidden-phone"> Amount</th>
-                                         <th class="hidden-phone"> Commission</th>
+                                     <th><?php GetProperty('unitnum',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"> <?php GetProperty('type',$_SESSION['rtl']);?></th>
+                                       <th class="hidden-phone"> <?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                         <th class="hidden-phone"> <?php GetProperty('comison',$_SESSION['rtl']);?></th>
                                        
                                   </tr>
                                   <tr>                   
-                                           <?php 	
+                                   <?php 	
+                                   
 									$sql= "SELECT * From rent_property WHERE owner='".$_GET['id']."' AND property_name='".$_GET['property']."' And unit='".$_GET['unit']."'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
 									 {
-								
 										if(mysql_num_rows($result) > 0) 
 										{
 											$member = mysql_fetch_assoc($result);
-                                            	$var=$member['property_name'];
-                                                ?>
-                                                 <td id="unitno"><?php echo $member['unit']; ?></td>
-                                                <?php
-                                            $sql= "SELECT * From real_state_unit WHERE property_name='$var' And block_no='".$_GET['unit']."'";   
+                                            $var=$member['property_name'];
+                                   ?>
+                                   <td id="unitno"><?php echo $member['unit']; ?></td>
+                                    <?php
+                                    $sql= "SELECT * From real_state_unit WHERE property_name='$var' And block_no='".$_GET['unit']."'";   
 									$result2=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result2)
 									 {
@@ -429,20 +395,20 @@ include 'header_menu.php';
 										{
 											$member = mysql_fetch_assoc($result);?>
                                           <div class="control-group">
-                                              <label class="control-label">Date</label>
+                                              <label class="control-label"><?php GetProperty('date',$_SESSION['rtl']);?></label>
                                               <div class="controls">
                                                 <input name="duedate"id="duedate" type="date" value="<?php echo $member['datee'];?>"readonly/>      
                                               </div>
                                           </div>
                  
                                           <div class="control-group">
-                                              <label class="control-label">Payable Amount</label>
+                                              <label class="control-label"><?php GetProperty('date',$_SESSION['rtl']);?></label>
                                               <div class="controls">
                                               <input name="actualpayment"id="actualpayment"  type="text" value="<?php echo $member['Amount'];?>"   readonly/>
                                               </div>
                                           </div>
                                           <div class="control-group">
-                                              <label class="control-label">Payment Method</label>
+                                              <label class="control-label"><?php GetProperty('paymentmethod',$_SESSION['rtl']);?></label>
                                               <div class="controls">
                                              <select name="paymethod" id="paymethod">
                                               <option value="0">Cash</option>
@@ -451,13 +417,13 @@ include 'header_menu.php';
                                      		 </div>
                                           </div>
                                           <div class="control-group">
-                                              <label class="control-label">Amount</label>
+                                              <label class="control-label"><?php GetProperty('amount',$_SESSION['rtl']);?></label>
                                               <div class="controls">
                                               <input name="amount"id="amount" pattern="[0-9]+" type="num" placeholder="Enter Amount to Paid"  required/>
                                               </div>
                                           </div>
                                           <div class="control-group">
-                                              <label class="control-label">Statment</label>
+                                              <label class="control-label"><?php GetProperty('statment',$_SESSION['rtl']);?></label>
                                               <div class="controls">
                                               <textarea rows="4" cols="50" id="statement"></textarea>
                                               </div>
@@ -498,24 +464,25 @@ include 'header_menu.php';
                <div class="span6" <?php echo $_SESSION['rtl'];?>>
                   <!-- BEGIN SAMPLE TABLE widget-->            
                   <div class="widget">
-                     <div class="widget-title">
-                        <h4>Advance Table</h4>
-                     </div>
+                 
                      <div class="widget-body">
+                         
+                        
                          <table class="table table-striped table-bordered table-advance table-hover" id="tableSection">
                              <thead>
                              <tr>
-                                 <th> Number</th>
-                                 <th>Amount</th>
-                                 <th>Due Date</th>
-                                 <th>Paid Amount</th>
-                                 <th>Status</th>
-                                 <th>Unit</th>
+                                 <th>#</th>
+                                 <th><?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('paidamount',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('status',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('unitnum',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              <tbody >
                              
-                              <?php 		$sql= "SELECT * From finaical WHERE owner='".$_GET['id']."' AND propertyid='".$_GET['property']."' And unit='".$_GET['unit']."' ";   
+                              <?php 
+                              $sql= "SELECT * From finaical WHERE owner='".$_GET['id']."' AND propertyid='".$_GET['property']."' And unit='".$_GET['unit']."' ";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
 									 {
@@ -561,12 +528,12 @@ include 'header_menu.php';
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
                              <tr>
-                                 <th> #</th>
-                                 <th class="hidden-phone"> Amount</th>
-                                 <th> Type</th>
-                                 <th>Date</th>
-                                 <th>Statement</th>
-                                 <th>Print</th>
+                                 <th>#</th>
+                                 <th class="hidden-phone"> <?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                 <th> <?php GetProperty('type',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('statment',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              
@@ -621,10 +588,9 @@ include 'header_menu.php';
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Date</th>
-                                    <th>Amount</th>
-                                  
-                                    <th>View</th>
+                                    <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('view',$_SESSION['rtl']);?> </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -675,10 +641,10 @@ include 'header_menu.php';
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Update Date/Time</th>
-                                    <th>Detail</th>
-                                    <th>View</th>
-                                    <th>Print</th>
+                                    <th><?php GetProperty('updated/t',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('detail',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
                                 </tr>
                                 </thead>
                                  <tbody>
@@ -779,6 +745,11 @@ include 'header_menu.php';
 <script src="assets/main/javascript/jquery.toastmessage.js"></script>
    
 <script type="text/javascript">
+
+
+        $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
     function callme2(obj)
     {debugger;
          var price    = (document.getElementById("anual")).innerHTML;

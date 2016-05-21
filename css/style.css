@@ -3842,6 +3842,7 @@ jQuery UI Datepicker(new in v1.2.2)
 [rtl]
 {
     direction: rtl;    
+    text-align:  right;   
 }
 [rtl] #main-content
 {
@@ -3883,5 +3884,20 @@ jQuery UI Datepicker(new in v1.2.2)
   [rtl] .row-fluid .span6
 {
    float:right;
+}
+ 
+[rtl] .row-fluid .span45{
+     float: right;
+     width: 0;
+         text-align: right;
+}
+[rtl] .row-fluid .span74{
+ 
+         text-align: right;
+}
+
+[rtl] .row-fluid{
+ 
+         text-align: right;
 }
  

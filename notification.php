@@ -141,8 +141,7 @@ article {
 			<!-- BEGIN SIDEBAR MENU -->
 <?php 
 include 'header_menu.php';
-include 'raw_detail.php';
-
+ 
 ?>
 			<!-- END SIDEBAR MENU -->
 		</div>
@@ -170,7 +169,7 @@ include 'raw_detail.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Job Titles
+                     <?php GetProperty('notify',$_SESSION['rtl']);?>
                      <!--<small>Managed Table Sample</small>-->
                   </h3>
                       <!-- END PAGE TITLE & BREADCRUMB-->
@@ -182,7 +181,7 @@ include 'raw_detail.php';
  
   <ul class="tabs">
 
-    <li><a href="#tab4">Notification</a></li>
+    <li><a href="#tab4"><?php GetProperty('notify',$_SESSION['rtl']);?></a></li>
 
   </ul>
   <div class="clr"></div>
@@ -196,18 +195,18 @@ include 'raw_detail.php';
                     <!-- BEGIN SAMPLE TABLE widget-->       
                   <div class="widget">
                      <div class="widget-title">
-                        <h4>Expense Voucher</h4>
+                        <h4><?php GetProperty('expvoucher',$_SESSION['rtl']);?></h4>
                      </div>
                      <div class="widget-body">
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
                              <tr>
-                                 <th>Type</th>
-                                 <th>Receiver</th>
-                                 <th>Notification Time</th>
-                                 <th>Status</th>
-                                 <th>Change</th>
-                                 <th>Edit</th>
+                                 <th><?php GetProperty('type',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('receiver',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('notificationtime',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('status',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('change',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('edit',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                                 <tbody> 

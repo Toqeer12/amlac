@@ -51,7 +51,7 @@ $expdate = date("Y-m-d",$datee);
 						}
 				
 					}
-			 		header("location:login.php"); 
+			 		header("location:index.php"); 
  
 				 }
 			

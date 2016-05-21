@@ -7,6 +7,7 @@
 <?php
 
 session_start();
+include 'session.php';
 $session_id='1';
   if($_SESSION['exp']=='invalid'){
 
@@ -22,7 +23,7 @@ unset($_SESSION['fulname']);
     ?>
 <head>
    <meta charset="utf-8" />
-   <title>Tabs & Accordions</title>
+   <title><?php echo $var; ?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -50,7 +51,15 @@ unset($_SESSION['fulname']);
   height: 500px;
   background: #eee;
   font-size: 8px;}
-
+         .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 <!-- END HEAD -->
@@ -145,9 +154,9 @@ include 'header_menu.php';
                                  <!--BEGIN TABS-->
                                  <div class="tabbable tabbable-custom">
                                     <ul class="nav nav-tabs">
-                                       <li class="active"><a href="#tab_1_1" data-toggle="tab">General Information</a></li>
-                                        <li><a href="#tab_1_4" data-toggle="tab">Leases</a></li>
-                                       <li><a href="#tab_1_3" data-toggle="tab">Documents</a></li>
+                                       <li class="active"><a href="#tab_1_1" data-toggle="tab"><?php GetProperty('generalinfo',$_SESSION['rtl']);?></a></li>
+                                        <li><a href="#tab_1_4" data-toggle="tab"><?php GetProperty('lease',$_SESSION['rtl']);?></a></li>
+                                       <li><a href="#tab_1_3" data-toggle="tab"><?php GetProperty('document',$_SESSION['rtl']);?></a></li>
                                     </ul>
                                     <div class="tab-content">
                                        <div class="tab-pane active" id="tab_1_1">
@@ -157,8 +166,10 @@ include 'header_menu.php';
                   <div class="widget">
           
                      <div class="widget-body">
+                          <div class="loader"></div>
+
                         <table class="table table-striped table-bordered dataTable">
-                        <strong> Basic Information </strong>
+                        <strong> <?php GetProperty('basicinfo',$_SESSION['rtl']);?></strong>
                         <?php 		$sql= "SELECT * From real_state_unit WHERE property_name='".$_GET['id']."' And block_no='".$_GET['unit']."'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
@@ -171,7 +182,7 @@ include 'header_menu.php';
                                            <thead>
                                         
                                               <tr>
-                                                 <th> Unit Number</th>
+                                                 <th> <?php GetProperty('unitnum',$_SESSION['rtl']);?></th>
                                                  <th class="hidden-phone"> <?php echo $member['block_no']; ?></th>
                                               </tr>
                                               <tr>
@@ -190,22 +201,22 @@ include 'header_menu.php';
                                                             }?>            
                                               </tr>
                                               <tr>
-                                              	 <th> Insurance Amount</th>
+                                              	 <th> <?php GetProperty('insurance',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['ins_amount']; ?></td>
                                        
                                               </tr>
                                                   <tr>
-                                              	 <th> Annual Rent Amount</th>
+                                              	 <th>  <?php GetProperty('annualrent',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['annul_lease']; ?></td>
                                        
                                               </tr>
                                               <tr>
-                                                 <th>Commission</th>
+                                                 <th><?php GetProperty('comison',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['comission']; ?></td>
                                  
                                               </tr>
                                                                <tr>
-                                                 <th>Renter Name</th>
+                                                 <th><?php GetProperty('renter',$_SESSION['rtl']);?></th>
                                                  
                                                    <?php
                                                  		  $sql4= "SELECT * From rent_property WHERE property_name='".$_GET['id']."' And unit='".$_GET['unit']."'";   
@@ -230,7 +241,7 @@ include 'header_menu.php';
                                  
                                               </tr>
                                               <tr>
-                                                 <th>Renter Personal Id</th>
+                                                 <th><?php GetProperty('em_id',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member3['emi_id']; ?></td>
                                  
                                               </tr> 
@@ -240,11 +251,11 @@ include 'header_menu.php';
                                                                 }
                                                             }?>
                                             <tr>
-                                                 <th>Unit Description</th>
+                                                 <th><?php GetProperty('unitdesc',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['desc-unity']; ?></td>
                                  
                                               </tr>         <tr>
-                                                 <th>Finishing Status</th>
+                                                 <th><?php GetProperty('frishstatus',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['develop_proces']; ?></td>
                                  
                                               </tr>
@@ -268,14 +279,14 @@ include 'header_menu.php';
                          <table class="table table-striped table-bordered dataTable">
                              <thead>
                              <tr>
-                                 <th> Unit Number</th>
-                                 <th class="hidden-phone"> Type</th>
+                                 <th><?php GetProperty('unitnum',$_SESSION['rtl']);?></th>
+                                 <th class="hidden-phone"> <?php GetProperty('type',$_SESSION['rtl']);?></th>
                                
-                                 <th>Annual Rent Amount</th>
-                                 <th>Status</th>
-                                 <th>View</th>
-                                 <th>Edit</th>
-                                 <th>Delete</th>
+                                 <th><?php GetProperty('annualrent',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('status',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('edit',$_SESSION['rtl']);?></th>
+                                 <th><?php GetProperty('delete',$_SESSION['rtl']);?></th>
                              </tr>
                              </thead>
                              <tbody >
@@ -350,17 +361,17 @@ include 'header_menu.php';
                    				  </div>
                   		   <div class="widget-body">
    			 <table class="table table-striped table-bordered dataTable">
-                        <strong> Lease Unit </strong>
+                        <strong> <?php GetProperty('lease',$_SESSION['rtl']);?> </strong>
                            <tbody style="border: 1px solid black;"> 
                                 <thead>
                                 
                                   <tr>
-                                     <th>Lease Unit</th>
-                                     <th class="hidden-phone"> Type</th>
+                                     <th><?php GetProperty('lease',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"> <?php GetProperty('type',$_SESSION['rtl']);?></th>
                                    
-                                     <th class="hidden-phone"> Duration</th>
-                                     <th class="hidden-phone"> Amount</th>
-                                     <th class="hidden-phone"> Commission</th>
+                                     <th class="hidden-phone"> <?php GetProperty('durationcontract',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone">  <?php GetProperty('amount',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"> <?php GetProperty('comison',$_SESSION['rtl']);?></th>
                                        
                                   </tr>
                                   <tr>                   
@@ -487,7 +498,10 @@ include 'header_menu.php';
    <script src="js/scripts.js"></script>
    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
-	<script>			
+	<script type="text/javascript">			
+    	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
 $(document).ready(function() {
  debugger;
   $('#buttonloadunit').magnificPopup({
