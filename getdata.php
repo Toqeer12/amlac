@@ -38,7 +38,7 @@ if(move_uploaded_file($temp_name, $target_path))
 				$result2=mysql_query($sqlupdate)or  die('Invalid query: ' . mysql_error());
 				if($result2)
 				{
-					header("location:index.php");
+					header("location:main_page.php");
 				}
 		}
 
@@ -49,7 +49,7 @@ if(move_uploaded_file($temp_name, $target_path))
 		
 		('".$target_path."','".date("Y-m-d")."','".$_POST['cid']."')";
 			mysql_query($query_upload) or die("error in $query_upload == ----> ".mysql_error());  
-			header("location:index.php");
+			header("location:main_page.php");
 		}
 
 	}

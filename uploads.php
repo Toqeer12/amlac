@@ -33,10 +33,15 @@ if(move_uploaded_file($temp_name, $target_path))
 
 		if($_GET['id']==1)
 		{
-				$var=$_POST['unitid'];
-				$var2=$_POST['id'];
-				mysql_query("INSERT INTO `user_uploads_unit`(`image_name`, `cid`, `pid`) VALUES ('$imagename','$var','$var2')");
-				header("location:unit_info.php?unit=$var&id=$var2");
+			  $time=date("Y-m-d");
+			  $property = $_POST['propid'];
+			  $owner 	= $_POST['ownerid'];
+			  $cid 		= $_POST['cid'];
+ 			  $remark 	=$_POST['remark'];
+			  $unit 	=$_POST['unitid'];
+				mysql_query("INSERT INTO `user_uploads_unit`(`image_name`, `cid`, `pid`, `created`, `unitid`) VALUES
+				 ('$imagename','$cid','$property','$time','$unit')");
+				header("location:unit_info.php?unit=$unit&id=$property");
 		}
 		else if($_GET['id']==2)
 		{
@@ -46,9 +51,19 @@ if(move_uploaded_file($temp_name, $target_path))
 		 $var3=$_POST['unit'];
 		 $var4=$_POST['renter'];
 		 $var5=$_POST['remark'];
+		 $var6=$_POST['cid'];
 		 $time=date("Y-m-d");
-	     mysql_query("INSERT INTO user_uploads(image_name,prop_id,created,owner_id,remark) VALUES('$imagename','".$_POST['propid']."','$time','".$_POST['ownerid']."','$var5')");
+	     mysql_query("INSERT INTO user_uploads(image_name,prop_id,created,owner_id,remark,cid) VALUES('$imagename','".$_POST['propid']."','$time','".$_POST['ownerid']."','$var5','$var6')");
 		 header("location:job_title.php?id=$var2&property=$var&unit=$var3&renter=$var4");
+		}
+		else {
+			  $time=date("Y-m-d");
+			  $property = $_POST['propid'];
+			  $owner 	= $_POST['ownerid'];
+			  $cid 		= $_POST['cid'];
+			  $remark =$_POST['remark'];
+			 mysql_query("INSERT INTO `property_receipt`(`image`, `cid`, `created`, `owner_id`,`propertyId`,`$remark`) VALUES ('$imagename','$cid','$time','$owner','$property','remark')");
+			header("location:prop_info.php?id=$property ");
 		}
 
 	

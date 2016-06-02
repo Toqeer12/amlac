@@ -39,7 +39,7 @@ unset($_SESSION['fulname']);
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="build/toastr.css" rel="stylesheet" type="text/css" />
-
+    <link href="csspop/styles.css" rel="stylesheet" />
 
    
    <style type="text/css">
@@ -335,20 +335,60 @@ include 'header_menu.php';
                              </div>
                              
                     <div id='preview3'>
-        
+                                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th><?php GetProperty('updated',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('Detail',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
+                                </tr>
+                                </thead>
                          <?php 
-                        require('db.php');
-                        $sqlserivce_classes=mysql_query("select * from user_uploads_unit where cid='".$_GET['unit']."' And pid='".$_GET['id']."'");
-                        while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
+                                  require('db.php');
+                               $sqlserivce_classes=mysql_query("select * from user_uploads_unit where unitid='".$_GET['unit']."'");
+                         	if(mysql_num_rows($sqlserivce_classes) > 0) 
+										{
+                                while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
                         {
-                        $data=$rowsqlserivce_classes['image_name'];
+                                 $data=$rowsqlserivce_classes['image_name'];
+                               echo "<tr>";
+                            echo "<td>".$rowsqlserivce_classes['id']."</td>";
+                            echo "<td>".$rowsqlserivce_classes['created']."</td>";
+                            echo "<td>".$rowsqlserivce_classes['remark']."</td>";
+                            ?>
+                            
+    <div id="blanket" style="display:none"></div>
+	<div id="popUpDiv" style="display:none; top: 36px;left: 359px;">
+     <a href="#" data-id="<?php echo $rowsqlserivce_classes['image_name'] ?>" onclick="popup('popUpDiv',this)" >Close</a>
+	</div>	
+
+                             <td><a href="#" data-id="<?php echo $rowsqlserivce_classes['image'] ?>" onclick="popup('popUpDiv',this)">View</a></td>
+                              <?php echo "<td>Print</td>";
+                            echo "</tr>";
                         ?>
-                        <img src="<?php echo 'images/'.$data; ?> " style="height: 100px; width: 150px;" />
+                          </div>
+ 
                         <?php
                         
                         }
-                        
+                                        }
                         ?>
+                        
+                    </div>
+                          </div>
+            </div>    
+            
+        </tr>
+                
+                             
+                     
+						 
+										  
+							 
+                             </tbody>
+                         </table>
                         
                         </div>
                           </div>
@@ -462,8 +502,22 @@ include 'header_menu.php';
 
 
 <input name="uploadedimage" type="file">
+<input name="remark" type="text"></br>
 <input name="unitid" type="hidden" value="<?php echo $_GET['unit']?>">
-<input name="id" type="hidden" value="<?php echo $_GET['id']?>">
+<input name="propid" type="hidden" value="<?php echo $_GET['id']?>">
+<input name="ownerid" type="hidden" value="<?php 	$sql= "SELECT * From add_property WHERE id='".$_GET['id']."' ";   
+									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+									if($result)
+									 {
+								
+										if(mysql_num_rows($result) > 0) 
+										{
+											$member = mysql_fetch_assoc($result);
+                                            echo $member['owner_id'];
+                                        }
+                                     }
+                                            ?>">
+ <input name="cid" type="hidden" value="<?php echo $_SESSION['Id']?>">                                           
 <input name="Upload Now" type="submit" value="Upload Image">
 
 
@@ -488,16 +542,10 @@ include 'header_menu.php';
    <script src="js/jquery.blockui.js"></script>
    <script src="assets/fancybox/source/jquery.fancybox.pack.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-   <!-- ie8 fixes -->
-   <!--[if lt IE 9]>
-   <script src="js/excanvas.js"></script>
-   <script src="js/respond.js"></script>
-   <![endif]-->
-
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script src="js/scripts.js"></script>
    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-
+    <script type="text/javascript" src="csspop/css-pop.js"></script>
 	<script type="text/javascript">			
     	    $(window).load(function() {
 	$(".loader").fadeOut("slow");

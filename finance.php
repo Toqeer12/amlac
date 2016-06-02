@@ -47,24 +47,24 @@ unset($_SESSION['fulname']);
 
 #modal {
   margin: 0 auto;
-   width: 300px;
+  width: 300px;
   height:600px;
   background: #eee;
-  font-size: 8px;}
-  #modal3 {
+  font-size: 8px;} 
+#modal3 {
   margin: 0 auto;
-   width: 300px;
+  width: 300px;
   height: 400px;
   background: #eee;
   font-size: 8px;}
-      .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 </style>
 </head>

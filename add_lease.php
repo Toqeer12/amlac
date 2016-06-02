@@ -68,9 +68,9 @@ if (isset($_SESSION['message']))
 
    <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
 <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
-
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="build/toastr.css" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
 <style type="text/css">
 #modal {
   margin: 0 auto;

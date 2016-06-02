@@ -3,9 +3,9 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <?php
 session_start();
- 
+ include 'session.php';
   if($_SESSION['exp']=='invalid'){
-include 'session.php';
+
  header("location:login.php");
 unset($_SESSION['user']);
 unset($_SESSION['company']);
@@ -112,6 +112,15 @@ article {
   height:500px;
   background: #eee;
   font-size: 8px;}
+       .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
   </style>
 </head>
 
@@ -198,6 +207,7 @@ include 'header_menu.php';
                         <h4><?php GetProperty('expvoucher',$_SESSION['rtl']);?></h4>
                      </div>
                      <div class="widget-body">
+                           <div class="loader"></div>
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
                              <tr>
@@ -259,36 +269,18 @@ include 'header_menu.php';
     
   </section>
 </section>    </div>
-            
-
-            <!-- END ADVANCED TABLE widget-->
-
-            <!-- END PAGE CONTENT-->
+ 
          </div>
          <!-- END PAGE CONTAINER-->
       </div>
       <!-- END PAGE -->
     
    </div>
-   <!-- END CONTAINER -->
-   <!-- BEGIN FOOTER -->
-   <div id="footer">
-       2013 &copy; Admin Lab Dashboard.
-      <div class="span pull-right">
-         <span class="go-top"><i class="icon-arrow-up"></i></span>
-      </div>
-   </div>
-   <!-- END FOOTER -->
-   <!-- BEGIN JAVASCRIPTS -->
-   <!-- Load javascripts at bottom, this will reduce page load time -->
+ 
    <script src="js/jquery-1.8.3.min.js"></script>
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="js/jquery.blockui.js"></script>
-   <!-- ie8 fixes -->
-   <!--[if lt IE 9]>
-   <script src="js/excanvas.js"></script>
-   <script src="js/respond.js"></script>
-   <![endif]-->   
+ 
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
@@ -317,6 +309,9 @@ include 'header_menu.php';
       
     </script>
 <script>
+ $(window).load(function() {
+	$(".loader").fadeOut("slow");
+}) 
 $(function() {
   $('ul.tabs li:first').addClass('active');
   $('.block article').hide();

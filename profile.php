@@ -50,7 +50,7 @@ unset($_SESSION['fulname']);
  
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
 
@@ -66,13 +66,13 @@ unset($_SESSION['fulname']);
          <!-- BEGIN SIDEBAR MENU -->
 <?php 
 include 'header_menu.php';
-include 'raw_detail.php';
+
 ?>
          <!-- END SIDEBAR MENU -->
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
-      <div id="main-content">
+      <div id="main-content"  <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->   
@@ -83,18 +83,10 @@ include 'raw_detail.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                    <h3 class="page-title">
-                       Profile
-                     <small>simple profile page</small>
+                       <?php GetProperty('profile',$_SESSION['rtl']);?>
+                
                   </h3>
-                   <ul class="breadcrumb">
-                       <li>
-                           <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
-                       </li>
-                       <li>
-                           <a href="#">Extra</a> <span class="divider">&nbsp;</span>
-                       </li>
-                       <li><a href="#">Profile</a><span class="divider-last">&nbsp;</span></li>
-                   </ul>
+ 
                    <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
             </div>
@@ -123,63 +115,62 @@ include 'raw_detail.php';
                                         
                               
                                     <tr class="">
-                                        <td class="span2"> Name :</td>
-                                        <td>
-                                           <?php echo $register[$i]['full_name']?>
-                                        </td>
-                                        
+                                        <td class="span2"><?php GetProperty('name',$_SESSION['rtl']);?></td>
+                                    <td>
+                                        <?php echo $register[$i]['full_name']?>
+                                   </td>   
                                     </tr>
                                     <tr>
-                                        <td class="span2">Company Name :</td>
+                                        <td class="span2"><?php GetProperty('cname',$_SESSION['rtl']);?></td>
                                         <td>
                                              <?php echo $register[$i]['comp_name']?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="span2">Email :</td>
+                                        <td class="span2"><?php GetProperty('email',$_SESSION['rtl']);?></td>
                                         <td>
                                             <?php echo $register[$i]['email']?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="span2">Nationality :</td>
+                                        <td class="span2"><?php GetProperty('city',$_SESSION['rtl']);?></td>
                                         <td>
                                           <?php echo $register[$i]['city']?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="span2">Phone # :</td>
+                                        <td class="span2"><?php GetProperty('phoneno',$_SESSION['rtl']);?></td>
                                         <td>
                                              <?php echo $register[$i]['phone_no']?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="span2"> Registerd Date :</td>
+                                        <td class="span2"><?php GetProperty('regdate',$_SESSION['rtl']);?></td>
                                         <td>
                                              <?php echo $register[$i]['reg_date']?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="span2"> Expiry Date :</td>
+                                        <td class="span2"><?php GetProperty('expdate',$_SESSION['rtl']);?></td>
                                         <td>
                                             <?php echo $register[$i]['exp_date']?>
                                         </td>
                                     </tr>
                                       <tr>
-                                        <td class="span2"> Notify :</td>
+                                        <td class="span2"><?php GetProperty('notify',$_SESSION['rtl']);?></td>
                                         <td>
-                                     <form>
+                                     <form  <?php echo $_SESSION['rtl'];?>>
                                         <div>
                                             <input type="radio" name="fruit" value="10"  id="a10" >
-                                            Before 10 Days
+                                          <?php GetProperty('b10',$_SESSION['rtl']);?>
                                         </div>
                                         <div>
                                             <input type="radio" name="fruit" value="20" id="a10"  >  
-                                            Before 20 Days
+                                           <?php GetProperty('b20',$_SESSION['rtl']);?>
                                         </div>
                                           <div>
                                             <input type="radio" name="fruit" value="30"   id="a10"  >
-                                            Before 30 Days
+                                            <?php GetProperty('b30',$_SESSION['rtl']);?>
                                             <div id="log"></div>
                                         </div>
                                         </td>
@@ -236,7 +227,7 @@ $('input[name=fruit]').click(function() {
 		{  debugger;
 		   if(result.id=='0')
            {
-            $().toastmessage('showErrorToast', "Property Already in Lease");
+            $().toastmessage('showSuccessToast', "Notification is Updated Successfully");
            }
 		 
    

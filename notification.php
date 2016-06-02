@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <?php
 session_start();
- 
+ include 'session.php';
   if($_SESSION['exp']=='invalid'){
 
  header("location:login.php");
@@ -21,7 +21,7 @@ unset($_SESSION['fulname']);
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>Job Title</title>
+   <title><?php echo $var;?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -112,6 +112,15 @@ article {
   height:500px;
   background: #eee;
   font-size: 8px;}
+        .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
   </style>
 </head>
 
@@ -194,9 +203,8 @@ include 'header_menu.php';
                   <div class="span6">
                     <!-- BEGIN SAMPLE TABLE widget-->       
                   <div class="widget">
-                     <div class="widget-title">
-                        <h4><?php GetProperty('expvoucher',$_SESSION['rtl']);?></h4>
-                     </div>
+                      <div class="loader"></div>
+
                      <div class="widget-body">
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
@@ -254,6 +262,9 @@ include 'header_menu.php';
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
    <script src="assets/main/javascript/jquery.toastmessage.js"></script>
  <script type="text/javascript">
+    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+}) 
  function statusupdate(obj)
  {
       debugger;

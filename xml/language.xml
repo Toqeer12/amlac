@@ -106,8 +106,8 @@
     <key name="paymentmethod" value="طريقة الدفع او السداد"/>
     <key name="schudle_month" value="Schedule Month"/>
     <key name="paidamount" value="Paid Amount"/>
-    <key name="detail" value="detail"/>
-    <key name="updated/t" value="updated"/>
+    <key name="detail" value="التفاصيل"/>
+    <key name="updated" value="تحديث"/>
     <key name="renterinfo" value="معلومات المستأجر"/>
     <key name="receiver" value="المستلم"/>
     <key name="notificationtime" value="وقت الإشعار"/>
@@ -121,8 +121,23 @@
     <key name="addvendor" value="إضافة البائع"/>
     <key name="expvoucher" value="حساب قسيمة"/>
     <key name="receiptvoucher" value="قسائم استلام"/>
+    <key name="profile" value="الملف الشخصي"/>
+     <key name="expdate" value="تاريخ الانتهاء"/>
+     <key name="regdate" value="التسجيل"/>
+    <key name="name" value="اسم"/>
+    <key name="b10" value="قبل عشرة أيام"/>
+    <key name="b20" value="قبل عشرون أيام"/>
+    <key name="b30" value="قبل ثلاثون أيام"/>
       </language>
     <language locale="en-US" direction="ltr" name="English">
+    <key name="b10" value="Before 10 Days"/>
+    <key name="b20" value="Before 20 Days"/>
+    <key name="b30" value="Before 30 Days"/>
+    <key name="updated" value="updated"/>
+    <key name="expdate" value="Expire Date"/>
+    <key name="regdate" value="Registration Date"/>
+    <key name="name" value="Name"/>
+    <key name="profile" value="الملف الشخصي"/>
     <key name="realstatesection"  value="Real State Section" />
     <key name="addnewproperty"    value="Add New Property" />
     <key name="addclient"         value="Customer" />
@@ -202,7 +217,7 @@
     <key name="detail" value="Detail"/>
     <key name="sponsorname" value="Sponsor Name"/>
     <key name="addclienttitle" value="Add Client"/>
-    <key name= "scripttitle" value="Script Title"/>
+    <key name="scripttitle" value="Script Title"/>
     <key name="propertyover" value="Property OverView"/>      
     <key name="numfreeunit" value="Number of Free Unit"/>
     <key name="unit" value="Number of Free Unit"/>
@@ -231,22 +246,22 @@
     <key name="paidamount" value="Paid Amount"/>
     <key name="Detail" value="Detail"/>
     <key name="renterinfo" value="Renter Information"/>
-     <key name="receiver" value="Receiver"/>
+    <key name="receiver" value="Receiver"/>
     <key name="notificationtime" value="Notification Time"/>
-  <key name="ownertext" value="Owner Text"/> 
- <key name="rentertext" value="Renter Text"/>
- <key name="officetext" value="Office Text"/>
- <key name="notifcationschdule" value="Notification Schedule"/>
-<key name="contructdate" value="Build Year" />
- <key name="custlease" value="Customer Lease"/>
-  <key name="rentunit" value="Rent Unit"/>
-  <key name="expense" value="Expense"/>
-  <key name="addvendor" value="Add Vendor"/>
+    <key name="ownertext" value="Owner Text"/> 
+    <key name="rentertext" value="Renter Text"/>
+    <key name="officetext" value="Office Text"/>
+    <key name="notifcationschdule" value="Notification Schedule"/>
+    <key name="contructdate" value="Build Year" />
+    <key name="custlease" value="Customer Lease"/>
+    <key name="rentunit" value="Rent Unit"/>
+    <key name="expense" value="Expense"/>
+    <key name="addvendor" value="Add Vendor"/>
     <key name="elecbill" value="Electercity Bill"/>
-     <key name="servbill" value="Service Bill"/>
-     <key name="change" value="Change"/>
-         <key name="expvoucher" value="Expense Voucher"/>
-<key name="receiptvoucher" value="Receipt Voucher"/>
+    <key name="servbill" value="Service Bill"/>
+    <key name="change" value="Change"/>
+    <key name="expvoucher" value="Expense Voucher"/>
+    <key name="receiptvoucher" value="Receipt Voucher"/>
   </language>
   
 </languages>

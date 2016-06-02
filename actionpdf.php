@@ -1,7 +1,7 @@
 <?php
 session_start();
 require('session.php');
-require('WriteHTML.php');
+require('pdf/WriteHTML.php');
 
 					require('connect.php');
 		$select_query = "SELECT `images_path` FROM  `images_tbl` where cid=$id";

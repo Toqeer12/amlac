@@ -34,7 +34,8 @@ unset($_SESSION['fulname']);
    <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
    <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
- 
+     <link href="csspop/styles.css" rel="stylesheet" />
+
 <style>
     table#tableSection {
         display: table;
@@ -100,31 +101,7 @@ article {
   padding: 0 1em;
 }
 </style>
-
-    
-    <style type="text/css">
-
-
-#modalload2 {
-  margin: 0 auto;
-  padding: 0.5em;
-  width: 800px;
-  height:500px;
-  background: #eee;
-  font-size: 8px;}
-  
-  
-  
-           .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
-}
-  </style>
+ 
 </head>
 
 <!-- END HEAD -->
@@ -521,9 +498,7 @@ include 'header_menu.php';
                     <br>
 					<br>
                   <div class="widget">
-                     <div class="widget-title">
-                        <h4>Advance Table</h4>
-                     </div>
+ 
                      <div class="widget-body">
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
@@ -576,13 +551,7 @@ include 'header_menu.php';
                 <div class="span6">
                     <!-- BEGIN SAMPLE TABLE widget-->
                     <div class="widget">
-                        <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>Striped Table</h4>
-                        <span class="tools">
-                        <a href="javascript:;" class="icon-chevron-down"></a>
-                        <a href="javascript:;" class="icon-remove"></a>
-                        </span>
-                        </div>
+ 
                         <div class="widget-body">
                             <table class="table table-striped table-hover">
                                 <thead>
@@ -629,9 +598,7 @@ include 'header_menu.php';
     
         <article id="tab5">
                                 <div class="widget">
-                                          <div class="widget-title">
-                                             <h4>Advance Table</h4>
-                                          </div>
+ 
                               <div class="widget-body">
                      				<button type="button" id="buttonload2" class="btn btn-primary">Upload Documents</button>   
                              </div>
@@ -641,7 +608,7 @@ include 'header_menu.php';
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th><?php GetProperty('updated/t',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('updated',$_SESSION['rtl']);?></th>
                                     <th><?php GetProperty('detail',$_SESSION['rtl']);?></th>
                                     <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
                                     <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
@@ -658,18 +625,25 @@ include 'header_menu.php';
                             echo "<td>".$rowsqlserivce_classes['id']."</td>";
                             echo "<td>".$rowsqlserivce_classes['created']."</td>";
                             echo "<td>".$rowsqlserivce_classes['remark']."</td>";
-                             echo "<td><a href='#myPopup' data-rel='popup' data-position-to='window'> view</a>/td>";
-                              echo "<td>Print</td>";
+                            ?>
+                            
+   <div id="blanket" style="display:none"></div>
+	<div id="popUpDiv" style="display:none; top: 100px;left: 359px;">
+    	<a href="#" data-id="<?php echo $rowsqlserivce_classes['image_name'] ?>" onclick="popup('popUpDiv',this)" >Close</a>
+	</div>	
+
+                             <td><a href="#" data-id="<?php echo $rowsqlserivce_classes['image_name'] ?>" onclick="popup('popUpDiv',this)">View</a></td>
+                              <?php echo "<td>Print</td>";
                             echo "</tr>";
                         ?>
-                        <!--<img src="<?php echo 'images/'.$data; ?> " style="height: 100px; width: 150px;" />-->
+                          </div>
+ 
                         <?php
                         
                         }
                         
                         ?>
-<a href="#popupPhotoLandscape" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Photo landscape</a>
-
+ 
 
 
                     </div>
@@ -712,6 +686,7 @@ include 'header_menu.php';
 <input name="ownerid" type="hidden" value="<?php echo $_GET['id']?>">
 <input name="renter" type="hidden" value="<?php echo $_GET['renter']?>">
 <input name="unit" type="hidden" value="<?php echo $_GET['unit']?>">
+<input name="cid" type="hidden" value="<?php echo $_SESSION['Id']?>">
 <input name="Upload Now" type="submit" value="Upload Image">
 
 
@@ -743,7 +718,8 @@ include 'header_menu.php';
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
 <script src="assets/main/javascript/jquery.toastmessage.js"></script>
-   
+   <script type="text/javascript" src="csspop/css-pop.js"></script>
+
 <script type="text/javascript">
 
 

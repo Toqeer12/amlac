@@ -72,7 +72,7 @@ if(!empty($Username)&&!empty($Password))
 											if($errflag)
 											{
 												$_SESSION['message'] = 'User Name or Password is invalid!';
-												header("location: login.php");
+												header("location: index.php");
 												exit();
 											}
 		 

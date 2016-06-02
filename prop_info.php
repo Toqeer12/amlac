@@ -13,6 +13,8 @@ unset($_SESSION['user']);
 unset($_SESSION['company']);
 unset($_SESSION['Id']);
 unset($_SESSION['fulname']);
+
+global $owenr;
 }
 
     
@@ -35,27 +37,12 @@ unset($_SESSION['fulname']);
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
-
-    
+  <link href="csspop/styles.css" rel="stylesheet" />
+ 
     <style type="text/css">
 
 
-#modalload {
-  margin: 0 auto;
-  padding: 0.5em;
-  width: 800px;
-  height:500px;
-  background: #eee;
-  font-size: 8px;}
-           .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
-}
+
   </style>
 </head>
 <!-- END HEAD -->
@@ -218,11 +205,14 @@ include 'header_menu.php';?>
                      <div class="widget-body">
                         <table class="table table-striped table-bordered dataTable">
                         <strong><?php GetProperty('ownerinfo',$_SESSION['rtl']);?></strong>
-                        <?php 		$sql= "SELECT * From clients WHERE id='".$member['owner_id']."' ";   
+                        
+                        <?php 
+                                    $owenr = $member['owner_id']; 
+                               		$sql= "SELECT * From clients WHERE id='".$member['owner_id']."' ";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
-									 {
-								
+                                    {
+ 
 										if(mysql_num_rows($result) > 0) 
 										{
 											$member3 = mysql_fetch_assoc($result);?>
@@ -249,7 +239,7 @@ include 'header_menu.php';?>
                                                  <th ><?php GetProperty('deedno',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['inst_no'] ?></td>
                                               </tr>
-                                                        <tr>     
+                                              <tr>     
                                                  <th ><?php GetProperty('deeddate',$_SESSION['rtl']);?></th>
                                                  <td><?php echo $member['date_inst'] ?></td>
                                               </tr>
@@ -509,75 +499,69 @@ include 'header_menu.php';?>
  
            <div class="tab-pane" id="tab_1_6">
                     <div class="widget">
-                                          <div class="widget-title">
-                                             <h4>Advance Table</h4>
-                                          </div>
+                                    
                               <div class="widget-body">
                      				<button type="button" id="buttonload" class="btn btn-primary">Upload Documents</button>   
                              </div>
                              
                     <div id='preview3'>
-        
+                                    <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th><?php GetProperty('updated',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('detail',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('view',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
+                                </tr>
+                                </thead>
+                                 <tbody>
                                   <?php 
                                   require('db.php');
-                               $sqlserivce_classes=mysql_query("select * from user_uploads where user_id_fk='".$_GET['id']."'");
-                                      if($result)
-                                          {
-                                               if(mysql_num_rows($result) > 0) 
-                                                   {
-                        while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
+                               $sqlserivce_classes=mysql_query("select * from property_receipt where propertyId='".$_GET['id']."'");
+                                while($rowsqlserivce_classes=mysql_fetch_array($sqlserivce_classes))
                         {
-                        $data=$rowsqlserivce_classes['image_name'];
+                                 $data=$rowsqlserivce_classes['image'];
+                          echo "<tr>";
+                            echo "<td>".$rowsqlserivce_classes['id']."</td>";
+                            echo "<td>".$rowsqlserivce_classes['created']."</td>";
+                            echo "<td>".$rowsqlserivce_classes['remark']."</td>";
+                            ?>
+                            
+   <div id="blanket" style="display:none"></div>
+	<div id="popUpDiv" style="display:none; top: 36px;left: 359px;">
+    	<a href="#" data-id="<?php echo $rowsqlserivce_classes['image_name'] ?>" onclick="popup('popUpDiv',this)" >Close</a>
+	</div>	
+
+                             <td><a href="#" data-id="<?php echo $rowsqlserivce_classes['image'] ?>" onclick="popup('popUpDiv',this)">View</a></td>
+                              <?php echo "<td>Print</td>";
+                            echo "</tr>";
                         ?>
-                        <img src="<?php echo 'images/'.$data; ?> " style="height: 100px; width: 150px;" />
+                          </div>
+ 
                         <?php
                         
                         }
-                                                   }
-                                          }
+                        
                         ?>
                         
                     </div>
                           </div>
             </div>    
             
-          <!--       <div class="tab-pane" id="tab_1_5">
-                    <div class="widget">
-                    <div class="widget-title">
-                    <h4>Advance Table</h4>
-               </div>
-               <div class="widget-body">
-                   <table class="table table-striped table-bordered table-advance table-hover">
-                      <thead>
-                        <tr>
-                            <th> #</th>
-                            <th class="hidden-phone"> Date</th>
-                            <th> Amount</th>                             
-                            <th>Statement</th>
-                            <th>Note</th>
-                        </tr>
-                    </thead>
+        </tr>
+                
                              
                      
 						 
 										  
-										  <?php
-										  echo "<tr>";
-										  echo "<td>1</td>";
-										  echo "<td>2</td>";
-										  echo "<td>3</td>";
-										  echo "<td>4</td>";
-										  echo "<td>5</td>";		
-										  echo "</tr>"; 
-									    ?>
-                      
+							 
                              </tbody>
                          </table>
                              </div>
 
                     </div>
-            </div>    -->          
-                                
+            </div>      
                                  <!--END TABS-->
                               </div>
                              
@@ -594,16 +578,6 @@ include 'header_menu.php';?>
          <!-- END PAGE CONTAINER--> 
       </div>
       <!-- END PAGE -->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
 <div id="modalload" class="white-popup-block mfp-hide">
         <a class="popup-modal-dismiss" href="#">Dismiss</a>
       
@@ -612,12 +586,26 @@ include 'header_menu.php';?>
                   <div class="widget">
  
                       <div class="widget-body form">
-  <form action="uploads.php?id=0" enctype="multipart/form-data"  method="post">
-<h3> Upload Logo</h3>
+  <form action="uploads.php?id=3" enctype="multipart/form-data"  method="post">
+<h3> Upload Receipt</h3>
 
 
 <input name="uploadedimage" type="file">
-<input name="propid" type="hidden" value="<?php echo $_GET['id']?>">
+<input name="remark" type="text"></br>
+<input name="propid" type="hidden" value="<?php echo $_GET['id'];?>">
+<input name="ownerid" type="hidden" value="<?php 	$sql= "SELECT * From add_property WHERE id='".$_GET['id']."' ";   
+									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+									if($result)
+									 {
+								
+										if(mysql_num_rows($result) > 0) 
+										{
+											$member = mysql_fetch_assoc($result);
+                                            echo $member['owner_id'];
+                                        }
+                                     }
+                                            ?>">
+<input name="cid" type="hidden" value="<?php echo $_SESSION['Id']?>"/>
 <input name="Upload Now" type="submit" value="Upload Image">
 
 
@@ -656,7 +644,7 @@ include 'header_menu.php';?>
    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
    <script src="js/scripts.js"></script>
    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-
+   <script type="text/javascript" src="csspop/css-pop.js"></script>
    <script type="text/javascript">
    	    $(window).load(function() {
 	$(".loader").fadeOut("slow");
