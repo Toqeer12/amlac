@@ -220,14 +220,15 @@ include 'header_menu.php';
                                 <tbody> 
                                   <?php
                                     $notification = noftify();
+                                    $varsession = $_SESSION['Id'];
                                     for ($i = 0; $i < count($notification); $i++) {
                                     ?>
                                 <tr>
                                    <td><?php echo $notification[$i]['type'];?></td>
-                                   <td><?php echo admin_notification($notification[$i]['id']);?></td>
-                                   <td><?php echo admin_notification2($notification[$i]['id']);?></td>
-                                   <td><?php echo admin_notification3($notification[$i]['id']);?></td>
-                                   <td><a href="" data-id="<?php echo $notification[$i]['id'] ?>" data-status="<?php echo admin_notification3($notification[$i]['id']); ?>" onclick="statusupdate(this)">Change Status</a></td>
+                                   <td><?php echo admin_notification($notification[$i]['id'],$varsession);?></td>
+                                   <td><?php echo admin_notification2($notification[$i]['id'],$varsession);?></td>
+                                   <td><?php echo admin_notification3($notification[$i]['id'],$varsession);?></td>
+                                   <td><a href="" data-id="<?php echo $notification[$i]['id'] ?>" data-status="<?php echo admin_notification3($notification[$i]['id'],$varsession); ?>" onclick="statusupdate(this)">Change Status</a></td>
                                    <td><a href="edit_notify.php?id=<?php echo $notification[$i]['id'] ?>">Edit</a></td>
                                    <?php }?>
                                 </tr>                     

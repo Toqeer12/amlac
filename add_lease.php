@@ -974,7 +974,7 @@ function popuptitle()
 		   else if(result.cid=='11')
 		   {
          	//  window.location = "job_title.php?id="+result.ownerid+"&property="+result.property+"&unit="+result.unit;
-               window.location = "send_notification.php?id="+result.ownerid+"&property="+result.property+"&unit="+result.unit;
+               window.location = "send_notification.php?id="+result.ownerid+"&property="+result.property+"&unit="+result.unit+"&renter="+renter;
 				 	
 		   }
            else

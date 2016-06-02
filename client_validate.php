@@ -714,7 +714,7 @@ else if($_GET['id']=='778')
  
 	$varstatus     = $_POST['rowstat'];
 	$varId 		   = $_POST['rowId'];
-	$sqlupdate="UPDATE `admin_changes` SET  `status`='$varstatus' WHERE `id`='$varId' And cid='".$_SESSION['Id']."' ";
+	$sqlupdate="UPDATE `admin_changes` SET  `status`='$varstatus' WHERE `notify`='$varId' And cid='".$_SESSION['Id']."'";
     $result3=mysql_query($sqlupdate);
 	if($result3)
 	{

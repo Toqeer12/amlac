@@ -1,17 +1,16 @@
-<?php
-include 'connect.php';
-session_start();
+<?php 
+ 
+ include 'raw_detail.php';
+ 
+ $data = date("Y-m-d");
+ 
+ $var = $_SESSION['Id'];
 
-$varOwnerId    = $_GET['id'];
-$varPropertyId = $_GET['property'];
-$varUnit       = $_GET['unit'];
-$varRenter     = $_GET['renter'];
-
-
-$varsession = $_SESSION['Id'];
-
-
-	$sql= "SELECT * From admin_changes where cid='$varsession' And notify='7'";
+ 
+ $notificationAlert = LeaseEndStart($data,$var);
+ 
+ 
+	$sql= "SELECT * From admin_changes where cid='$varsession' And notify='5'";
 	
 	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	
@@ -37,40 +36,39 @@ $varsession = $_SESSION['Id'];
 		
 	}
 $var = explode(",",$str);
-
-if($var[0]==0)
+for($i=0; $i < count($notificationAlert); $i++)
 {
-    $owner =0; 
+    
+
+            if($var[0]==0)
+            {
+                $owner =0; 
+            }
+            else {
+                $owner = OwnerRenterName($notificationAlert[$i]['owner']);
+                SendMail($owner);
+            }
+            if($var[1]==0)
+            {
+                $renter = 0;
+            }
+            else {
+                $renter = OwnerRenterName($notificationAlert[$i]['renter']);
+                SendMail($renter);
+            }
+            if($var[2]==0)
+            {
+                $agent = 0;
+            }
+            else {
+                $agent = $_SESSION['user'];
+                SendMail($agent);
+            }
+
 }
-else {
-     $owner = OwnerRenterName($varOwnerId);
-     SendMail($owner);
-}
-if($var[1]==0)
-{
-    $renter = 0;
-}
-else {
-    $renter = OwnerRenterName($varRenter);
-    SendMail($renter);
-}
-if($var[2]==0)
-{
-    $agent = 0;
-}
-else {
-    $agent = $_SESSION['user'];
-    SendMail($agent);
-}
-
-  header("location:job_title.php?id=".$varOwnerId."&property=".$varPropertyId."&unit=".$varUnit);
 
 
-
-
-
-
-function OwnerRenterName($var)
+ function OwnerRenterName()
 {
    
     global $client;
@@ -118,5 +116,4 @@ function SendMail($to)
          }
  
 }
-
 ?>

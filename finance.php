@@ -252,7 +252,7 @@ $(document).ready(function() {
 
 function updaterent(obj)
 {debugger;
-    var empty=$("#empty").val();
+   // var empty=$("#empty").val();
     var unit =$("#unitid").val();
     var renter =$("#renter").val();
   
@@ -313,7 +313,7 @@ function changeunit(obj)
     var ab=obj.options[obj.selectedIndex].value;
     var a=obj.options[obj.selectedIndex].getAttribute('dataprop');
     var b=obj.options[obj.selectedIndex].getAttribute('dataowner');
-    var empty=$("#empty").val();
+//    var empty=$("#empty").val();
     if(ab==0)
     {
                        $().toastmessage('showErrorToast', "Please Select Unit");

@@ -137,7 +137,7 @@
     <key name="expdate" value="Expire Date"/>
     <key name="regdate" value="Registration Date"/>
     <key name="name" value="Name"/>
-    <key name="profile" value="الملف الشخصي"/>
+    <key name="profile" value="Profile"/>
     <key name="realstatesection"  value="Real State Section" />
     <key name="addnewproperty"    value="Add New Property" />
     <key name="addclient"         value="Customer" />

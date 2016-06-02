@@ -2,7 +2,7 @@
 require('connect.php');
 
 
-
+ 
 function subcriber()
 {
 	
@@ -610,12 +610,12 @@ function noftify()
 	
 }
 
-function admin_notification($var)
+function admin_notification($var,$varsession)
 {
 	
 	global $array9;
 	
-	$sql= "SELECT * From admin_changes where cid='".$_SESSION['Id']."' And notify='$var'";
+	$sql= "SELECT * From admin_changes where cid='$varsession' And notify='$var'";
 	
 	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	
@@ -639,16 +639,16 @@ function admin_notification($var)
 		
 	}
 	
-	return $array9;
+	return  $array9;
 	
 }
 
-function admin_notification2($var)
+function admin_notification2($var,$varsession)
 {
 	
 	global $array9;
 	
-	$sql= "SELECT * From admin_changes where cid='".$_SESSION['Id']."' And notify='$var'";
+	$sql= "SELECT * From admin_changes where cid='$varsession' And notify='$var'";
 	
 	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	
@@ -676,12 +676,12 @@ function admin_notification2($var)
 	
 }
 
-function admin_notification3($var)
+function admin_notification3($var,$varsession)
 {
 	
 	global $array9;
 	
-	$sql= "SELECT * From admin_changes where cid='".$_SESSION['Id']."' And notify='$var'";
+	$sql= "SELECT * From admin_changes where cid='$varsession' And notify='$var'";
 	
 	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	
@@ -1498,5 +1498,68 @@ function Dis_Rent_Property($var)
 			}
 		}
 		return  $disarray;
+}
+
+
+function GetNoftifyDate()
+{
+	global $disnotifyarray;
+	$sqlnotify = "SELECT * from customer_pkg_detail";
+		$resultNoftifcation=mysql_query($sqlnotify)or  die('Invalid query: ' . mysql_error());
+	if($resultNoftifcation)
+		{
+	     if(mysql_num_rows($resultNoftifcation) > 0) 
+            {
+				while($membernoftify=mysql_fetch_assoc($resultNoftifcation))
+				{						   
+				 
+				 $disnotifyarray[] = $membernoftify;
+				}
+			}
+		}
+		return  $disnotifyarray;
+}
+
+
+function CustomerID($var)
+{
+	
+	global $CustomerID;
+	$sqlnotify = "SELECT * from registration Where Id= '$var'";
+		$resultNoftifcation=mysql_query($sqlnotify)or  die('Invalid query: ' . mysql_error());
+	if($resultNoftifcation)
+		{
+	     if(mysql_num_rows($resultNoftifcation) > 0) 
+            {
+				while($memberCsId=mysql_fetch_assoc($resultNoftifcation))
+				{						   
+				 
+				 
+				 $CustomerID = $memberCsId['email'];
+				}
+			}
+		}
+		return  $CustomerID;
+}
+
+
+function LeaseEndStart($date,$var)
+{
+	 global $leaseend;
+	$sqlnotify = "SELECT * from rent_property Where cid= '$var' And ending_date='$date'";
+		$resultNoftifcation=mysql_query($sqlnotify)or  die('Invalid query: ' . mysql_error());
+	if($resultNoftifcation)
+		{
+	     if(mysql_num_rows($resultNoftifcation) > 0) 
+            {
+				while($memberCsId=mysql_fetch_assoc($resultNoftifcation))
+				{						   
+				 
+				 
+				 $leaseend[] = $memberCsId;
+				}
+			}
+		}
+		return  $leaseend;
 }
 ?>
