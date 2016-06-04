@@ -20,7 +20,7 @@
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
 
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
+ 
  <!--  <link rel="stylesheet" href="dist/magnific-popup.css"> -->
 
    <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
@@ -174,7 +174,7 @@
 
 <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
    <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
+ 
 	   <script type="text/javascript">
 $(document).ready(function() {
  

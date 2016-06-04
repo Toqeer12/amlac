@@ -25,17 +25,14 @@ unset($_SESSION['fulname']);
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
-	<link href="css/style_responsive.css" rel="stylesheet" />
-	<link href="css/style_default.css" rel="stylesheet" id="style_color" />
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-	<link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-	<link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-	<link href="assets/jqvmap/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
+ <?php
+ 
+ 
+
+    include 'css_header.php';
+?>
+ 
+ 
 
    <style>
      .loader {
@@ -283,7 +280,7 @@ include 'header_menu.php';
 	<!-- END FOOTER -->
 	<!-- BEGIN JAVASCRIPTS -->
 	<!-- Load javascripts at bottom, this will reduce page load time -->
-	<script src="js/jquery-1.8.3.min.js"></script>
+ 
 	<script src="assets/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js"></script>
 	<script src="assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>
@@ -313,8 +310,7 @@ include 'header_menu.php';
     <script src="assets/flot/jquery.flot.crosshair.js"></script>
 
 	<script src="js/jquery.peity.min.js"></script>
-	<script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-	<script src="js/scripts.js"></script>
+ 	<script src="js/scripts.js"></script>
 	<script>
         	  
 	    $(window).load(function() {

@@ -2304,7 +2304,7 @@ var App = function () {
 
 //tooltips
 
-$('.element').tooltip();
+//$('.element').tooltip();
 
 
 // Slider input js
@@ -2319,13 +2319,12 @@ try{
     }});
 }
     catch (e){
-    errorMessage(e);
+    
 }
 
 
 //knob
-
-$(".knob").knob();
+ 
 
 
 

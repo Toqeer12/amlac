@@ -25,16 +25,10 @@ unset($_SESSION['fulname']);
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-   <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
-   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   <link href="css/style.css" rel="stylesheet" />
-   <link href="css/style_responsive.css" rel="stylesheet" />
-   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-   <link href="css/jquery.toastmessage.css" rel="stylesheet" />
-   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
+ <?php
+ 
+ include 'css_header.php';
+ ?>
 
  
 </head>
@@ -154,16 +148,14 @@ include 'header_menu.php';
       </div>
     </div>
 
-
-
-    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/scripts.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
     <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
 
 
-
+ 
 
 <script type="text/javascript">
 

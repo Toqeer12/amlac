@@ -27,19 +27,11 @@ unset($_SESSION['fulname']);
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   <link href="css/style.css" rel="stylesheet" />
-   <link href="css/style_responsive.css" rel="stylesheet" />
-   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-      <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-
-   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
-    <link href="csspop/styles.css" rel="stylesheet" />
+ <?php 
+    
+    include 'css_header.php';
+ 
+ ?>
 
    
    <style type="text/css">
@@ -535,18 +527,15 @@ include 'header_menu.php';
        2013 &copy; Admin Lab Dashboard.
 
    </div>
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
    <script src="toastr.js"></script>
-   <script src="js/jquery-1.8.3.min.js"></script>
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
    <script src="js/jquery.blockui.js"></script>
-   <script src="assets/fancybox/source/jquery.fancybox.pack.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-   <script src="js/scripts.js"></script>
+
    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-    <script type="text/javascript" src="csspop/css-pop.js"></script>
-	<script type="text/javascript">			
+   <script type="text/javascript" src="csspop/css-pop.js"></script>
+    <script type="text/javascript">			
     	    $(window).load(function() {
 	$(".loader").fadeOut("slow");
 })
@@ -566,13 +555,8 @@ $(document).on('click', '.popup-modal-dismiss', function (e) {
         $('form')[0].reset();
   });
 </script>
-   <script>
-      jQuery(document).ready(function() {       
-         // initiate layout and plugins
-         App.init();
-      });
-   </script>
-   <script>
+
+   <!--<script>
     var map;
     var marker;
     var infowindowPhoto = new google.maps.InfoWindow();
@@ -648,7 +632,7 @@ $(document).on('click', '.popup-modal-dismiss', function (e) {
 	
 
 	
-	</script>
+	</script>-->
 
 </body>
 <!-- END BODY -->

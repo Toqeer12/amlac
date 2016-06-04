@@ -3,7 +3,7 @@
 
 <?php
 session_start();
-
+include 'session.php';
 
 if(!(isset($_SESSION['user']))){
 	
@@ -51,26 +51,14 @@ if (isset($_SESSION['message']))
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>Form Layouts</title>
+   <title><?php echo $var;?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-   <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
-   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   <link href="css/style.css" rel="stylesheet" />
-   <link href="css/style_responsive.css" rel="stylesheet" />
-   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
- <!--  <link rel="stylesheet" href="dist/magnific-popup.css"> -->
+<?php 
 
-   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-<link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
-    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-
+    include 'css_header.php';
+?>
 <style type="text/css">
 #modal {
   margin: 0 auto;
@@ -739,18 +727,13 @@ for ($i=0; $i < count($loadrenter); $i++)
          <span class="go-top"><i class="icon-arrow-up"></i></span>
       </div> -->
    </div>
-   <!-- END FOOTER -->
-   <!-- BEGIN JAVASCRIPTS -->    
-   <!-- Load javascripts at bottom, this will reduce page load time -->
-  <script src="js/jquery-1.8.3.min.js"></script>
+ 
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
    <script src="js/jquery.blockui.js"></script>
- 
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
    <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
    <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
+    
    <script src="assets/main/javascript/jquery.toastmessage.js"></script>
    <script src="js/scripts.js"></script>
    <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
@@ -773,7 +756,7 @@ $(document).ready(function() {
     preloader: false,
     modal: true
   });
-App.init();
+ 
   
 });
 $(document).on('click', '.popup-modal-dismiss', function (e) {
