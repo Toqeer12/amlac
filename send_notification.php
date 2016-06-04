@@ -27,8 +27,10 @@ $varsession = $_SESSION['Id'];
 				
 				
                 
-                $str = $member['receiver'];
-				
+               $str = $member['receiver'];
+			   $renterText = $member['renter_text'];
+               $ownerText =$member['owner_text'];
+               $agentText =$member['agent_text'];	
 				 
 				
 			}
@@ -36,34 +38,37 @@ $varsession = $_SESSION['Id'];
 		}
 		
 	}
-$var = explode(",",$str);
-
-if($var[0]==0)
+ $var = explode(",",$str);
+ 
+if($var[0]=='0')
 {
     $owner =0; 
 }
 else {
      $owner = OwnerRenterName($varOwnerId);
-     SendMail($owner);
+
+    SendMail($owner,$ownerText);
 }
-if($var[1]==0)
+if($var[1]=='0')
 {
     $renter = 0;
 }
 else {
-    $renter = OwnerRenterName($varRenter);
-    SendMail($renter);
+   $renter = OwnerRenterName($varRenter,$renterText);
+
+   SendMail($renter,$renter);
 }
-if($var[2]==0)
+if($var[2]=='0')
 {
     $agent = 0;
 }
 else {
     $agent = $_SESSION['user'];
-    SendMail($agent);
+
+   SendMail($agent,$agentText);
 }
 
-  header("location:job_title.php?id=".$varOwnerId."&property=".$varPropertyId."&unit=".$varUnit);
+   header("location:job_title.php?id=".$varOwnerId."&property=".$varPropertyId."&unit=".$varUnit);
 
 
 
@@ -99,11 +104,11 @@ function OwnerRenterName($var)
 	} 
     return $client;
 }
-function SendMail($to)
+function SendMail($to,$text)
 {
          $subject = "This is subject";        
          $message = "<b>This is HTML message.</b>";
-         $message .= "<h1>This is headline.</h1>";
+         $message .= $text;
          
          $header = "From:contacts@arrowtec.ae \r\n";
           $header .= "MIME-Version: 1.0\r\n";

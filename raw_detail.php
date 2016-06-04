@@ -1543,10 +1543,10 @@ function CustomerID($var)
 }
 
 
-function LeaseEndStart($date,$var)
+function LeaseEndStart($date)
 {
 	 global $leaseend;
-	$sqlnotify = "SELECT * from rent_property Where cid= '$var' And ending_date='$date'";
+	$sqlnotify = "SELECT * from rent_property Where ending_date = '$date'";
 		$resultNoftifcation=mysql_query($sqlnotify)or  die('Invalid query: ' . mysql_error());
 	if($resultNoftifcation)
 		{

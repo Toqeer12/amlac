@@ -40,13 +40,13 @@ if($_SESSION['exp']=='invalid'){
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-  
+
  <?php 
 
     include 'css_header.php';
 ?>
  
-
+  <script src="js/scripts.js"></script>
 <style type="text/css">
 
 
@@ -898,15 +898,18 @@ include 'header_menu.php';
       
     </div>
    <!-- END CONTAINER -->
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="assets/main/javascript/jquery.toastmessage.js"></script>
+ <script src="js/jquery.blockUI.js"></script>
+ <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
  
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-   <script src="js/jquery.blockui.js"></script>
+ 
+ 
  
 
-    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-   <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
-   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-     <script src="assets/main/javascript/jquery.toastmessage.js"></script>
+ 
+ 
+ 
    
    <script src="js/scripts.js"></script>
  

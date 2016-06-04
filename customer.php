@@ -331,7 +331,7 @@ include 'header_menu.php';
 
    </div>
     <script src="js/scripts.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+ 
    <script src="js/jquery.blockui.js"></script>
    <script src="assets/fancybox/source/jquery.fancybox.pack.js"></script>
  

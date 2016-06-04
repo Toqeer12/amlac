@@ -173,7 +173,7 @@ include 'css_header.php';
       <!-- END PAGE -->
    </div>
       <script src="js/scripts.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
+ 
    <script src="js/jquery.blockui.js"></script>
     <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>

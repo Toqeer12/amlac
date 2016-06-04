@@ -226,7 +226,7 @@ include 'header_menu.php';
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
    <script src="js/scripts.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
+ 
    <script src="js/jquery.blockui.js"></script>
    <!-- ie8 fixes -->
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>

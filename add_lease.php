@@ -727,16 +727,15 @@ for ($i=0; $i < count($loadrenter); $i++)
          <span class="go-top"><i class="icon-arrow-up"></i></span>
       </div> -->
    </div>
- 
-   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script> 
    <script src="js/jquery.blockui.js"></script>
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
    <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
    <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
     
    <script src="assets/main/javascript/jquery.toastmessage.js"></script>
-   <script src="js/scripts.js"></script>
-   <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
+
+      <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
    <script src="toastr.js"></script>
    <script type="text/javascript">
    	    $(window).load(function() {

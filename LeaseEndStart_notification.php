@@ -4,13 +4,13 @@
  
  $data = date("Y-m-d");
  
- $var = $_SESSION['Id'];
+ 
 
  
- $notificationAlert = LeaseEndStart($data,$var);
+ $notificationAlert = LeaseEndStart($data);
  
  
-	$sql= "SELECT * From admin_changes where cid='$varsession' And notify='5'";
+	$sql= "SELECT * From admin_changes where notify='5'";
 	
 	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	
@@ -26,10 +26,28 @@
 				
 				
                 
-                $str = $member['receiver'];
-				
+               $str = $member['receiver'];
+               $renterText = $member['renter_text'];
+               $ownerText =$member['owner_text'];
+               $agentText =$member['agent_text'];	
 				 
-				
+				 	$sql= "SELECT * From admin_changes where notify='5'";
+	
+	                $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+	
+	
+	                if($result) 
+	                {
+		
+	                	if(mysql_num_rows($result) > 0)
+	                    	{
+			
+	                        		while($member  = mysql_fetch_assoc($result))
+		                            	{
+                                        }
+                            }
+                    }
+		    		
 			}
 			
 		}
@@ -46,7 +64,7 @@ for($i=0; $i < count($notificationAlert); $i++)
             }
             else {
                 $owner = OwnerRenterName($notificationAlert[$i]['owner']);
-                SendMail($owner);
+                SendMail($owner,$ownerText);
             }
             if($var[1]==0)
             {
@@ -54,7 +72,7 @@ for($i=0; $i < count($notificationAlert); $i++)
             }
             else {
                 $renter = OwnerRenterName($notificationAlert[$i]['renter']);
-                SendMail($renter);
+                SendMail($renter,$renterText);
             }
             if($var[2]==0)
             {
@@ -62,7 +80,7 @@ for($i=0; $i < count($notificationAlert); $i++)
             }
             else {
                 $agent = $_SESSION['user'];
-                SendMail($agent);
+                SendMail($agent,$agentText);
             }
 
 }

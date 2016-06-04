@@ -274,12 +274,12 @@ include 'header_menu.php';
    </div>
 
      <script src="js/scripts.js"></script>
-   <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
+ 
    <script src="js/jquery.blockui.js"></script>
  
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
     <script src="assets/main/javascript/jquery.toastmessage.js"></script>
    
