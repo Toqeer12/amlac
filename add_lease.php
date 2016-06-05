@@ -105,7 +105,7 @@ include 'header.php';
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-      <div class="sidebar-toggler hidden-phone"></div>
+ 
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
       <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->

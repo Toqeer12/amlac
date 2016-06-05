@@ -48,8 +48,7 @@ unset($_SESSION['fulname']);
 
 	<div id="container" class="row-fluid">
 		<div id="sidebar" class="nav-collapse collapse">
-			<div class="sidebar-toggler hidden-phone"></div>
-
+ 
 			<div class="navbar-inverse">
 				<form class="navbar-search visible-phone">
 					<input type="text" class="search-query" placeholder="Search" />

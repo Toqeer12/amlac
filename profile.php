@@ -54,8 +54,7 @@ unset($_SESSION['fulname']);
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
 
-         <div class="sidebar-toggler hidden-phone"></div>   
-
+ 
          <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
          <div class="navbar-inverse">
             <form class="navbar-search visible-phone">

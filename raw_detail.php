@@ -1543,7 +1543,7 @@ function CustomerID($var)
 }
 
 
-function LeaseEndStart($date)
+function LeaseOnEnd($date)
 {
 	 global $leaseend;
 	$sqlnotify = "SELECT * from rent_property Where ending_date = '$date'";

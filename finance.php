@@ -74,8 +74,7 @@ unset($_SESSION['fulname']);
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-      <div class="sidebar-toggler hidden-phone"></div>
-      <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
       <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
       <div class="navbar-inverse">
@@ -272,9 +271,9 @@ function updaterent(obj)
                 alert("Please Pay Full Amount");
            }
            else{
-               
+               debugger;
                $().toastmessage('showSuccessToast', "Rent Paid Successfully");
-               window.location="finance.php";
+               window.location="notification_service.php?owner="+ownerid+"&property="+property+"&renter="+renter+"&unit="+unit;
            }
 	 
    

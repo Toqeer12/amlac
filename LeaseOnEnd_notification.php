@@ -7,7 +7,7 @@
  
 
  
- $notificationAlert = LeaseEndStart($data);
+ $notificationAlert = LeaseOnEnd($data);
  
  
 	$sql= "SELECT * From admin_changes where notify='5'";

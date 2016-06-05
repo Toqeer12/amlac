@@ -111,8 +111,7 @@ article {
       <!-- BEGIN SIDEBAR -->
     <div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-			<div class="sidebar-toggler hidden-phone"></div>
-			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+ 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
 			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
 			<div class="navbar-inverse">
@@ -742,8 +741,8 @@ $(function() {
 function updaterent(obj)
 {
 	debugger;
-     var unit =obj.getAttribute("data-unit");
-      var renter =obj.getAttribute("data-renter");
+  var unit =obj.getAttribute("data-unit");
+    var renter =obj.getAttribute("data-renter");
 	var startdate = $("#duedate").val();
 	var paymethod = $("#paymethod").val();
 	var amount = $("#amount").val();
@@ -765,19 +764,17 @@ function updaterent(obj)
 		cache: false,
 		success: function(result)
 		{
-		        if(result.cid=='33')
+		   if(result.cid=='33')
            {
                alert("Please Pay Full Amount");
            }
            else if(result.cid=='34')
            {
                 alert("Please Pay Full Amount");
-           }  else{
-               
-               $().toastmessage('showSuccessToast', "Rent Paid Successfully");
-               
            }
-   
+           else{               
+               $().toastmessage('showSuccessToast', "Rent Paid Successfully");              
+           }
 		},
 		error: function (jqXHR, textStatus, errorThrown)
 		{
