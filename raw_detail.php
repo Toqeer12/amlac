@@ -82,7 +82,31 @@ function property()
 	
 	
 }
-
+function SpecIdProperty($var)
+{
+	
+	$sql= "SELECT Count(*) id From add_property Where cid='$var'";
+	
+	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+	
+	
+	if($result) 
+	{
+		
+		if(mysql_num_rows($result) > 0)
+		{
+			
+			$member  = mysql_fetch_assoc($result);
+			
+			echo $member['id'];
+			
+		}
+		
+	}
+	
+	
+	
+}
 function propertyowner($var1,$var2)
 {
 	
@@ -134,7 +158,31 @@ function unit_property()
 	
 	
 }
-
+function spec_unit_property($var)
+{
+	
+	$sql= "SELECT Count(*) id From real_state_unit where cid='$var'";
+	
+	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+	
+	
+	if($result) 
+	{
+		
+		if(mysql_num_rows($result) > 0)
+		{
+			
+			$member  = mysql_fetch_assoc($result);
+			
+			echo $member['id'];
+			
+		}
+		
+	}
+	
+	
+	
+}
 function unit_propertyowner($var1,$var2)
 {
 	
@@ -185,6 +233,53 @@ function lease_property()
 	
 	
 	
+}
+function spec_lease_property($var)
+{
+	
+	$sql= "SELECT Count(*) id From rent_property where cid='$var'";
+	
+	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+	
+	
+	if($result) 
+	{
+		
+		if(mysql_num_rows($result) > 0)
+		{
+			
+			$member  = mysql_fetch_assoc($result);
+			
+			echo $member['id'];
+			
+		}
+		
+	}
+	
+	
+	
+}
+
+function spec_owner($var)
+{
+		$sql= "SELECT DISTINCT owner_id From add_property Where cid='$var'";
+	
+	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+	
+	
+	if($result) 
+	{
+		
+		if(mysql_num_rows($result) > 0)
+		{
+			
+			$member  = mysql_fetch_assoc($result);
+			
+			echo mysql_num_rows($result);
+			
+		}
+		
+	}
 }
 
 function lease_propertyowner($var1,$var2)

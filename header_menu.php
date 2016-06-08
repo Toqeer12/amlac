@@ -10,7 +10,7 @@
                         <li class=""><a class="" href="add_property.php"><?php GetProperty('addnewproperty',$_SESSION['rtl']); ?></a></li>
                          <li><a class="" href="add_client.php"><?php GetProperty('addclienttitle',$_SESSION['rtl']); ?></a></li>
                    <li class=""><a class="" href="add_real_stat_unit.php"><?php GetProperty('addnewunit',$_SESSION['rtl']); ?></a></li>
-                   <li class=""><a class="" href="add_lease.php"><?php GetProperty('addnewlease',$_SESSION['rtl']); ?></a></li>
+                   <li class=""><a class="" href="add_lease.php"><?php GetProperty('addnewlease',$_SESSION['rtl']); ?>e</a></li>
 
                     </ul>
         </li>

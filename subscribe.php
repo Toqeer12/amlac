@@ -34,20 +34,16 @@ session_start();
 	<?php include 'header_sub.php';?>
 	<!-- END HEADER -->
 	<!-- BEGIN CONTAINER -->
-	<div id="container" class="row-fluid">
+	<div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>> 
 		<!-- BEGIN SIDEBAR -->
 		<div id="sidebar" class="nav-collapse collapse">
-			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
- 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-
-			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+ 
 			<div class="navbar-inverse">
 				<form class="navbar-search visible-phone">
 					<input type="text" class="search-query" placeholder="Search" />
 				</form>
 			</div>
-			<!-- END RESPONSIVE QUICK SEARCH FORM -->
-			<!-- BEGIN SIDEBAR MENU -->
+ 
 <?php 
 include 'header_menu_sub.php';
 
@@ -55,58 +51,15 @@ include 'header_menu_sub.php';
 			<!-- END SIDEBAR MENU -->
 		</div>
       <!-- BEGIN PAGE -->
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
-            <!-- BEGIN PAGE HEADER-->
-            <div class="row-fluid">
-               <div class="span12">
-                   <!-- BEGIN THEME CUSTOMIZER-->
-                   <div id="theme-change" class="hidden-phone">
-                       <i class="icon-cogs"></i>
-                        <span class="settings">
-                            <span class="text">Theme:</span>
-                            <span class="colors">
-                                <span class="color-default" data-style="default"></span>
-                                <span class="color-gray" data-style="gray"></span>
-                                <span class="color-purple" data-style="purple"></span>
-                                <span class="color-navy-blue" data-style="navy-blue"></span>
-                            </span>
-                        </span>
-                   </div>
-                   <!-- END THEME CUSTOMIZER-->
-                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
-                  <h3 class="page-title">
-                     Pricing Tables
-                     <small>pricing tables samples</small>
-                  </h3>
-                   <ul class="breadcrumb">
-                       <li>
-                           <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
-                       </li>
-                       <li>
-                           <a href="#">Extra</a> <span class="divider">&nbsp;</span>
-                       </li>
-                       <li><a href="#">Pricing Tables</a><span class="divider-last">&nbsp;</span></li>
-                   </ul>
-                  <!-- END PAGE TITLE & BREADCRUMB-->
-               </div>
-            </div>
-            <!-- END PAGE HEADER-->
-            <!-- BEGIN PAGE CONTENT-->          
+      
             <div class="row-fluid">
                <div class="span12">
                   <!-- BEGIN INLINE NOTIFICATIONS widget-->
                   <div class="widget">
-                     <div class="widget-title">
-                        <h4><i class="icon-cogs"></i>Pricing Tables</h4>
-                        <div class="tools">
-                           <a href="javascript:;" class="collapse"></a>
-                           <a href="#widget-config" data-toggle="modal" class="config"></a>
-                           <a href="javascript:;" class="reload"></a>
-                           <a href="javascript:;" class="remove"></a>
-                        </div>
-                     </div>
+ 
                      <div class="widget-body">
                         <div class="row-fluid">
                            <div class="pricing-title">
@@ -114,7 +67,7 @@ include 'header_menu_sub.php';
                                <h4>No risk. No hidden fees. Cancel at anytime. </h4>
                            </div>
                         </div>
-                        <div class="row-fluid">
+                        <div class="row-fluid" <?php echo $_SESSION['rtl'];?>>
                            <div class="span3">
                               <div class="pricing-table">
                                   <div class="pricing-head">
@@ -134,7 +87,7 @@ include 'header_menu_sub.php';
                                   </div>
                               </div>
                            </div>
-                           <div class="spance10 visible-phone"></div>
+                       <!--   <div class="spance10 visible-phone"></div>
                            <div class="span3">
                                <div class="pricing-table">
                                    <div class="pricing-head">
@@ -192,7 +145,7 @@ include 'header_menu_sub.php';
                                    <div class="price-actions">
                                        <a class="btn" href="javascript:;">Purchase Now</a>
                                    </div>
-                               </div>
+                               </div>-->
                            </div>
                         </div>
                      </div>

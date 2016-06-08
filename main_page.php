@@ -14,165 +14,150 @@ unset($_SESSION['fulname']);
 
 
 ?>
-
-<html lang="en"> <!--<![endif]-->
+<!DOCTYPE html>
+<!--
+Template Name: Admin Lab Dashboard build with Bootstrap v2.3.1
+Template Version: 1.3
+Author: Mosaddek Hossain
+Website: http://thevectorlab.net/
+-->
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
 <!-- BEGIN HEAD -->
-
-
 <head>
-	<meta charset="utf-8" />
-	<title> Admin Lab Dashboard</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<meta content="" name="description" />
-	<meta content="" name="author" />
-	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
-	<link href="css/style_responsive.css" rel="stylesheet" />
-	<link href="css/style_default.css" rel="stylesheet" id="style_color" />
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-	<link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-	<link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-	<link href="assets/jqvmap/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <title> Admin Lab Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
  
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style_responsive.css" rel="stylesheet" />
+    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
+    <link rel="stylesheet" href="codebase/dhtmlxscheduler.css">
+ 
+ 
+ 
+	<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
 
-   <style>
-     .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
-}
-     </style>
-</head>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+    
+            <style media="screen">
+	html, body{
+		margin:0px;
+		padding:0px;
+		height:100%;
+		overflow:hidden;
+	}   
+</style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body class="fixed-top">
-	<!-- BEGIN HEADER -->
-	<?php
-    include 'header.php';
-    
-    ?>
-	<!-- END HEADER -->
-	<!-- BEGIN CONTAINER -->
-	<div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
-		<!-- BEGIN SIDEBAR -->
-		<div id="sidebar" class="nav-collapse collapse">
-			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-	 
+<body class="fixed-top" onload="init();">
+    <!-- BEGIN HEADER -->
+    <div id="header" class="navbar navbar-inverse navbar-fixed-top">
+    <?php  include 'header.php';?>
+    </div>
  
-<?php 
-include 'header_menu.php';
-
-?>
-			<!-- END SIDEBAR MENU -->
-		</div>
-		<!-- END SIDEBAR -->
-		<!-- BEGIN PAGE -->
-		<div id="main-content" <?php echo $_SESSION['rtl'];?>>
-			<!-- BEGIN PAGE CONTAINER-->
-			<div class="container-fluid">
-				<!-- BEGIN PAGE HEADER-->
-				<div class="row-fluid">
-					<div class="span12">
-						<!-- BEGIN THEME CUSTOMIZER-->
+    <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>       
+        <div id="sidebar" class="nav-collapse collapse">          
+            <div class="sidebar-toggler hidden-phone"></div>
+                 <?php include 'header_menu.php';?>       
+            </div>
+        <div id="main-content" <?php echo $_SESSION['rtl'];?>>       
+            <div class="container-fluid">          
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">Dashboard</h3>
+                    </div>
+                </div>
+        <div id="page" class="dashboard">
+            <div class="row-fluid circle-state-overview">
+                 <div class="span2 responsive clearfix" data-tablet="span3" data-desktop="span2">
+                      <div class="circle-wrap">
+                           <div class="stats-circle turquoise-color">
+                                <i class="icon-user"></i>
+                          </div>
+                           <p><strong><?php $var = $_SESSION['Id']; echo SpecIdProperty($var);?></strong>  Total Properties </p>
+                      </div>
+                 </div>
+                  <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
+                       <div class="circle-wrap">
+                            <div class="stats-circle red-color">
+                                    <i class="icon-tags"></i>
+                            </div>
+                                <p> <strong><?php $var = $_SESSION['Id']; echo spec_unit_property($var);?></strong> Total Units </p>      
+                       </div>
+                  </div>
+                 <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
+                      <div class="circle-wrap">
+                              <div class="stats-circle green-color">
+                                    <i class="icon-shopping-cart"></i>
+                             </div>
+                              <p> <strong><?php $var = $_SESSION['Id'];echo spec_owner($var)?></strong> Total Owner</p>
+                      </div>
+                </div>
+                 <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
+                      <div class="circle-wrap">
+                           <div class="stats-circle purple-color">
+                                 <i class="icon-eye-open"></i>
+                            </div>
+                             <p><strong><?php $var =  $_SESSION['Id'];echo spec_lease_property($var);?></strong>Total Renter </p>
+                     </div>               
+                 </div>
+           </div>
+            <div class="row-fluid">
+                 <div class="span8">
+                      <div id="scheduler_here" class="dhx_cal_container" style='width:600px; height:500px;  '>
+                                    <div class="dhx_cal_navline">
+                                        <div class="dhx_cal_prev_button">&nbsp;</div>
+                                        <div class="dhx_cal_next_button">&nbsp;</div>
+                                        <!--<div class="dhx_cal_today_button"></div>-->
+                                        <div class="dhx_cal_date"></div>
+                                        <!--<div class="dhx_minical_icon" id="dhx_minical_icon" onclick="show_minical()">&nbsp;</div>-->
+                                        <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+                                        <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+                                         <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div> 
+                                    </div>
+                                        <div class="dhx_cal_header"> </div>
+                                        <div class="dhx_cal_data"> </div>
+                            </div>
+                </div>
+                <!-- END PAGE CONTENT-->
+            </div>
  
-						<!-- END THEME CUSTOMIZER-->
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-						<h3 class="page-title">
-							Dashboard	
-				 
-						</h3>
-                        <div class="loader"></div>
+	<script src="js/scripts.js"></script>
  
-						<!-- END PAGE TITLE & BREADCRUMB-->
-					</div>
-				</div>
-				<!-- END PAGE HEADER-->
-				<!-- BEGIN PAGE CONTENT-->
-	 
-
-  
- 
-                    <!-- END OVERVIEW STATISTIC BLOCKS-->
-
-					<div class="row-fluid">
-						<div class="span8">
-							<!-- BEGIN SITE VISITS PORTLET-->
-		 
-							<!-- END SITE VISITS PORTLET-->
-						</div>
- 
-
-					</div>
- 
-                    <!-- END SQUARE STATISTIC BLOCKS-->
-
-
-				</div>
-				<!-- END PAGE CONTENT-->
-			</div>
-			<!-- END PAGE CONTAINER-->
-		</div>
-		<!-- END PAGE -->
-	</div>
-	<!-- END CONTAINER -->
-	<!-- BEGIN FOOTER -->
-	<div id="footer">
-		2016 &copy; Vitamin Admin Lab Dashboard.
-		<div class="span pull-right">
-			<span class="go-top"><i class="icon-arrow-up"></i></span>
-		</div>
-	</div>
-	<!-- END FOOTER -->
-	<!-- BEGIN JAVASCRIPTS -->
-	<!-- Load javascripts at bottom, this will reduce page load time -->
-  	<script src="js/scripts.js"></script>
-	<script src="assets/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js"></script>
-	<script src="assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/jquery.blockui.js"></script>
-	<script src="js/jquery.cookie.js"></script>
- 
-	<script src="assets/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-	<script src="assets/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-	<script src="assets/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-	<script src="assets/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-	<script src="assets/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-	<script src="assets/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-	<script src="assets/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-	<script src="assets/jquery-knob/js/jquery.knob.js"></script>
-	<script src="assets/flot/jquery.flot.js"></script>
-	<script src="assets/flot/jquery.flot.resize.js"></script>
-    
     <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
+	<script src="codebase/dhtmlxscheduler.js"></script>
+    
+    
+    
+    
+     <script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
 
-    <script src="assets/flot/jquery.flot.pie.js"></script>
-    <script src="assets/flot/jquery.flot.stack.js"></script>
-    <script src="assets/flot/jquery.flot.crosshair.js"></script>
+  $("*").dblclick(function(e){
 
-	<script src="js/jquery.peity.min.js"></script>
+    e.preventDefault();
 
-	<script>
-        	  
-	    $(window).load(function() {
-	$(".loader").fadeOut("slow");
-})
-		jQuery(document).ready(function() {
-			// initiate layout and plugins
-			App.setMainPage(true);
-			App.init();
-		});
+  });
+
+});
+
+	function init() 
+    {
+        
+        scheduler.config.xml_date="%Y-%m-%d %H:%i";
+        scheduler.init('scheduler_here', new Date(),"month");
+        scheduler.load("data.php"); 
+
+	}
 	</script>
-	<!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
 </html>

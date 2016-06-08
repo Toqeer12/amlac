@@ -16,10 +16,7 @@
    <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="css/style.css" rel="stylesheet" />
-   <link href="css/style_responsive.css" rel="stylesheet" />
-   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-
-   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
  
  <!--  <link rel="stylesheet" href="dist/magnific-popup.css"> -->
 
