@@ -58,8 +58,7 @@ global $owenr;
    <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
-          <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-         <div class="navbar-inverse">
+          <div class="navbar-inverse">
             <form class="navbar-search visible-phone">
                <input type="text" class="search-query" placeholder="Search" />
             </form>
@@ -142,7 +141,7 @@ include 'header_menu.php';?>
                   <div class="widget">
           
                      <div class="widget-body">
-                          <div class="loader"></div>
+                          
 
                         <table class="table table-striped table-bordered dataTable">
                         <strong><?php GetProperty('basicinfo',$_SESSION['rtl']);?></strong>
@@ -414,7 +413,7 @@ include 'header_menu.php';?>
 								        
 									while($row2 = mysql_fetch_assoc($result2)) {
                                         echo "<td>" . $row2['real_name'] . "</td>";
-                                          echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['type']."&datee=".$row['datee']."&vendor=".$row2['real_name']."'>Print</a></td>";
+                                          echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['type']."&datee=".$row['datee']."&vendor=".$row2['real_name']."&id=".$_SESSION['Id']."'>Print</a></td>";
                                         echo "</tr>"; }
 									 }
                                     }
@@ -628,7 +627,7 @@ include 'header_menu.php';?>
       <script src="js/scripts.js"></script>
  
    <script src="toastr.js"></script>
- 
+   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
    <script src="js/jquery.blockui.js"></script>
  
    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>

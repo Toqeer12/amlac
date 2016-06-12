@@ -110,7 +110,7 @@ include 'header_menu.php';
  
           <div class="widget-body">
           <div class="loader"></div>
-          <button type="button" class="btn btn-primary" onClick="vender(this)"><?php GetProperty('addvendor',$_SESSION['rtl']);?></button>    
+          <button type="button" class="btn btn-primary"data-ownerId="<?php echo $_GET['ownerid']?>"  onClick="vender(this)"><?php GetProperty('addvendor',$_SESSION['rtl']);?></button>    
             <form id="loginform" class="form-horizontal" method="POST">
             
               <div class="span4">
@@ -241,6 +241,7 @@ include 'header_menu.php';
                       </div>
                   </div>
                   <input type="hidden" id="propid" value="<?php echo $_GET['propertyId'];?>"
+                  <input type="hidden" id="ownerid" value="<?php echo $_GET['ownerid'];?>"
               </div>
               <div class="span4">
 <br>
@@ -339,7 +340,11 @@ $(document).on('click', '.popup-modal-dismiss', function (e) {
   
     function vender(obj)
   {
-		window.location="add_vendor.php?id=1";
+    debugger;
+    var owner=obj.getAttribute("data-ownerId");
+ 	  var propname=$("#propid").val();
+	  var unitt=$("#unit").val();
+		window.location="add_vendor.php?owner="+owner+"&property="+propname+"&unit="+unitt"&btype=pb";
   }
 </script>
    <!-- END JAVASCRIPTS -->   

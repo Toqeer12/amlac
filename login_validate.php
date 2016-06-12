@@ -63,10 +63,26 @@ if(!empty($Username)&&!empty($Password))
 
 						else 
 						{
-						?>
-								<script>alert('wrong details');</script>
 
-								<?php
+									$sql2= "SELECT * From  clients WHERE email='$Username' AND password='$encry' ";   
+									$result2=mysql_query($sql2)or  die('Invalid query: ' . mysql_error());
+									if($result2)
+				 					{
+				 		 
+										if(mysql_num_rows($result2) > 0) 
+										{
+							 
+												$member2 = mysql_fetch_assoc($result2);
+												$_SESSION['user'] = $member2['email'];								 
+												$_SESSION['Id'] = $member2['id'];
+												$_SESSION['cid'] = $member2['cid'];
+							    				$_SESSION['fulname'] = $member2['real_name'];
+												$_SESSION['company'] = '';
+												$_SESSION['language']='English';
+												$_SESSION['rtl']='rtl';
+												header("location: owner_admin.php");
+										}
+										else {
 											$errmsg_arr[] = 'user name and password not found';
 											$errflag = true;
 											if($errflag)
@@ -75,6 +91,9 @@ if(!empty($Username)&&!empty($Password))
 												header("location: index.php");
 												exit();
 											}
+										}
+									 }
+				 
 		 
 						}
 

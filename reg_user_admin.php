@@ -3,15 +3,7 @@
 <?php
  session_start();
  
-  if($_SESSION['exp']=='invalid'){
-header("location:login.php");
-unset($_SESSION['user']);
-unset($_SESSION['company']);
-unset($_SESSION['Id']);
-unset($_SESSION['fulname']);
-
-}
-
+ 
 
 ?>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -113,8 +105,8 @@ unset($_SESSION['fulname']);
                                                                 ?>
                                                             <td><?php getclientcount($varclient) ?></td>
                                                             <td><?php getpaymentstatus($varclient)?></td>
-                                                            <td><a href="client_detail.php?id=<?php echo $member['Id'] ?>">View</a></td>";
-                                                            <td><a href="#" data-id="<?php echo $member['Id'] ?>"onclick="upgrade(this)">Upgrade</a></td>";
+                                                            <td><a href="client_detail.php?id=<?php echo $member['Id'] ?>">View</a></td> 
+                                                            <td><a href="#" data-id="<?php echo $member['Id'] ?>"onclick="upgrade(this)">Upgrade</a></td>
                                                                 <?php
                                                                 
                                                                 echo "</tr>";
@@ -184,7 +176,7 @@ unset($_SESSION['fulname']);
             
                 if(result.id=='1')
                  {
-                  alert("Package is Already Upgraded");
+                    alert("Package is Upgraded Successfully");
                  }
                  else if(result.id=='2')
                  {

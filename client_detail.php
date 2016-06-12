@@ -43,7 +43,7 @@ if ($_SESSION['exp'] == 'invalid') {
 <body class="fixed-top">
     <!-- BEGIN HEADER -->
     <?php 
-include 'header_admin.php';
+  
 include 'raw_detail.php';
 
 ?>
@@ -153,7 +153,7 @@ include 'raw_detail.php';
                                                     <td>
                                                     <?php echo $clientDetail[$i]['account_no']; ?>
                                                 </td>
-                                                    <td><a href="client_property_detail.php?cid=<?php echo  $varCL; ?>&owner=<?php echo $clientDetail[$i]['id'];?>">View</a></td>";
+                                                    <td><a href="client_property_detail.php?cid=<?php echo  $varCL; ?>&owner=<?php echo $clientDetail[$i]['id'];?>">View</a></td> 
                                                 <?php 
 }
 ?>

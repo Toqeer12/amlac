@@ -407,6 +407,8 @@ if (isset($_SESSION['message']))
                   </div>
               </div>
 			</div>
+           <input name="acctype"id="acctype"   type="hidden"  value="rs" required/>
+          <input name="real_id"id="real_id"   type="hidden"  value="" required/>
 		        <div class="block-hint pull-right">
                           <a href="index.php" class="" id="forget-password"><h6>Login!!</h6></a>
 
@@ -459,7 +461,8 @@ if (isset($_SESSION['message']))
         var pin=$("#pin").val();
         var address=$("#addres").val();
         var city=$("#city").val();     
-        
+                var type=$('#acctype').val();
+        var com=$('#real_id').val();
          var jsonData={
                           fullname: fullname ,
                           email: email,
@@ -467,7 +470,9 @@ if (isset($_SESSION['message']))
                           mobile: mobile, 
                           pin: pin ,
                           address: address ,
-                          city: city
+                          city: city, 
+                          type:type,
+                          com:com
          }
          
          

@@ -125,18 +125,20 @@ include 'header_menu.php';
 			    	 {
 				    	 if(mysql_num_rows($result) > 0) 
 				    		{
-				        	 $member = mysql_fetch_assoc($result);?>
-                              <input name="cname"id="cname" type="text" value="<?php 	
+				        	 $member = mysql_fetch_assoc($result); 
+                                
 					            $sql= "SELECT * From clients WHERE id='".$member['renter']."'";   
 					            $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 			            if($result)
 			            	 {
 				        	 if(mysql_num_rows($result) > 0) 
 				          		{ 
-				        		$member = mysql_fetch_assoc($result);
-					        	echo $var= $member['real_name'];
+				        		$member2 = mysql_fetch_assoc($result);
+					         $var= $member2['real_name'];
 						
-						?>"   required/>
+						?> 
+                              <input name="cname"id="cname" type="text" value="<?php echo $var;?>"
+                           readonly/>
                      <?php }
                       }
 						}
@@ -292,7 +294,7 @@ $(document).on('click', '.popup-modal-dismiss', function (e) {
       var owner = obj.getAttribute("data-owner");
       var property =obj.getAttribute("data-prop");
       var unit  =$("#unit").val();
-		window.location="add_vendor.php?owner="+owner+"&property="+property+"&unit="+unit;
+		window.location="add_vendor.php?owner="+owner+"&property="+property+"&unit="+unit+"&btype=sb";
   }
 </script>
    <!-- END JAVASCRIPTS -->   

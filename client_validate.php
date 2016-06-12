@@ -545,14 +545,15 @@ else if ($_GET['id']=='444')
 	
 $x=json_decode($HTTP_RAW_POST_DATA);
 
- $fname=$x->{'fullname'}; 
+$fname=$x->{'fullname'}; 
 $contact=$x->{'mobile'};
- $cname=$x->{'compname'};
+$cname=$x->{'compname'};
 $user=$x->{'email'};
 $pass=$x->{'pin'};
 $address=$x->{'address'};
 $city=$x->{'city'};
-
+$type=$x->{'type'};
+$compId=$x->{'com'};
 $encryp=md5($pass);
 date_default_timezone_set('Asia/Dubai');
 $time = date("h:i:sa");
@@ -575,7 +576,7 @@ $expdate = date("Y-m-d",$datee);
                  }
 				 else {
 					 $sql="INSERT INTO `Registration`(`full_name`, `email`, `comp_name`, `phone_no`, `city`, `pin`, `reg_date`, `exp_date`, `reg_time`, `type`,`comp_id`) VALUES 
-					('$fname','$user','$cname','$contact','$city','$encryp','$date','$expdate','$time','','');";
+					('$fname','$user','$cname','$contact','$city','$encryp','$date','$expdate','$time','$type','$compId');";
 					$result=mysql_query($sql);
 					if($result)
 					{
@@ -591,7 +592,35 @@ $expdate = date("Y-m-d",$datee);
 
 
 }
+ else if ($_GET['id']=='1024')
+ {
+	 $x=json_decode($HTTP_RAW_POST_DATA);
+	$email=$x->{'email'}; 
+	$password=$x->{'pasword'};
  
+         $subject = "This is subject";        
+         $message = "<b>This is HTML message.</b>";
+         $message .= 'Your Registered Email With Almac is  '.$email. 'And Password to Access Dashboard is '.$password;
+         
+         $header = "From:contacts@arrowtec.ae \r\n";
+          $header .= "MIME-Version: 1.0\r\n";
+         $header .= "Content-type: text/html\r\n";
+         
+         $retval = mail ($email,$subject,$message,$header);
+         
+         if( $retval == true ) {
+          	$data = array('id' => "1");
+			        header('Content-Type: application/json');
+			        echo json_encode($data);
+         }else {
+            	$data = array('id' => "2");
+			        header('Content-Type: application/json');
+			        echo json_encode($data);
+         }
+ 
+ 
+ 
+ }
 else if($_GET['id']=='108')
 {
 $clid   =   $_POST['clid'];
@@ -615,9 +644,21 @@ $date= date("Y/m/d");
 					{ 
 						if(mysql_num_rows($result) > 0)
 						 {
-							$data = array('id' => "1");
-			       			 header('Content-Type: application/json');
-			      			  echo json_encode($data);
+					     $sqlupdate2="UPDATE `customer_pkg_detail` SET `cur_date`='$date' WHERE `Id`='$clid'";
+                    				$result4=mysql_query($sqlupdate2);
+									if($result4)
+									{
+									$datee = strtotime(date("Y-m-d", strtotime($date)) . " +30 days");
+									$expdateexpire = date("Y-m-d",$datee);
+							 	    $sqlupdatereg="UPDATE `registration` SET `exp_date`='$expdateexpire' WHERE `Id`='$clid'";
+                    				$result5=mysql_query($sqlupdatereg);
+									if($result5)
+									{
+								 	$data = array('id' => "1");
+									header('Content-Type: application/json');
+									echo json_encode($data);
+									}
+									}
 						 }
 						 else {
 						 $sql=   "INSERT INTO `customer_pkg_detail`(`pkg`, `price`, `cusid`,`cur_date`,`paid_amount`,`status`) VALUES ('$pkg','$amount','$clid','$date','$enterdamount','Paid');";

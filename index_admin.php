@@ -3,16 +3,7 @@
 <?php
  session_start();
  
-  if($_SESSION['exp']=='invalid'){
-header("location:login.php");
-unset($_SESSION['user']);
-unset($_SESSION['company']);
-unset($_SESSION['Id']);
-unset($_SESSION['fulname']);
-
-}
-
-
+ 
 ?>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -42,7 +33,7 @@ unset($_SESSION['fulname']);
 	<!-- BEGIN HEADER -->
 	<?php
     include 'header_admin.php';
-    include 'raw_detail.php';
+     include 'raw_detail.php';
     
     ?>
 

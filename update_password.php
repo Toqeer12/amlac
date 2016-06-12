@@ -21,6 +21,18 @@ session_start();
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/style_responsive.css" rel="stylesheet" />
   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
+
+     <style>
+     .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+     </style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -36,7 +48,7 @@ session_start();
   <!-- BEGIN LOGIN -->
   <div id="login">
     <!-- BEGIN LOGIN FORM -->
-    <form id="loginform" class="form-vertical no-padding no-margin" action="login_validate.php" method="POST">
+    <form id="loginform" class="form-vertical no-padding no-margin" action="update_password_validate.php" method="POST">
       <div class="lock">
           <i class="icon-lock"></i>
       </div>
@@ -69,8 +81,8 @@ session_start();
 
           </div>
       </div>
-
-      <input type="submit" id="login-btn" class="btn btn-block login-btn" value="Login" />
+<div class="loader"></div>
+      <input type="submit" id="login-btn" class="btn btn-block login-btn" value="Update" />
     </form>
 
   </div>
@@ -79,8 +91,13 @@ session_start();
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="js/jquery.blockui.js"></script>
   <script src="js/scripts.js"></script>
-
-  <!-- END JAVASCRIPTS -->
+  <script>
+	  
+	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
+ 
+  </script>
 </body>
 <!-- END BODY -->
 </html>

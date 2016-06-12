@@ -3,44 +3,36 @@
 
 <?php
 session_start();
+
+
+
 include 'session.php';
 
-if(!(isset($_SESSION['user']))){
+
+
+
+if($_SESSION['exp']=='invalid'){
 	
 	
 	
-	
-	header("location:index.php");
-	
-	
+	header("location:login.php");
 	
 	
 	unset($_SESSION['user']);
 	
 	
+	unset($_SESSION['company']);
 	
 	
-}
-
-
-if (isset($_SESSION['message']))
-{
+	unset($_SESSION['Id']);
 	
 	
-	
-	
-	
-	echo $_SESSION['message'];
-	
-	
-	
-	
-	unset($_SESSION['message']);
-	
+	unset($_SESSION['fulname']);
 	
 	
 	
 }
+
 
 
 ?>
@@ -51,13 +43,19 @@ if (isset($_SESSION['message']))
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title><?php echo $var;?></title>
+   <title><?php echo $var;
+
+
+?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
 <?php 
 
-    include 'css_header.php';
+include 'css_header.php';
+
+
+
 ?>
 <style type="text/css">
 #modal {
@@ -74,7 +72,7 @@ if (isset($_SESSION['message']))
   height: 300px;
   background: #eee;
   font-size: 8px;}
-         .loader {
+  .loader {
 	position: fixed;
 	left: 0px;
 	top: 0px;
@@ -94,6 +92,9 @@ if (isset($_SESSION['message']))
 include 'header.php';
 
 
+
+
+
 ?>
        <!-- BEGIN TOP NAVIGATION BAR -->
  
@@ -101,7 +102,10 @@ include 'header.php';
   
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];
+
+
+?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -120,12 +124,18 @@ include 'header.php';
 include 'header_menu.php';
 
 
+
+
+
 ?>
       <!-- END SIDEBAR MENU -->
     </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
       <div id="main-content" <?php echo $_SESSION['rtl'];
+
+
+
 
 
 ?>>
@@ -138,7 +148,10 @@ include 'header_menu.php';
 
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
-                    <?php GetProperty('leasaeinfo',$_SESSION['rtl']);?>                   
+                    <?php GetProperty('leasaeinfo',$_SESSION['rtl']);
+
+
+?>                   
                   </h3>
 
                </div>
@@ -152,19 +165,31 @@ include 'header_menu.php';
        <form id="newsletterform" class="form-horizontal"  method="POST" <?php echo $_SESSION['rtl'];
 
 
+
+
+
 ?>>
              
               <div class="span4" <?php echo $_SESSION['rtl'];
+
+
+
 
 
 ?>>
                  <strong><?php GetProperty('basicinfo',$_SESSION['rtl']);
 
 
+
+
+
 ?></strong><br />
  <div class="loader"></div>
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('durationcontract',$_SESSION['rtl']);
+
+
+
 
 
 ?></label>
@@ -177,6 +202,9 @@ include 'header_menu.php';
                       <label class="control-label"><?php GetProperty('rentstartdate',$_SESSION['rtl']);
 
 
+
+
+
 ?></label>
                       <div class="controls">
                       <input name="startcontract"id="startcontract"  type="date" placeholder="example@xyz.com" onChange="ContractExpire(this)"      required/>
@@ -187,6 +215,9 @@ include 'header_menu.php';
   <label class="control-label"><?php GetProperty('propertyname',$_SESSION['rtl']);
 
 
+
+
+
 ?></label>
       <div class="controls">
    <select  id="serivce_classes" name="serivce_classes" onChange="changeTest(this)">
@@ -195,20 +226,38 @@ include 'header_menu.php';
 $var=$_SESSION['Id'];
 
 
+
+
+
 $leaserprop = AddLeaseProperty($var);
+
+
+
 
 
 for ($i=0; $i < count($leaserprop); $i++)
 {
 	
+	
+	
+	
 	?>
                 <option value="<?php echo $leaserprop[$i]['id'];
 
+
+
+
 ?>"><?php echo $leaserprop[$i]['propty_name'];
+
+
+
 
 ?></option>
                 <?php
 }
+
+
+
 
 
 ?>
@@ -219,6 +268,9 @@ for ($i=0; $i < count($leaserprop); $i++)
    <div class="control-group">
    <label class="control-label"><?php GetProperty('script',$_SESSION['rtl']);
 
+
+
+
 ?></label>
    <div class="controls">
    <select  id="contract" name="serivce_classes">
@@ -226,21 +278,39 @@ for ($i=0; $i < count($leaserprop); $i++)
 $var=$_SESSION['Id'];
 
 
+
+
+
 $loadscript = loadScript($var);
+
+
+
 
 
 for ($i=0; $i < count($loadscript); $i++)
 {
 	
 	
+	
+	
+	
 	?>
         <option value="<?php echo $loadscript[$i]['id'];
 
+
+
+
 ?>"><?php echo $loadscript[$i]['script_title'];
+
+
+
 
 ?></option>
         <?php
 }
+
+
+
 
 
 ?>
@@ -253,9 +323,15 @@ for ($i=0; $i < count($loadscript); $i++)
      <br>
    <div class="span6" <?php echo $_SESSION['rtl'];
 
+
+
+
 ?>>
         <div class="control-group">
             <label class="control-label"><?php GetProperty('writingdate',$_SESSION['rtl']);
+
+
+
 
 ?></label>
                <div class="controls">
@@ -265,6 +341,9 @@ for ($i=0; $i < count($loadscript); $i++)
          <div class="control-group">
             <label class="control-label"><?php GetProperty('endcontract',$_SESSION['rtl']);
 
+
+
+
 ?></label>
               <div class="controls">
                 <input name="idnum"id="endcontract" type="text" pattern="[0-9]+" placeholder="mm/dd/yyyy" readonly/>
@@ -272,6 +351,9 @@ for ($i=0; $i < count($loadscript); $i++)
         </div>
         <div class="control-group">
            <label class="control-label"><?php GetProperty('renter',$_SESSION['rtl']);
+
+
+
 
 ?></label>
                 <div class="controls">
@@ -281,21 +363,39 @@ for ($i=0; $i < count($loadscript); $i++)
 $var=$_SESSION['Id'];
 
 
+
+
+
 $loadrenter = clientDetail($var);
+
+
+
 
 
 for ($i=0; $i < count($loadrenter); $i++)
 {
 	
 	
+	
+	
+	
 	?>
         <option value="<?php echo $loadrenter[$i]['id'];
 
+
+
+
 ?>"><?php echo $loadrenter[$i]['real_name'];
+
+
+
 
 ?></option>
         <?php
 }
+
+
+
 
 
 ?>
@@ -334,6 +434,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('realname',$_SESSION['rtl']);
 
+
+
+
 ?></label>
                       <div class="controls">
                         <input name="realname"id="realname" pattern="[a-zA-Z\s]+" type="text" placeholder="Jhon" required/>
@@ -341,6 +444,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   </div>
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('email',$_SESSION['rtl']);
+
+
+
 
 ?></label>
                       <div class="controls">
@@ -350,6 +456,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   </div>
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('phoneno',$_SESSION['rtl']);
+
+
+
 
 ?></label>
                       <div class="controls">
@@ -361,6 +470,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('passport',$_SESSION['rtl']);
 
+
+
+
 ?></label>
                       <div class="controls">
                       <input name="passport"id="passport" pattern="[a-zA-Z0-9\s]+" type="text" placeholder="gvxxxxx" required/>
@@ -369,6 +481,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   </div>
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('jobtitle',$_SESSION['rtl']);
+
+
+
 
 ?></label>
                       <div class="controls">
@@ -382,6 +497,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('em_id',$_SESSION['rtl']);
 
+
+
+
 ?></label>
                       <div class="controls">
                          <input name="idnum"id="idnum" type="num" pattern="[0-9]+" placeholder="452xxxxx" required/>
@@ -389,6 +507,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   </div>
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('mobileno',$_SESSION['rtl']);
+
+
+
 
 ?></label>
                       <div class="controls">
@@ -398,6 +519,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('addresscust',$_SESSION['rtl']);
 
+
+
+
 ?></label>
                       <div class="controls">
                       <input name="address"id="address" pattern="[a-zA-Z0-9\s]+" type="text" placeholder="Xyz" required/>
@@ -406,6 +530,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   </div>
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('nationality',$_SESSION['rtl']);
+
+
+
 
 ?></label>
                       <div class="controls">
@@ -664,6 +791,9 @@ for ($i=0; $i < count($loadrenter); $i++)
                   <div class="control-group">
                       <label class="control-label"><?php GetProperty('fax',$_SESSION['rtl']);
 
+
+
+
 ?></label>
                       <div class="controls">
                       <input name="fax"id="fax" type="tel" pattern="[0-9]+" placeholder="05xxxx" required/>
@@ -674,7 +804,8 @@ for ($i=0; $i < count($loadrenter); $i++)
               <div class="clearfix"></div>
 
               <div class="form-actions">
-                   <input name="submit" type="submit"  class="btn btn-primary" value=<?php GetProperty('submit',$_SESSION['rtl']);
+                   <input name="submit" type="submit"  class="btn btn-primary" value="<?php GetProperty('submit',$_SESSION['rtl']);
+
 
 ?>" onClick="popup()"/>
               </div>

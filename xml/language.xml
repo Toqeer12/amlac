@@ -104,7 +104,7 @@
     <key name="print" value="طباعة"/>
     <key name="edit" value="تحرير"/>
     <key name="paymentmethod" value="طريقة الدفع او السداد"/>
-    <key name="schudle_month" value="Schedule Month"/>
+    <key name="schudle_month" value="جدول شهر"/>
     <key name="paidamount" value="Paid Amount"/>
     <key name="detail" value="التفاصيل"/>
     <key name="updated" value="تحديث"/>
@@ -122,14 +122,22 @@
     <key name="expvoucher" value="حساب قسيمة"/>
     <key name="receiptvoucher" value="قسائم استلام"/>
     <key name="profile" value="الملف الشخصي"/>
-     <key name="expdate" value="تاريخ الانتهاء"/>
-     <key name="regdate" value="التسجيل"/>
+    <key name="expdate" value="تاريخ الانتهاء"/>
+    <key name="regdate" value="التسجيل"/>
     <key name="name" value="اسم"/>
     <key name="b10" value="قبل عشرة أيام"/>
     <key name="b20" value="قبل عشرون أيام"/>
     <key name="b30" value="قبل ثلاثون أيام"/>
+    <key name="serno" value="الرقم التسلسلي"/>
+    <key name="moreinfo" value="معلومات اكثر"/>
+    <key name="dashboard" value="لوحة القيادة"/>
+     <key name="giveacess" value="إلى الأمام"/>
       </language>
     <language locale="en-US" direction="ltr" name="English">
+    <key name="giveacess" value="Forward"/>
+   <key name="moreinfo" value="More Info"/>
+   <key name="dashboard" value="Dashboard"/>
+    <key name="serno" value="Sr no"/>
     <key name="b10" value="Before 10 Days"/>
     <key name="b20" value="Before 20 Days"/>
     <key name="b30" value="Before 30 Days"/>
@@ -203,7 +211,7 @@
     <key name="advance" value="Advance Detail" />
     <key name="washrom" value="No of Washroom" />
     <key name="durationcontract" value="Duration" />
-    <key name="writingdate" value="Writing Date"/>
+    <key name="writingdate" value="Writing Contract Date"/>
     <key name="rentstartdate" value="Rent Start Date"/>
     <key name="renter" value="Renter"/>
     <key name="script" value="Script"/>

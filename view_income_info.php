@@ -3,18 +3,9 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <?php
 session_start();
+                                 $varowner=$_SESSION['Id'];
+                                    $varreal=$_SESSION['cid'];
  
-  if($_SESSION['exp']=='invalid'){
-
- header("location:login.php");
-unset($_SESSION['user']);
-unset($_SESSION['company']);
-unset($_SESSION['Id']);
-unset($_SESSION['fulname']);
-
-}
-
-
 ?>
 
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -30,11 +21,7 @@ unset($_SESSION['fulname']);
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="css/style.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
-   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-   <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <style>
     table#tableSection {
         display: table;
@@ -99,12 +86,8 @@ article {
   border-top: gray solid 1px;
   padding: 0 1em;
 }
-</style>
-
-    
-    <style type="text/css">
-
-
+</style>    
+<style type="text/css">
 #modalload2 {
   margin: 0 auto;
   padding: 0.5em;
@@ -112,6 +95,15 @@ article {
   height:500px;
   background: #eee;
   font-size: 8px;}
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
   </style>
 </head>
 
@@ -120,12 +112,11 @@ article {
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
  	<?php
-    include 'header_admin.php';
-     
+          include 'header_admin.php';
     ?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
     <div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -147,31 +138,20 @@ include 'owner_header_menu.php';
 		</div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
-      <div id="main-content">
+      <div id="main-content" <?php echo $_SESSION['rtl'];?>>
          <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->
             <div class="row-fluid">
                <div class="span12">
                    <!-- BEGIN THEME CUSTOMIZER-->
-                   <div id="theme-change" class="hidden-phone">
-                       <i class="icon-cogs"></i>
-                        <span class="settings">
-                            <span class="text">Theme:</span>
-                            <span class="colors">
-                                <span class="color-default" data-style="default"></span>
-                                <span class="color-gray" data-style="gray"></span>
-                                <span class="color-purple" data-style="purple"></span>
-                                <span class="color-navy-blue" data-style="navy-blue"></span>
-                            </span>
-                        </span>
-                   </div>
+
+
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Job Titles
-                     <!--<small>Managed Table Sample</small>-->
-                  </h3>
+                    <?php GetProperty('expvoucher',$_SESSION['rtl']);?>
+                   </h3>
                       <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
             </div>
@@ -197,24 +177,23 @@ include 'owner_header_menu.php';
                      <div class="widget-title">
                         <h4>Expense Voucher</h4>
                      </div>
+                      <div class="loader"></div>
                      <div class="widget-body">
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
-                             <tr>
-                                 <th> #</th>
-                                 <th class="hidden-phone"> Amount</th>
-                                 <!--<th>Type</th>-->
-                                 <th>Date</th>
-                                 <th>Statement</th>
-                                 <th>Customer</th>
-                                 <th>Print</th>
-                             </tr>
+                                <tr>
+                                    <th> #</th>
+                                    <th class="hidden-phone"> Amount</th>                                 
+                                    <th>Date</th>
+                                    <th>Statement</th>
+                                    <th>Customer</th>
+                                    <th>Print</th>
+                                </tr>
                              </thead>
                              
                               <?php 		
                                     require('connect.php');
-                                    $varowner=$_SESSION['Id'];
-                                    $varreal=$_SESSION['real_state'];	
+   
                                     $sql= "SELECT * From paid_amount WHERE cid='$varreal' AND owner_id='$varowner'";   
 									$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 									if($result)
@@ -236,7 +215,7 @@ include 'owner_header_menu.php';
 								        
 									while($row2 = mysql_fetch_assoc($result2)) {
                                         echo "<td>" . $row2['real_name'] . "</td>";
-                                           echo "<td><a href='#'>Print</a></td>";
+                                           echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['paid_amount']."&type=".$row['statement']."&datee=".$row['acutal_paid_date']."&vendor=".$row2['real_name']."&id=".$_SESSION['cid']."'>Print</a></td>";
                                         echo "</tr>"; }
 									 }
                                     }
@@ -284,23 +263,17 @@ include 'owner_header_menu.php';
    <!-- END FOOTER -->
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
-   <script src="js/jquery-1.8.3.min.js"></script>
-   <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
-   <script src="js/jquery.blockui.js"></script>
-   <!-- ie8 fixes -->
-   <!--[if lt IE 9]>
-   <script src="js/excanvas.js"></script>
-   <script src="js/respond.js"></script>
+    
+ 
    <![endif]-->   
-   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-   <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
-   <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
+ 
    <script src="js/scripts.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-   <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-<script src="assets/main/javascript/jquery.toastmessage.js"></script>
+ 
    
 <script type="text/javascript">
+   	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
     function callme2(obj)
     {debugger;
          var price    = (document.getElementById("anual")).innerHTML;

@@ -54,7 +54,7 @@
 		mysql_free_result($sql);
 		$_SESSION['images_path'] = $data_comm['images_path'];
 ?>
-				    <img style="margin-top: -15px;height: 90px;"" src=<?php echo $data_comm['images_path']?> alt="Admin Lab" onError="this.src='img/Amlacnew.png';"/>
+				    <img style="margin-top: -15px;height: 90px;" src="<?php echo $data_comm['images_path']?>" alt="Admin Lab" onError="this.src='img/Amlacnew.png';"/>
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -93,7 +93,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="profile.php"><i class="icon-user"></i> My Profile</a></li>
-								<li><a href="create_user.php"><i class="icon-tasks"></i> Create User</a></li>
+								<li><a href="create_user.php"><i class="icon-tasks"></i>Access User</a></li>
 								<li><a href="update_password.php"><i class="icon-tasks"></i> Change Password</a></li>
  								<li><a id="button2" href="#"><i class="icon-calendar"></i>Upload Logo</a></li>
 								<li class="divider"></li>

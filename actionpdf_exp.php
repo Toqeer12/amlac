@@ -4,7 +4,7 @@ require('session.php');
 require('pdf/WriteHTML.php');
 
 					require('connect.php');
-		$select_query = "SELECT `images_path` FROM  `images_tbl` where cid=$id";
+		$select_query = "SELECT `images_path` FROM  `images_tbl` where cid='".$_GET['id']."'";
 		$sql = mysql_query($select_query) or die(mysql_error());	
 		$data_comm=mysql_fetch_assoc($sql);
 		mysql_free_result($sql);

@@ -2,16 +2,8 @@
 
 <?php
  session_start();
- 
-  if($_SESSION['exp']=='invalid'){
-header("location:login.php");
-unset($_SESSION['user']);
-unset($_SESSION['company']);
-unset($_SESSION['Id']);
-unset($_SESSION['fulname']);
-
-}
-
+                                $varowner=$_SESSION['Id'];
+                                    $varreal=$_SESSION['cid'];
 
 ?>
   
@@ -29,11 +21,18 @@ unset($_SESSION['fulname']);
 	<link href="css/style.css" rel="stylesheet" />
 	<link href="css/style_responsive.css" rel="stylesheet" />
 	<link href="css/style_default.css" rel="stylesheet" id="style_color" />
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-	<link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-	<link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-	<link href="assets/jqvmap/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<style>
+  .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+</style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -41,11 +40,10 @@ unset($_SESSION['fulname']);
 	<!-- BEGIN HEADER -->
 	<?php
     include 'header_admin.php';
-    include 'raw_detail.php';
-    
+     
     ?>
 
-   <div id="container" class="row-fluid">
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -65,13 +63,13 @@ include 'owner_header_menu.php';
 ?>
       <!-- END SIDEBAR MENU -->
     </div>
-		<div id="main-content">
+		<div id="main-content" <?php echo $_SESSION['rtl'];?>>
 			<div class="container-fluid" >
 				<div class="row-fluid">
 					<div class="span12">
   
 						<h3 class="page-title">
-							Dashboard	
+							<?php GetProperty('dashboard',$_SESSION['rtl']);?>
 				 
 						</h3>
 					
@@ -80,27 +78,24 @@ include 'owner_header_menu.php';
 
 				<div id="page" class="dashboard">
                     <div class="row-fluid circle-state-overview">
-                        <?php 
- 
-                                    $varowner=$_SESSION['Id'];
-                                    $varreal=$_SESSION['real_state'];
-                        ?>
+        
                     </div>
          <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget">
+                     <div class="loader"></div>
                         <div class="widget-body">                          
                             <table class="table table-striped table-bordered" id="sample_1">
                             <thead>
                                 <tr>
-                                     <th>Sr No</th>
-                                     <th>Property Name</th>
-                                     <th class="hidden-phone">Unit #</th>
-                                     <th class="hidden-phone">Inst Amount</th>
-                                     <th class="hidden-phone">Annual Lease</th>
-                                     <th class="hidden-phone">Commision Amount</th>
-                                     <th class="hidden-phone">Status</th>
+                                     <th><?php GetProperty('serno',$_SESSION['rtl']);?></th>
+                                     <th><?php GetProperty('propertyname',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"><?php GetProperty('unitnum',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"><?php GetProperty('insurance',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"><?php GetProperty('annualrent',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"><?php GetProperty('comisionamount',$_SESSION['rtl']);?></th>
+                                     <th class="hidden-phone"><?php GetProperty('status',$_SESSION['rtl']);?></th>
                                 </tr>
                             </thead>
                                    <tbody>
@@ -130,25 +125,16 @@ include 'owner_header_menu.php';
 
    </div>
 
-   <script src="js/jquery-1.8.3.min.js"></script>
-   <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
-   <script src="js/jquery.blockui.js"></script>
-   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-   <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
-   <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
-   <script src="js/scripts.js"></script>
- 	<script src="assets/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js"></script>
-	<script src="assets/jquery-knob/js/jquery.knob.js"></script>
-	<script src="assets/flot/jquery.flot.js"></script>
-	<script src="assets/flot/jquery.flot.resize.js"></script>
-    <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-	<script src="js/jquery.peity.min.js"></script>
-	<script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-	<script src="js/scripts.js"></script>
+  	<script src="js/scripts.js"></script>
+
+
+
     
     
     <script type="text/javascript">
-    
+       	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
     function unitcall(obj)
     {
         debugger;

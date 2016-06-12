@@ -130,13 +130,7 @@ if (isset($_SESSION['message']))
     </form>
     <!-- END FORGOT PASSWORD FORM -->
   </div>
-  <!-- END LOGIN -->
-  <!-- BEGIN COPYRIGHT -->
-  <div id="login-copyright">
-      2016 &copy; Vitamin Admin Lab Dashboard.
-  </div>
-  <!-- END COPYRIGHT -->
-  <!-- BEGIN JAVASCRIPTS -->
+ 
   <script src="js/jquery-1.8.3.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="js/jquery.blockui.js"></script>

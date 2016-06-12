@@ -112,6 +112,15 @@ article {
   height:500px;
   background: #eee;
   font-size: 8px;}
+    .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
   </style>
 </head>
 
@@ -168,13 +177,7 @@ include 'owner_header_menu.php';
                             </span>
                         </span>
                    </div>
-                   <!-- END THEME CUSTOMIZER-->
-                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
-                  <h3 class="page-title">
-                     Job Titles
-                     <!--<small>Managed Table Sample</small>-->
-                  </h3>
-                      <!-- END PAGE TITLE & BREADCRUMB-->
+              
                </div>
             </div>
          
@@ -199,6 +202,7 @@ include 'owner_header_menu.php';
                      <div class="widget-title">
                         <h4>Expense Voucher</h4>
                      </div>
+                      <div class="loader"></div>
                      <div class="widget-body">
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
@@ -319,6 +323,9 @@ include 'owner_header_menu.php';
       
     </script>
 <script>
+   	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
 $(function() {
   $('ul.tabs li:first').addClass('active');
   $('.block article').hide();

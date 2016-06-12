@@ -15,18 +15,7 @@ unset($_SESSION['fulname']);
 
 ?>
 <!DOCTYPE html>
-<!--
-Template Name: Admin Lab Dashboard build with Bootstrap v2.3.1
-Template Version: 1.3
-Author: Mosaddek Hossain
-Website: http://thevectorlab.net/
--->
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
+ 
 <head>
     <meta charset="utf-8" />
     <title> Admin Lab Dashboard</title>
@@ -47,12 +36,16 @@ Website: http://thevectorlab.net/
     
     
             <style media="screen">
-	html, body{
-		margin:0px;
-		padding:0px;
-		height:100%;
-		overflow:hidden;
-	}   
+ 
+         .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 </head>
 <!-- END HEAD -->
@@ -65,8 +58,7 @@ Website: http://thevectorlab.net/
  
     <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>       
         <div id="sidebar" class="nav-collapse collapse">          
-            <div class="sidebar-toggler hidden-phone"></div>
-                 <?php include 'header_menu.php';?>       
+                  <?php include 'header_menu.php';?>       
             </div>
         <div id="main-content" <?php echo $_SESSION['rtl'];?>>       
             <div class="container-fluid">          
@@ -75,6 +67,7 @@ Website: http://thevectorlab.net/
                         <h3 class="page-title">Dashboard</h3>
                     </div>
                 </div>
+                <div class="loader"></div>
         <div id="page" class="dashboard">
             <div class="row-fluid circle-state-overview">
                  <div class="span2 responsive clearfix" data-tablet="span3" data-desktop="span2">
@@ -139,6 +132,9 @@ Website: http://thevectorlab.net/
     
     
      <script type="text/javascript" charset="utf-8">
+     	    $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
 	$(document).ready(function(){
 
   $("*").dblclick(function(e){

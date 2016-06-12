@@ -253,6 +253,7 @@ include 'header_menu.php';
                       <label class="control-label" ><?php GetProperty('addresscust',$_SESSION['rtl']);?></label>
                       <div class="controls">
                        <input name="address"id="address" type="text" pattern="[a-zA-Z0-9/s]+" placeholder="452xxxxx" required/>
+                        <input name="btype"id="btype" type="hidden" value="<?php echo $_GET['btype'];?>" required/>
                       </div>
                   </div>
                   <div class="control-group" style="margin-top: 30px;">
@@ -1026,7 +1027,7 @@ else{
 		cache: false,
 		success: function(result)
 		{
-		
+		debugger;
 		   result.id;
 		   result.text;
 			document.getElementById("loginform").reset();
@@ -1038,8 +1039,18 @@ else{
       var owner = obj.getAttribute("data-owner");
       var property =obj.getAttribute("data-prop");
       var unit =obj.getAttribute("data-unit");
-			
-window.location="service_bill.php?owner="+owner+"&property="+property+"&unit="+unit;
+	  var btype= $('$btype').val();
+      if(btype=='sb')
+      {
+          
+         window.location=" service_bill.php?owner="+owner+"&property="+property+"&unit="+unit;
+      }
+else if(btype=='pb') {
+          window.location="property_bill.php?ownerid="+owner+"&propertyId="+property;
+}
+else {
+    window.location=" electercity.php?owner="+owner+"&property="+property+"&unit="+unit;
+}
 			
 		},
 		error: function (jqXHR, textStatus, errorThrown)
