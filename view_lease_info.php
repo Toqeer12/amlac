@@ -44,7 +44,7 @@
      
     ?>
 
-   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
+   <div id="containerr" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->

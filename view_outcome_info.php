@@ -122,7 +122,7 @@ article {
     ?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
+   <div id="containerr" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
     <div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -241,7 +241,7 @@ include 'owner_header_menu.php';
 								        
 									while($row2 = mysql_fetch_assoc($result2)) {
                                         echo "<td>" . $row2['real_name'] . "</td>";
-                                         echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['paid_amount']."&type=".$row['statement']."&datee=".$row['acutal_paid_date']."&vendor=".$row2['real_name']."&id=".$_SESSION['cid']."'>Print</a></td>";
+                                         echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['notes']."&datee=".$row['amount']."&vendor=".$row2['real_name']."&id=".$_SESSION['cid']."'>Print</a></td>";
                                         echo "</tr>"; }
 									 }
                                     }

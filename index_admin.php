@@ -105,7 +105,7 @@
                                     <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="<?php property()?>" data-fgColor="#a8c77b" data-bgColor="#ddd"/>
                                 </div>
                                 <div class="details">
-                                    <div class="number"><?php property() ?></div>
+                                    <div class="number"><?php property()?></div>
                                     <div class="title">Total Properties</div>
                                 </div>
 

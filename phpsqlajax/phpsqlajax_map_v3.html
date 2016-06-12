@@ -1,26 +1,26 @@
-
-<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>PHP/MySQL & Google Maps Example</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-8KQ5u13QN7YaoJQcyVnoXb5DocBlJs"
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps AJAX + mySQL/PHP Example</title>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
             type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
 
     var customIcons = {
       restaurant: {
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png'
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
       },
       bar: {
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png'
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
       }
     };
 
     function load() {
       var map = new google.maps.Map(document.getElementById("map"), {
-        center: new google.maps.LatLng(47.6145, -122.3418),
+        center: new google.maps.LatLng(23.4241, 53.8478),
         zoom: 13,
         mapTypeId: 'roadmap'
       });
@@ -42,8 +42,8 @@
           var marker = new google.maps.Marker({
             map: map,
             position: point,
-            icon: icon.icon
-          });
+            icon: icon.icon 
+           });
           bindInfoWindow(marker, map, infoWindow, html);
         }
       });
@@ -75,13 +75,10 @@
     function doNothing() {}
 
     //]]>
-
   </script>
-
   </head>
 
   <body onload="load()">
     <div id="map" style="width: 500px; height: 300px"></div>
   </body>
-
 </html>

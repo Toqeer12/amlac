@@ -94,6 +94,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="profile.php"><i class="icon-user"></i> My Profile</a></li>
 								<li><a href="create_user.php"><i class="icon-tasks"></i>Access User</a></li>
+									<li><a href="language_selector.php?id=<?php echo urlencode($actual_link); ?>"><i class="icon-tasks"></i><?php  echo $_SESSION['language'];?></a></li>
 								<li><a href="update_password.php"><i class="icon-tasks"></i> Change Password</a></li>
  								<li><a id="button2" href="#"><i class="icon-calendar"></i>Upload Logo</a></li>
 								<li class="divider"></li>
@@ -107,23 +108,23 @@
                                  <div class="top-nav ">
                     					           
 
-                    <ul class="nav pull-right top-menu" >
+                  	<!--   <ul class="nav pull-right top-menu" >
 
-						<!-- BEGIN USER LOGIN DROPDOWN -->
+						 
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="img/avatar-mini.png" alt=""/>
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="language_selector.php?id=<?php echo urlencode($actual_link); ?>"><i class="icon-tasks"></i><?php  echo $_SESSION['language'];?></a></li>
+							
 							
 							</ul>
 						</li>
-						<!-- END USER LOGIN DROPDOWN -->
+						  END USER LOGIN DROPDOWN  
 					</ul>
-					<!-- END TOP NAVIGATION MENU -->
-				</div>
+				END TOP NAVIGATION MENU 
+				</div>-->
 			</div>
 		</div>
 		<!-- END TOP NAVIGATION BAR -->
