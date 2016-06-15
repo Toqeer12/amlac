@@ -2,7 +2,7 @@
  
 <?php
 
- if($_SESSION['language']=='')
+ if(isset($_SESSION['language'])=='')
  {
      $_SESSION['rtl']='rtl';
      $_SESSION['language']='English';

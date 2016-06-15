@@ -16,12 +16,10 @@
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style_responsive.css" rel="stylesheet" />
-    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-    <link rel="stylesheet" href="codebase/dhtmlxscheduler.css">
-	<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <?php 
+
+    include 'css_header.php';
+?>
   <style>
     .loader {
 	position: fixed;
@@ -38,10 +36,7 @@
 <!-- BEGIN BODY -->
 <body class="fixed-top " onload="load()">>
 	<!-- BEGIN HEADER -->
-	<?php
-    include 'header_admin.php';
-     
-    ?>
+ 
 
    <div id="containerr" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->

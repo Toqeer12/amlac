@@ -1,16 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template Name: Admin Lab Dashboard build with Bootstrap v2.3.1
-Template Version: 1.3
-Author: Mosaddek Hossain
-Website: http://thevectorlab.net/
--->
-
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+   <html lang="en">  
 
 <?php 
 session_start();

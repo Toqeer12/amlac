@@ -3,7 +3,15 @@
 <?php
  session_start();
  
- 
+  if($_SESSION['exp']=='invalid'){
+header("location:login.php");
+unset($_SESSION['user']);
+unset($_SESSION['company']);
+unset($_SESSION['Id']);
+unset($_SESSION['fulname']);
+
+}
+
 
 ?>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -16,19 +24,13 @@
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
-	<link href="css/style_responsive.css" rel="stylesheet" />
-	<link href="css/style_default.css" rel="stylesheet" id="style_color" />
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<?php 
 
-
-
-<style>
-        .loader {
+    include 'css_header.php';
+?>
+         
+         <style>
+         .loader {
 	position: fixed;
 	left: 0px;
 	top: 0px;
@@ -38,64 +40,70 @@
 	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 </style>
-</style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
 	<!-- BEGIN HEADER -->
 	<?php
-    include 'admin_header.php';
+    include 'header.php';
      
     ?>
 
-	<div id="container" class="row-fluid">
+	<div id="container" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
 		<div id="sidebar" class="nav-collapse collapse">
  
- 	<?php 
-include 'admin_menu.php';
+			<div class="navbar-inverse">
+				<form class="navbar-search visible-phone">
+					<input type="text" class="search-query" placeholder="Search" />
+				</form>
+			</div>
+			<?php 
+include 'header_menu.php';
+
 
 ?>
-			
 		</div>
-
-		<div id="main-content">
-			<div class="container-fluid">
+	
+		<div id="main-content"  <?php echo $_SESSION['rtl'];?>> 
+			<div class="container-fluid" >
 				<div class="row-fluid">
 					<div class="span12">
   
 						<h3 class="page-title">
-							Dashboard	
+							<?php GetProperty('dashboard',$_SESSION['rtl']);?>
 				 
 						</h3>
 					
 					</div>
 				</div>
 
+				<div id="page" class="dashboard">
+ 
          <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget">
-                        <div class="widget-body">       
-                         <div class="loader"></div>                   
+                        <div class="widget-body"> 
+                                                 
+                         <div class="loader"></div>                        
                             <table class="table table-striped table-bordered" id="sample_1">
                             <thead>
                                 <tr>
                                     <th>Sr No</th>
-                                     <th>Fullname</th>
-                                    <th class="hidden-phone">Email</th>
-                                    <th class="hidden-phone">Company Name</th>
-                                    <th class="hidden-phone">Client</th>
-                                    <th class="hidden-phone">Payment</th>
-                                    <th class="hidden-phone">View Detail</th>
-                                    <th class="hidden-phone">Upgrade Package</th>
+                                    <th><?php GetProperty('realname',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('email',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('mobileno',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('phoneno',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('addresscust',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('giveacess',$_SESSION['rtl']);?></th>
                                 </tr>
                             </thead>
                                   <tbody>
                                
                                             <?php
                                             require('connect.php');
-                                            $sql= "SELECT  * From registration Where type='rs'";   
+                                            $sql= "SELECT  * From clients Where cid='".$_SESSION['Id']."'";   
                                                     $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 
                                                     if($result) 
@@ -106,20 +114,15 @@ include 'admin_menu.php';
                                                                 while($member  = mysql_fetch_assoc($result))
                                                                 {
                                                                 echo "<tr>";
-                                                                echo "<td>".$member['Id']."</td>";
-                                                                echo "<td>".$member['full_name']."</td>";
+                                                                echo "<td>".$member['id']."</td>";
+                                                                echo "<td>".$member['real_name']."</td>";
                                                                 echo "<td>".$member['email']."</td>";
-                                                                echo "<td>".$member['comp_name']."</td>";
-                                                                $varclient = $member['Id'];
-                                                           
-                                                     
+                                                                echo "<td>".$member['mob_no']."</td>";
+                                                                echo "<td>".$member['phone_no']."</td>";
+                                                                echo "<td>".$member['resi_address']."</td>";                                                       
                                                                 ?>
-                                                            <td><?php getclientcount($varclient) ?></td>
-                                                            <td><?php getpaymentstatus($varclient)?></td>
-                                                            <td><a href="admin_user_clients.php?id=<?php echo $member['Id'] ?>">View</a></td> 
-                                                            <td><a href="#" data-id="<?php echo $member['Id'] ?>"onclick="upgrade(this)">Upgrade</a></td>
+                                                           <td><a href="" data-email=<?php echo $member['email'] ?> data-password=<?php echo $member['password']?> OnClick="ForwardEmail(this)"><?php GetProperty('giveacess',$_SESSION['rtl']);?></a></td>
                                                                 <?php
-                                                                
                                                                 echo "</tr>";
                                                                 }
                                             
@@ -134,74 +137,62 @@ include 'admin_menu.php';
                     </div>
                 </div>
             </div>
-<div id="result">
-    
-    </div>
+
          </div>
      
 
    </div>
-
- 
-    
-	<script src="js/scripts.js"></script>
- 
- 
-	<script src="js/scripts.js"></script>
- <script type="text/javascript">
-          $(window).load(function() {
+    <script src="js/scripts.js"></script> 
+   <script src="js/jquery.blockui.js"></script>
+   <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
+   <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
+   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+   <script src="assets/main/javascript/jquery.toastmessage.js"></script>
+   <script src="toastr.js"></script>
+<script type="text/javascript">
+   	    $(window).load(function() {
 	$(".loader").fadeOut("slow");
-})
-    function upgrade(obj)
-    
-    {
-        var id=obj.getAttribute("data-id");
-        $("#result").load("upgrade.php?id="+id);
-    }
-    function payment(obj)
-    {
-        debugger;
-         var id=obj.getAttribute("data-id");
-         var package=obj.getAttribute("data-package");
-         var amount=obj.getAttribute("data-amount");
-         var enterdamount=$("#amount").val();
-         var dataString= 'clid='+ id + '&package='+ package + '&amount='+amount+ '&enterdamount='+enterdamount;  
-           
+});
+
+function ForwardEmail(obj)
+{
+    debugger;
+        var email = obj.getAttribute('data-email');
+        var pasword =obj.getAttribute('data-password');
+                 var jsonData={
+                          email: email,
+                          pasword:pasword 
+                    
+         }
          
-	 $.ajax({
-		url : "client_validate.php?id=108",
+         
+ 	 $.ajax({
+		url : "client_validate.php?id=1024",
 		type: "POST",
-		data : dataString,
+		data : JSON.stringify(jsonData),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
 		cache: false,
 		success: function(result)
-		{ 
-             debugger;
-          
+		{  debugger;
             
-                if(result.id=='1')
-                 {
-                    alert("Package is Upgraded Successfully");
-                 }
-                 else if(result.id=='2')
-                 {
-                    alert("Enter Amount is Greater/Less Than the Actual Amount");
-                     
-                 }
-               else 
-                 {
-                  alert("Package is Added Successfully");
-                 }
-             
-            
-   
+            if(result.id=='1')
+            {               
+                		  $().toastmessage('showSuccessToast', "Email Send Successfully");	
+            }  
+            else {
+                		  $().toastmessage('showErrorToast', "Email Sending Fail");	
+            }
 		},
 		error: function (jqXHR, textStatus, errorThrown)
 		{
-                debugger;
-	 			alert("error"+result.property);
-		}
+            debugger;
+            alert(jqXHR.responseText.Message);
+ 		}
 		});	
-    }
+}
+
 </script>
+
 </body>
 </html>
