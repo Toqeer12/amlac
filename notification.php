@@ -59,7 +59,7 @@ body {
   background: white;
   margin: auto;
   padding: 1em;
-	height:1000px
+	height:500px
 }
 h1 {
   text-align: center;
@@ -246,6 +246,12 @@ include 'header_menu.php';
       </div>
      
    </div>
+      <div id="footer">
+       2016 &copy; Arrowtec LLC.
+
+
+   </div>
+ 
     <script src="js/scripts.js"></script>
  
     <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>

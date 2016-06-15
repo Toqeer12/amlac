@@ -18,57 +18,46 @@ unset($_SESSION['fulname']);
 
 
 ?>
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+<style>
+         .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+  </style>
 <head>
    <meta charset="utf-8" />
    <title>Profile</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   <link href="css/style.css" rel="stylesheet" />
-   <link href="css/style_responsive.css" rel="stylesheet" />
-   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
+<?php
 
-   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-   <link href="assets/main/resources/css/jquery.toastmessage.css" rel="stylesheet" />
-    <link href="build/toastr.css" rel="stylesheet" type="text/css" />
-   <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
+include 'css_header.php';
+
+?>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
+
+       <!-- END TOP NAVIGATION BAR -->
    <?php 
    
    include 'header.php';?>
-       <!-- END TOP NAVIGATION BAR -->
- 
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
    <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
-
- 
-         <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-         <div class="navbar-inverse">
-            <form class="navbar-search visible-phone">
-               <input type="text" class="search-query" placeholder="Search" />
-            </form>
-         </div>
-         <!-- END RESPONSIVE QUICK SEARCH FORM -->
-         <!-- BEGIN SIDEBAR MENU -->
-<?php 
-include 'header_menu.php';
-
-?>
-         <!-- END SIDEBAR MENU -->
-      </div>
+            <?php 
+            include 'header_menu.php';  ?>
+     </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
       <div id="main-content"  <?php echo $_SESSION['rtl'];?>>
@@ -82,9 +71,8 @@ include 'header_menu.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                    <h3 class="page-title">
-                       <?php GetProperty('profile',$_SESSION['rtl']);?>
-                
-                  </h3>
+                       <?php 
+                       GetProperty('profile',$_SESSION['rtl']);?> </h3>
  
                    <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
@@ -95,12 +83,14 @@ include 'header_menu.php';
                <div class="span12">
                   <div class="widget">
                         <div class="widget-body">
+                   
                             <div class="span3">
                                 <div class="text-center profile-pic">
                                     <img src="img/profile-pic.jpg" alt="">
                                 </div>
               
                             </div>
+                                     <div class="loader"></div>
                             <div class="span6">
                                   <input id="clid" type="hidden" value="<?php echo $_SESSION['Id']?>"/>
                                  <?php 
@@ -198,20 +188,27 @@ include 'header_menu.php';
       </div>
       <!-- END PAGE -->  
    </div>
+    </div>
+      <div id="footer">
+       2016 &copy; Arrowtec LLC.
+
+
+   </div>
+     <script src="js/scripts.js"></script>
  
-   <script src="js/jquery-1.8.3.min.js"></script>
-   <script src="assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="js/jquery.blockui.js"></script>
-    <script src="assets/main/javascript/jquery.toastmessage.js"></script>
-   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
+ 
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
-   <script src="js/scripts.js"></script>
-
-   <script src="js/table-editable.js"></script>
+ 
+   <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
+    <script src="assets/main/javascript/jquery.toastmessage.js"></script>
+   
    
 <script type="text/javascript">
- 
+     $(window).load(function() {
+	$(".loader").fadeOut("slow");
+}) 
 $('input[name=fruit]').click(function() {
      debugger;
      var cid=$("#clid").val();

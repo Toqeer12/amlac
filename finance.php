@@ -62,9 +62,9 @@ unset($_SESSION['fulname']);
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
 
-   <?php 
+     <?php 
    include 'header.php';?>
-       <!-- BEGIN TOP NAVIGATION BAR -->
+   <!--   BEGIN TOP NAVIGATION BAR -->
  
        <!-- END TOP NAVIGATION BAR -->
    </div> 
@@ -169,21 +169,19 @@ include 'header_menu.php';
     </div>
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
-   <div id="footer">
-       2013 &copy; Admin Lab Dashboard.
-<!--       <div class="span pull-right">
-         <span class="go-top"><i class="icon-arrow-up"></i></span>
-      </div> -->
    </div>
+   </div>
+  
+       <div id="footer">
+       2016 &copy; Arrowtec LLC.
+
+
+   </div>
+ 
  
 <script src="js/scripts.js"></script>
  
    <script src="js/jquery.blockui.js"></script>
- 
- 
-
-<!-- Magnific Popup core JS file -->
- 
    <script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
    <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
     <script src="assets/main/javascript/jquery.toastmessage.js"></script>

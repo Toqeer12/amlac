@@ -48,21 +48,17 @@ global $owenr;
 <!-- BEGIN BODY -->
 <body class="fixed-top" >
    <!-- BEGIN HEADER -->
-
-       <!-- END TOP NAVIGATION BAR -->
-   
    <?php 
    include 'header.php';?>
+       <!-- END TOP NAVIGATION BAR -->
+ 
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->   
    <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
-          <div class="navbar-inverse">
-            <form class="navbar-search visible-phone">
-               <input type="text" class="search-query" placeholder="Search" />
-            </form>
-         </div>
+          <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+ 
          <!-- END RESPONSIVE QUICK SEARCH FORM -->
          <!-- BEGIN SIDEBAR MENU -->
 <?php 
@@ -141,7 +137,7 @@ include 'header_menu.php';?>
                   <div class="widget">
           
                      <div class="widget-body">
-                          
+                          <div class="loader"></div>
 
                         <table class="table table-striped table-bordered dataTable">
                         <strong><?php GetProperty('basicinfo',$_SESSION['rtl']);?></strong>
@@ -413,7 +409,7 @@ include 'header_menu.php';?>
 								        
 									while($row2 = mysql_fetch_assoc($result2)) {
                                         echo "<td>" . $row2['real_name'] . "</td>";
-                                          echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['type']."&datee=".$row['datee']."&vendor=".$row2['real_name']."&id=".$_SESSION['Id']."'>Print</a></td>";
+                                          echo "<td><a href='actionpdf_exp.php?id=" .$row['id']."&amount=".$row['amount']."&type=".$row['type']."&datee=".$row['datee']."&vendor=".$row2['real_name']."'>Print</a></td>";
                                         echo "</tr>"; }
 									 }
                                     }
@@ -608,6 +604,14 @@ include 'header_menu.php';?>
 
 </form>
                       </div>
+                  </div>
+               </div>
+            </div>
+      
+      
+      
+</div>
+    </div>
                   </div>
                </div>
             </div>

@@ -56,7 +56,7 @@ include 'session.php';
 		mysql_free_result($sql);
 		$_SESSION['images_path'] = $data_comm['images_path'];
 ?>
-				    <img style="margin-top: -15px;height: 90px;"" src=<?php echo $data_comm['images_path']?> alt="Admin Lab" />
+				    <img style="margin-top: -15px;height: 90px;" src=<?php echo $data_comm['images_path']?> alt="Admin Lab" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->

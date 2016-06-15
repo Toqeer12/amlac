@@ -44,17 +44,11 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
-				<a class="brand" href="main_page.php">
+				<a class="brand" href="index_admin.php">
 
-					<?php 
-					require('connect.php');
-		$select_query = "SELECT `images_path` FROM  `images_tbl` where cid=$id";
-		$sql = mysql_query($select_query) or die(mysql_error());	
-		$data_comm=mysql_fetch_assoc($sql);
-		mysql_free_result($sql);
-		$_SESSION['images_path'] = $data_comm['images_path'];
-?>
-				    <img style="margin-top: -15px;height: 90px;" src="<?php echo $data_comm['images_path']?>" alt="Admin Lab" onError="this.src='img/Amlacnew.png';"/>
+					
+
+				    <img style="margin-top: -15px;height: 90px;" src="images/amlac.png" alt="Admin Lab" onError="this.src='img/Amlacnew.png';"/>
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -65,14 +59,14 @@
 				<span class="arrow"></span>
 				</a>
 				<!-- END RESPONSIVE MENU TOGGLER -->
-				<div id="top_menu" class="nav notify-row">
+				<div id="top_menu" class="nav notify-row" style="
+    margin-top: 33px;
+    align-content: center;
+    margin-left: 500px;
+    font-size: -webkit-xxx-large;
+">	  <span class="username"><?php echo $varcom ?></span>
                     <!-- BEGIN NOTIFICATION -->
-					<ul class="nav top-menu">
  
-
-					</ul>
-			  <span class="username"><?php echo $varcom ?></span>
-              
               
     </div>
 

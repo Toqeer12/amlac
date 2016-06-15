@@ -55,13 +55,7 @@ include 'css_header.php';
       <!-- BEGIN SIDEBAR -->
       <div id="sidebar" class="nav-collapse collapse">
           <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-         <div class="navbar-inverse">
-            <form class="navbar-search visible-phone">
-               <input type="text" class="search-query" placeholder="Search" />
-            </form>
-         </div>
-         <!-- END RESPONSIVE QUICK SEARCH FORM -->
-         <!-- BEGIN SIDEBAR MENU -->
+        
 <?php include 'header_menu.php';?>
          <!-- END SIDEBAR MENU -->
       </div>
@@ -156,7 +150,7 @@ include 'css_header.php';
                                         <td><?php echo $loadrent[$i]['duration']?></td>
                                         <td><?php echo $loadrent[$i]['payment']?></td>
                                         <td><?php echo $loadrent[$i]['id']?></td>
-                                 <td><a href="job_title.php?id=<?php echo $loadrent[$i]['owner'] ?>&property=<?php echo $loadrent[$i]['property_name']?>&unit=<?php echo $loadrent[$i]['unit']?>&renter=<?php echo $loadrent[$i]['renter']?>""><?php GetProperty('view',$_SESSION['rtl']);?></a></td>
+                                 <td><a href="job_title.php?id=<?php echo $loadrent[$i]['owner'] ?>&property=<?php echo $loadrent[$i]['property_name']?>&unit=<?php echo $loadrent[$i]['unit']?>&renter=<?php echo $loadrent[$i]['renter']?>"><?php GetProperty('view',$_SESSION['rtl']);?></a></td>
                               </tr>
                      <?php  
 					  }?>
@@ -171,6 +165,16 @@ include 'css_header.php';
       </div>
       <!-- END PAGE -->
    </div>
+       </div>
+    </div>
+   <!-- END CONTAINER -->
+   <!-- BEGIN FOOTER -->
+   <div id="footer">
+        2016 &copy; Arrowtec LLC.
+
+
+   </div>
+ 
       <script src="js/scripts.js"></script>
  
    <script src="js/jquery.blockui.js"></script>

@@ -218,12 +218,10 @@ include 'header_menu.php';
       </div>
       <!-- END PAGE -->
    </div>
-   <!-- END CONTAINER -->
-   <!-- BEGIN FOOTER -->
+       <div id="footer">
+       Powered By Arrowtec L.L.C 2016
  
-   <!-- END FOOTER -->
-   <!-- BEGIN JAVASCRIPTS -->
-   <!-- Load javascripts at bottom, this will reduce page load time -->
+   </div>
    <script src="js/scripts.js"></script>
  
    <script src="js/jquery.blockui.js"></script>

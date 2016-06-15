@@ -51,48 +51,57 @@ include 'css_header.php';
     table#tableSection th, table#tableSection td {
         width: 15%;
     }
-body {
-  background: gray;
-  font-family: sans-serif;
-}
-.wrapper {
-  background: white;
-  margin: auto;
-  padding: 1em;
-	height:1000px
-}
-h1 {
-  text-align: center;
-}
-ul.tabs {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-ul.tabs li {
-  border: gray solid 1px;
-  border-bottom: none;
-  float: left;
-  margin: 0 .25em 0 0;
-  padding: .25em .5em;
-}
-ul.tabs li a {
-  color: gray;
-  font-weight: bold;
-  text-decoration: none;
-}
-ul.tabs li.active {
-  background: gray;
-}
-ul.tabs li.active a {
-  color: white;
-}
-.clr {
-  clear: both;
-}
-article {
-  border-top: gray solid 1px;
-  padding: 0 1em;
+    body {
+    background: gray;
+    font-family: sans-serif;
+    }
+    .wrapper {
+    background: white;
+    margin: auto;
+    padding: 1em;
+        height:800px
+    }
+    h1 {
+    text-align: center;
+    }
+    ul.tabs {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    }
+    ul.tabs li {
+    border: gray solid 1px;
+    border-bottom: none;
+    float: left;
+    margin: 0 .25em 0 0;
+    padding: .25em .5em;
+    }
+    ul.tabs li a {
+    color: gray;
+    font-weight: bold;
+    text-decoration: none;
+    }
+    ul.tabs li.active {
+    background: gray;
+    }
+    ul.tabs li.active a {
+    color: white;
+    }
+    .clr {
+    clear: both;
+    }
+    article {
+    border-top: gray solid 1px;
+    padding: 0 1em;
+    }
+             .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 </style>
  
@@ -103,30 +112,16 @@ article {
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
   <?php 
-   
-   include 'header.php';?>
+     include 'header.php';?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
    <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
-    <div id="sidebar" class="nav-collapse collapse">
-			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
- 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-
-			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-			<div class="navbar-inverse">
-				<form class="navbar-search visible-phone">
-					<input type="text" class="search-query" placeholder="Search" />
-				</form>
-			</div>
-			<!-- END RESPONSIVE QUICK SEARCH FORM -->
-			<!-- BEGIN SIDEBAR MENU -->
-<?php 
-include 'header_menu.php';
-
-?>
-			<!-- END SIDEBAR MENU -->
-		</div>
+            <div id="sidebar" class="nav-collapse collapse">
+            <?php 
+            include 'header_menu.php';
+            ?>
+            </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->
       <div id="main-content" <?php echo $_SESSION['rtl'];?>>
@@ -135,30 +130,16 @@ include 'header_menu.php';
             <!-- BEGIN PAGE HEADER-->
             <div class="row-fluid">
                <div class="span12">
-                   <!-- BEGIN THEME CUSTOMIZER-->
-                   <div id="theme-change" class="hidden-phone">
-                       <i class="icon-cogs"></i>
-                        <span class="settings">
-                            <span class="text">Theme:</span>
-                            <span class="colors">
-                                <span class="color-default" data-style="default"></span>
-                                <span class="color-gray" data-style="gray"></span>
-                                <span class="color-purple" data-style="purple"></span>
-                                <span class="color-navy-blue" data-style="navy-blue"></span>
-                            </span>
-                        </span>
-                   </div>
-                   <!-- END THEME CUSTOMIZER-->
-                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
+ 
                   <h3 class="page-title">
-                     Job Titles
+                     <?php GetProperty('leasaeinfo',$_SESSION['rtl']);?>
                      <!--<small>Managed Table Sample</small>-->
                   </h3>
 
                   <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
             </div>
-         
+          <div class="loader"></div>
             <!-- END PAGE HEADER-->
 <section class="wrapper">
  
@@ -179,9 +160,9 @@ include 'header_menu.php';
                   <div class="widget">
            <div class="loader"></div>
                        <input name="print" type="submit" value="print" onClick="callme2(this)"/>
-                     <div class="widget-body">
+                        <div class="widget-body">
                         <table class="table table-striped table-bordered dataTable">
-                        <strong> Lease Information </strong>
+                        <strong>       <?php GetProperty('leasaeinfo',$_SESSION['rtl']);?> </strong>
                         <?php 		
                         $owner=$_GET['id'];
                         $propertyName=$_GET['property'];
@@ -664,32 +645,33 @@ include 'header_menu.php';
       <div id="modalload2" class="white-popup-block mfp-hide">
         <a class="popup-modal-dismiss" href="#">Dismiss</a>
       
-                  <div class="row-fluid">
-               <div class="span12">
-                  <div class="widget">
- 
-                      <div class="widget-body form">
-  <form action="uploads.php?id=2" enctype="multipart/form-data"  method="post">
-<h3> Upload Logo</h3>
+            <div class="row-fluid">
+                <div class="span12">
+                        <div class="widget">
+                            <div class="widget-body form">
+                                <form action="uploads.php?id=2" enctype="multipart/form-data"  method="post">
+                                            <h3> Upload Logo</h3>
+                                            <input name="uploadedimage" type="file"></br>
+                                            <input name="remark" type="text"></br>
+                                            <input name="propid" type="hidden" value="<?php echo $_GET['property']?>"/>
+                                            <input name="ownerid" type="hidden" value="<?php echo $_GET['id']?>"/>
+                                            <input name="renter" type="hidden" value="<?php echo $_GET['renter']?>"/>
+                                            <input name="unit" type="hidden" value="<?php echo $_GET['unit']?>"/>
+                                            <input name="cid" type="hidden" value="<?php echo $_SESSION['Id']?>"/>
+                                            <input name="Upload Now" type="submit" value="Upload Image"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+   <!-- END CONTAINER -->
+   <!-- BEGIN FOOTER -->
+   <div id="footer">
+        2016 &copy; Arrowtec LLC.
 
 
-<input name="uploadedimage" type="file"></br>
-<input name="remark" type="text"></br>
-<input name="propid" type="hidden" value="<?php echo $_GET['property']?>">
-<input name="ownerid" type="hidden" value="<?php echo $_GET['id']?>">
-<input name="renter" type="hidden" value="<?php echo $_GET['renter']?>">
-<input name="unit" type="hidden" value="<?php echo $_GET['unit']?>">
-<input name="cid" type="hidden" value="<?php echo $_SESSION['Id']?>">
-<input name="Upload Now" type="submit" value="Upload Image">
-
-
-</form>
-                      </div>
-                  </div>
-               </div>
-            </div>
    </div>
- 
    <script src="js/scripts.js"></script>
     <script src="js/jquery.blockui.js"></script>
    <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>

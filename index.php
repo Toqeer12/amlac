@@ -11,9 +11,11 @@ Website: http://thevectorlab.net/
 
 
 <?php
+session_start();
+include 'raw_detail.php';
 if(isset($_SESSION['user'])!="")
 {
-session_start();
+
  header("Location: index.php");
 }
 
@@ -22,7 +24,7 @@ session_start();
 <!-- BEGIN HEAD -->
 <head>
   <meta charset="utf-8" />
-  <title>Login</title>
+  <title><?php GetProperty('login',$_SESSION['rtl']);?></title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
@@ -47,13 +49,8 @@ session_start();
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body id="login-body">
-  <div class="login-header">
-      <!-- BEGIN LOGO -->
-      <div id="logo" class="center">
-          <img src="img/Amlacnew.png" alt="logo" class="center" />
-      </div>
-      <!-- END LOGO -->
-  </div>
+ 
+ <?php include 'index_header.php';?>
 
   <!-- BEGIN LOGIN -->
   <div id="login">
@@ -64,8 +61,7 @@ session_start();
       </div>
 	  <span class="help-inline">
   <?php
-	  session_start();
-if (isset($_SESSION['message']))
+ if (isset($_SESSION['message']))
 {
 
     echo $_SESSION['message'];
@@ -76,15 +72,17 @@ if (isset($_SESSION['message']))
 	  ?>
 	  
 	  </span>
-      <div class="control-wrap">
+      <div class="control-wrap" <?php echo $_SESSION['rtl'];
 
-          <h4>User Login
-</h4>
+
+?>>
+
+          <h4> <?php GetProperty('login',$_SESSION['rtl']);?></h4>
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
                       <span class="add-on"><i class="icon-user"></i></span>
-					  <input name="name"id="username" type="text" placeholder="Username" required/>
+					  <input name="name"id="username" type="text" placeholder="<?php GetProperty('username',$_SESSION['rtl']);?>" required/>
                   </div>
               </div>
           </div>
@@ -92,24 +90,24 @@ if (isset($_SESSION['message']))
               <div class="controls">
                   <div class="input-prepend">
                       <span class="add-on"><i class="icon-key"></i></span>
-					  <input name="pass"id="password" type="password" placeholder="Password" required/>
+					  <input name="pass"id="password" type="password" placeholder="<?php GetProperty('password',$_SESSION['rtl']);?>" required/>
                   </div>
 
                   
+                                      <div class="mtop10">
 
+                      <div class="block-hint pull-right">
+                          <a href="javascript:;" class="" id="forget-password"><?php GetProperty('forgot',$_SESSION['rtl']);?></a>
+                      </div>
+                  </div>
                   <div class="clearfix space5"></div>
               </div>
 
           </div>
       </div>
 <div class="loader"></div>
-      <input type="submit" id="login-btn" class="btn btn-block login-btn" value="Login"   />
-      
-                            <div class="block-hint pull-right">
- 							<a href="javascript:;" class="" id="forget-password">Forgot Password?</a>
-                         <a href="signup.php" class="" id="register">Register!!</a>
-
-					  </div>
+      <input type="submit" id="login-btn" class="btn btn-block login-btn" value="<?php GetProperty('login',$_SESSION['rtl']);?>"   />
+            <input type="button" id="sign-btn" class="btn btn-block login-btn" value="<?php GetProperty('register',$_SESSION['rtl']);?>" onClick="ClicKme(this);"  />
     </form>
     <!-- END LOGIN FORM -->        
     <!-- BEGIN FORGOT PASSWORD FORM -->
@@ -130,7 +128,9 @@ if (isset($_SESSION['message']))
     </form>
     <!-- END FORGOT PASSWORD FORM -->
   </div>
- 
+   <div id="login-copyright">
+      2016 &copy; Arrowtec L.L.C
+  </div>
   <script src="js/jquery-1.8.3.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="js/jquery.blockui.js"></script>
@@ -140,9 +140,14 @@ if (isset($_SESSION['message']))
 	    $(window).load(function() {
 	$(".loader").fadeOut("slow");
 })
-    jQuery(document).ready(function() {     
-      App.initLogin();
-    });
+
+
+function ClicKme(obj)
+{
+       window.location=("signup.php");
+}
+
+
   </script>
   <!-- END JAVASCRIPTS -->
   

@@ -17,11 +17,10 @@
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="css/style.css" rel="stylesheet" />
     <link href="css/style_default.css" rel="stylesheet" id="style_color" />
- 
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
  <!--  <link rel="stylesheet" href="dist/magnific-popup.css"> -->
 
-   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-
+ 
 
    <style type="text/css">
 
@@ -65,7 +64,12 @@
 				<span class="arrow"></span>
 				</a>
 				<!-- END RESPONSIVE MENU TOGGLER -->
-				<div id="top_menu" class="nav notify-row">
+				<div id="top_menu" class="nav notify-row" style="
+    margin-top: 33px;
+    align-content: center;
+    margin-left: 500px;
+    font-size: -webkit-xxx-large;
+">
                     <!-- BEGIN NOTIFICATION -->
 					<ul class="nav top-menu">
  
@@ -105,26 +109,7 @@
 					</ul>
 					<!-- END TOP NAVIGATION MENU -->
 				</div>
-                                 <div class="top-nav ">
-                    					           
-
-                  	<!--   <ul class="nav pull-right top-menu" >
-
-						 
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/avatar-mini.png" alt=""/>
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-							
-							
-							</ul>
-						</li>
-						  END USER LOGIN DROPDOWN  
-					</ul>
-				END TOP NAVIGATION MENU 
-				</div>-->
+ 
 			</div>
 		</div>
 		<!-- END TOP NAVIGATION BAR -->
@@ -156,18 +141,12 @@
 
 </form>
 </div>
+
   <!-- // <script src="js/jquery-1.8.3.min.js"></script> -->
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
    <script src="js/jquery.blockui.js"></script>
-   <!-- ie8 fixes -->
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<!-- Magnific Popup core JS file -->
 <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
 
-<script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
-   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
  
 	   <script type="text/javascript">
 $(document).ready(function() {

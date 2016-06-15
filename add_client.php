@@ -4,26 +4,14 @@
 session_start();
 include 'session.php';
 
-if($_SESSION['exp']=='invalid'){
-	
-	
-	
+if($_SESSION['exp']=='invalid')
+{
+
 	header("location:login.php");
-	
-	
-	unset($_SESSION['user']);
-	
-	
+	unset($_SESSION['user']);	
 	unset($_SESSION['company']);
-	
-	
 	unset($_SESSION['Id']);
-	
-	
 	unset($_SESSION['fulname']);
-	
-	
-	
 }
 
 
@@ -891,25 +879,24 @@ include 'header_menu.php';
       </div>
   </div>
 </div>
+ </div>
+ </div>
+ 
 
-
+ </div>
+ 
       
       
-    </div>
+  
+       <div id="footer">
+       Powered By Arrowtec L.L.C 2016
+ 
+   </div>
    <!-- END CONTAINER -->
   <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="assets/main/javascript/jquery.toastmessage.js"></script>
  <script src="js/jquery.blockUI.js"></script>
  <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
- 
- 
- 
- 
-
- 
- 
- 
-   
    <script src="js/scripts.js"></script>
  
    <script type="text/javascript">

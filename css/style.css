@@ -375,10 +375,7 @@ a,a:focus, a:hover, a:active {
 }
 
 .fixed-top #container {
-    margin-top: 104px;
-}
-.fixed-top #containerr {
-    margin-top: 14px;
+    margin-top: 105px;
 }
 
 /* i8 fix for form input height in fluid rows */

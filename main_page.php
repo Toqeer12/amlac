@@ -122,7 +122,13 @@ unset($_SESSION['fulname']);
                 </div>
                 <!-- END PAGE CONTENT-->
             </div>
+  </div>
+  </div>
+  </div>
+       <div id="footer">
+       Powered By Arrowtec L.L.C 2016
  
+   </div>
 	<script src="js/scripts.js"></script>
  
     <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>

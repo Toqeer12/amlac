@@ -17,7 +17,7 @@ if (!$db_selected) {
 }
 
 // Select all the rows in the markers table
-$query = "SELECT * FROM add_property WHERE cid='".$_GET['cid']."' AND  id='".$_GET['owner']."'";
+$query = "SELECT * FROM add_property WHERE cid='".$_GET['cid']."' AND  owner_id='".$_GET['owner']."'";
 $result = mysql_query($query);
 if (!$result) {
   die('Invalid query: ' . mysql_error());

@@ -1,18 +1,11 @@
 <?php
 require("phpsqlajax_dbinfo.php");
 
-function parseToXML($htmlStr) 
-{ 
-$xmlStr=str_replace('<','&lt;',$htmlStr); 
-$xmlStr=str_replace('>','&gt;',$xmlStr); 
-$xmlStr=str_replace('"','&quot;',$xmlStr); 
-$xmlStr=str_replace("'",'&apos;',$xmlStr); 
-$xmlStr=str_replace("&",'&amp;',$xmlStr); 
-return $xmlStr; 
-} 
-
-// Opens a connection to a mySQL server
-$connection=mysql_connect (localhost, $username, $password);
+$doc =new DomDocument('1.0');
+$node = $doc->createElement("markers");
+$parnode = $doc->appendChild($node);
+ // Opens a connection to a mySQL server
+$connection=mysql_connect ('localhost', $username, $password);
 if (!$connection) {
   die('Not connected : ' . mysql_error());
 }
@@ -24,7 +17,7 @@ if (!$db_selected) {
 }
 
 // Select all the rows in the markers table
-$query = "SELECT * FROM markers WHERE 1";
+$query = "SELECT * FROM add_property";
 $result = mysql_query($query);
 if (!$result) {
   die('Invalid query: ' . mysql_error());
@@ -32,22 +25,22 @@ if (!$result) {
 
 header("Content-type: text/xml");
 
-// Start XML file, echo parent node
-echo '<markers>';
-
-// Iterate through the rows, printing XML nodes for each
-while ($row = @mysql_fetch_assoc($result)){
+// Iterate through the rows, adding XML nodes for each
+while ($row =  mysql_fetch_assoc($result)){
   // ADD TO XML DOCUMENT NODE
-  echo '<marker ';
-  echo 'name="' . parseToXML('&','&amp;', $row['name']) . '" ';
-  echo 'address="' . parseToXML($row['address']) . '" ';
-  echo 'lat="' . $row['lat'] . '" ';
-  echo 'lng="' . $row['lng'] . '" ';
-  echo 'type="' . $row['type'] . '" ';
-  echo '/>';
-}
+  $node = $doc->createElement("marker");
+  $newnode = $parnode->appendChild($node);
 
-// End XML file
-echo '</markers>';
+  $newnode->setAttribute("name", $row['propty_name']);
+  $newnode->setAttribute("address", $row['address']);
+  $newnode->setAttribute("lat", $row['lat']);
+  $newnode->setAttribute("lng", $row['longi']);
+ }
 
+$html=$doc->saveHTML();
+
+echo $html;
+
+
+ 
 ?>

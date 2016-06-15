@@ -1,142 +1,162 @@
 <languages>
   <!-- Change text to Arabic from English-->
-  <language locale="ar-SA" direction="rtl" name="العربية">
-    <key name="realstatesection" value="القسم عقارات" />
-    <key name="addnewproperty" value="إضافة عقار جديد"/>
-    <key name="addclient" value="إضافة زبون" />
-    <key name="addnewunit" value="إضافة وحدة عقارية جديدة" />
-    <key name="addnewlease" value="إضافة عقد جديد" />
-    <key name="overview" value="نظرة عامة" />
-    <key name="properties" value="العقارات و الوحدات" />
-    <key name="lease" value="عقود الإيجار" />
-    <key name="addcustomer" value="إدارة العملاء" />
-    <key name="finance" value="النظام المالي" />
-    <key name="notify" value="الإشعارات" />
-    <key name="leasepayment" value="تحصيــل إيجار" />
-    <key name="income" value="الواردات" />
-    <key name="outcome" value="الصادرات" />
-    <key name="voucher" value="السندات المالية"/>
-    <key name="logout" value="خروج" />
-    <key name="basicinfo" value="البيانات الأساسية" />
-    <key name="propertyname" value="اسم العقار" />
-    <key name="propertytype" value="نوع العقار" />
-    <key name="abouthim" value="نبذه عنه" />
-    <key name="owner" value="المالك" />
-    <key name="contructdate" value="سنة البناء" />
-    <key name="address" value="عنوان العقار" />
-    <key name="ownerinfo" value="بيانات الملكية" />
-    <key name="deedno" value="رقم الصك" />
-    <key name="propertyno" value="رقم الأرض/العقار" />
-    <key name="locationmap" value="الموقع على الخريطة" />
-    <key name="submit" value="حفظ" />
-    <key name="propertyinfo" value="بيانات العقار" />
-    <key name="deeddate" value="تاريخ الصك" />
-    <key name="addnewtent" value="إضافة عميل جديد" />
-    <key name="realname" value="الاسم الحقيقي" />
-    <key name="em_id" value="رقم الهوية" />
-    <key name="mobileno" value="رقم الجوال " />
-    <key name="vendor" value="مزود خدمات" />
-    <key name="cname" value="اسم الشركة " />
-    <key name="cactivity" value="نشاط الشركه" />
-    <key name="notes" value="ملاحظات" />
-    <key name="email" value="البريد الإلكتروني" />
-    <key name="bankname" value="اسم البنك" />
-    <key name="accountno" value="رقم الحساب" />
-    <key name="phoneno" value="رقم الهاتف" />
-    <key name="fax" value="رقم الفاكس" />
-    <key name="pbox" value="صندوق البريد" />
-    <key name="addresscust" value="عنوان" />
-    <key name="passport" value="رقم جواز السفر" />
-    <key name="nationality" value="جنسية" />
-    <key name="jobtitle" value="المشوار المهني" />
-    <key name="sponsor" value="الكفيل" />
-    <key name="otherdetail" value="البيانات الأخرى" />
-    <key name="unitinfo" value="بيانات الوحدة العقارية" />
-    <key name="unitnum" value="رقم الوحدة" />
-    <key name="property" value="ممتلكات" />
-    <key name="insurance" value="مبلغ التأمين" />
-    <key name="annualrent" value="سعر الإيجار السنوي" />
-    <key name="comisionamount" value="قيمة العمولة" />
-    <key name="comisiontype" value="نوع العمولة" />
-    <key name="comison" value="العمولة" />
-    <key name="unitarea" value="مساحة الوحدة متر مربع " />
-    <key name="unitdesc" value="وصف الوحدة" />
-    <key name="numroom" value="الغرف/الفتحات عدد" />
-    <key name="watermeter" value="رقم عداد المياه" />
-    <key name="electricmeter" value="رقم عداد الكهرباء" />
-    <key name="frishstatus" value="وضع التجهيز" />
-    <key name="advance" value=" بيانات متقدمة" />
-    <key name="washrom" value="عدد الحمامات" />
-    <key name="durationcontract" value="مدة العقد" />
-    <key name="writingdate" value="تاريخ كتابة العقد"/>
-    <key name="rentstartdate" value="تاريخ بداية الإيجار "/>
-    <key name="renter" value="المستأجر"/>
-    <key name="script" value="نص العقد"/>
-    <key name="leasaeinfo" value="بيانات العقد"/>
-    <key name="endcontract" value="نهاية العقد"/>
-    <key name="choseunit" value="اختيار وحدة"/>
-    <key name="scripttitle" value="عنوان النصي" />
-    <key name="country" value="بلد"/>
-    <key name="city" value="مدينة"/>
-    <key name="detail" value="تفاصيل"/>
-    <key name="sponsorname" value="اسم الراعي"/>
-    <key name="addclienttitle" value="إضافة العميل"/>
-    <key name="propertyover" value="خصائص نظرة عامة "/>
-    <key name="numfreeunit" value="عدد من حدة الحرة"/>
-    <key name="unitss" value="وحدة"/>
-    <key name="price" value="السعر"/>
-    <key name="view" value="رأي"/>
-    <key name="status" value="الحالة"/>
-    <key name="generalinfo" value="معلومات عامة"/>
-    <key name="propertyunit" value="وحدات العقار"/>
-    <key name="propertyexp" value="مصروفات العقار"/>
-    <key name="document" value="المستندات"/>
-    <key name="propertyid" value="رقم العقار"/>
-    <key name="forproperty" value="عن عقار"/>
-    <key name="ownername" value="اسم المالك"/>
-    <key name="delete" value="حذف"/>
-    <key name="type" value="نوع المصروف"/>
-    <key name="billnumber" value="رقم الفاتورة"/>
-    <key name="amount" value="المبلغ"/>
-    <key name="statment" value="البيان"/>
-    <key name="date" value="تاريخ"/>
-    <key name="customer" value="زبون"/>
-    <key name="print" value="طباعة"/>
-    <key name="edit" value="تحرير"/>
-    <key name="paymentmethod" value="طريقة الدفع او السداد"/>
-    <key name="schudle_month" value="جدول شهر"/>
-    <key name="paidamount" value="Paid Amount"/>
-    <key name="detail" value="التفاصيل"/>
-    <key name="updated" value="تحديث"/>
-    <key name="renterinfo" value="معلومات المستأجر"/>
-    <key name="receiver" value="المستلم"/>
-    <key name="notificationtime" value="وقت الإشعار"/>
-    <key name="ownertext" value="نص اشعار المالك"/> 
-    <key name="rentertext" value="نص اشعار المستأجر"/>
-    <key name="officetext" value="نص اشعار المكتب"/>
-    <key name="notifcationschdule" value="إدارة جدولة الإشعارات"/>
-    <key name="custlease" value="لإيجار التمويلي العملاء"/>
-    <key name="rentunit" value="وحدة إيجار"/>
-    <key name="expense" value="مصروف"/>
-    <key name="addvendor" value="إضافة البائع"/>
-    <key name="expvoucher" value="حساب قسيمة"/>
-    <key name="receiptvoucher" value="قسائم استلام"/>
-    <key name="profile" value="الملف الشخصي"/>
-    <key name="expdate" value="تاريخ الانتهاء"/>
-    <key name="regdate" value="التسجيل"/>
-    <key name="name" value="اسم"/>
-    <key name="b10" value="قبل عشرة أيام"/>
-    <key name="b20" value="قبل عشرون أيام"/>
-    <key name="b30" value="قبل ثلاثون أيام"/>
-    <key name="serno" value="الرقم التسلسلي"/>
-    <key name="moreinfo" value="معلومات اكثر"/>
-    <key name="dashboard" value="لوحة القيادة"/>
-     <key name="giveacess" value="إلى الأمام"/>
-      </language>
+   <language locale="ar-SA" direction="rtl" name="العربية">
+        <key name="realstatesection" value="القسم عقارات" />
+        <key name="addnewproperty" value="إضافة عقار جديد"/>
+        <key name="addclient" value="إضافة زبون" />
+        <key name="addnewunit" value="إضافة وحدة عقارية جديدة" />
+        <key name="addnewlease" value="إضافة عقد جديد" />
+        <key name="overview" value="نظرة عامة" />
+        <key name="properties" value="العقارات و الوحدات" />
+        <key name="lease" value="عقود الإيجار" />
+        <key name="addcustomer" value="إدارة العملاء" />
+        <key name="finance" value="النظام المالي" />
+        <key name="notify" value="الإشعارات" />
+        <key name="leasepayment" value="تحصيــل إيجار" />
+        <key name="income" value="الواردات" />
+        <key name="outcome" value="الصادرات" />
+        <key name="voucher" value="السندات المالية"/>
+        <key name="logout" value="خروج" />
+        <key name="basicinfo" value="البيانات الأساسية" />
+        <key name="propertyname" value="اسم العقار" />
+        <key name="propertytype" value="نوع العقار" />
+        <key name="abouthim" value="نبذه عنه" />
+        <key name="owner" value="المالك" />
+        <key name="contructdate" value="سنة البناء" />
+        <key name="address" value="عنوان العقار" />
+        <key name="ownerinfo" value="بيانات الملكية" />
+        <key name="deedno" value="رقم الصك" />
+        <key name="propertyno" value="رقم الأرض/العقار" />
+        <key name="locationmap" value="الموقع على الخريطة" />
+        <key name="submit" value="حفظ" />
+        <key name="propertyinfo" value="بيانات العقار" />
+        <key name="deeddate" value="تاريخ الصك" />
+        <key name="addnewtent" value="إضافة عميل جديد" />
+        <key name="realname" value="الاسم الحقيقي" />
+        <key name="em_id" value="رقم الهوية" />
+        <key name="mobileno" value="رقم الجوال " />
+        <key name="vendor" value="مزود خدمات" />
+        <key name="cname" value="اسم الشركة " />
+        <key name="cactivity" value="نشاط الشركه" />
+        <key name="notes" value="ملاحظات" />
+        <key name="email" value="البريد الإلكتروني" />
+        <key name="bankname" value="اسم البنك" />
+        <key name="accountno" value="رقم الحساب" />
+        <key name="phoneno" value="رقم الهاتف" />
+        <key name="fax" value="رقم الفاكس" />
+        <key name="pbox" value="صندوق البريد" />
+        <key name="addresscust" value="عنوان" />
+        <key name="passport" value="رقم جواز السفر" />
+        <key name="nationality" value="جنسية" />
+        <key name="jobtitle" value="المشوار المهني" />
+        <key name="sponsor" value="الكفيل" />
+        <key name="otherdetail" value="البيانات الأخرى" />
+        <key name="unitinfo" value="بيانات الوحدة العقارية" />
+        <key name="unitnum" value="رقم الوحدة" />
+        <key name="property" value="ممتلكات" />
+        <key name="insurance" value="مبلغ التأمين" />
+        <key name="annualrent" value="سعر الإيجار السنوي" />
+        <key name="comisionamount" value="قيمة العمولة" />
+        <key name="comisiontype" value="نوع العمولة" />
+        <key name="comison" value="العمولة" />
+        <key name="unitarea" value="مساحة الوحدة متر مربع " />
+        <key name="unitdesc" value="وصف الوحدة" />
+        <key name="numroom" value="الغرف/الفتحات عدد" />
+        <key name="watermeter" value="رقم عداد المياه" />
+        <key name="electricmeter" value="رقم عداد الكهرباء" />
+        <key name="frishstatus" value="وضع التجهيز" />
+        <key name="advance" value=" بيانات متقدمة" />
+        <key name="washrom" value="عدد الحمامات" />
+        <key name="durationcontract" value="مدة العقد" />
+        <key name="writingdate" value="تاريخ كتابة العقد"/>
+        <key name="rentstartdate" value="تاريخ بداية الإيجار "/>
+        <key name="renter" value="المستأجر"/>
+        <key name="script" value="نص العقد"/>
+        <key name="leasaeinfo" value="بيانات العقد"/>
+        <key name="endcontract" value="نهاية العقد"/>
+        <key name="choseunit" value="اختيار وحدة"/>
+        <key name="scripttitle" value="عنوان النصي" />
+        <key name="country" value="بلد"/>
+        <key name="city" value="مدينة"/>
+        <key name="detail" value="تفاصيل"/>
+        <key name="sponsorname" value="اسم الراعي"/>
+        <key name="addclienttitle" value="إضافة العميل"/>
+        <key name="propertyover" value="خصائص نظرة عامة "/>
+        <key name="numfreeunit" value="عدد من حدة الحرة"/>
+        <key name="unitss" value="وحدة"/>
+        <key name="price" value="السعر"/>
+        <key name="view" value="رأي"/>
+        <key name="status" value="الحالة"/>
+        <key name="generalinfo" value="معلومات عامة"/>
+        <key name="propertyunit" value="وحدات العقار"/>
+        <key name="propertyexp" value="مصروفات العقار"/>
+        <key name="document" value="المستندات"/>
+        <key name="propertyid" value="رقم العقار"/>
+        <key name="forproperty" value="عن عقار"/>
+        <key name="ownername" value="اسم المالك"/>
+        <key name="delete" value="حذف"/>
+        <key name="type" value="نوع المصروف"/>
+        <key name="billnumber" value="رقم الفاتورة"/>
+        <key name="amount" value="المبلغ"/>
+        <key name="statment" value="البيان"/>
+        <key name="date" value="تاريخ"/>
+        <key name="customer" value="زبون"/>
+        <key name="print" value="طباعة"/>
+        <key name="edit" value="تحرير"/>
+        <key name="paymentmethod" value="طريقة الدفع او السداد"/>
+        <key name="schudle_month" value="جدول شهر"/>
+        <key name="paidamount" value="Paid Amount"/>
+        <key name="detail" value="التفاصيل"/>
+        <key name="updated" value="تحديث"/>
+        <key name="renterinfo" value="معلومات المستأجر"/>
+        <key name="receiver" value="المستلم"/>
+        <key name="notificationtime" value="وقت الإشعار"/>
+        <key name="ownertext" value="نص اشعار المالك"/> 
+        <key name="rentertext" value="نص اشعار المستأجر"/>
+        <key name="officetext" value="نص اشعار المكتب"/>
+        <key name="notifcationschdule" value="إدارة جدولة الإشعارات"/>
+        <key name="custlease" value="لإيجار التمويلي العملاء"/>
+        <key name="rentunit" value="وحدة إيجار"/>
+        <key name="expense" value="مصروف"/>
+        <key name="addvendor" value="إضافة البائع"/>
+        <key name="expvoucher" value="حساب قسيمة"/>
+        <key name="receiptvoucher" value="قسائم استلام"/>
+        <key name="profile" value="الملف الشخصي"/>
+        <key name="expdate" value="تاريخ الانتهاء"/>
+        <key name="regdate" value="التسجيل"/>
+        <key name="name" value="اسم"/>
+        <key name="b10" value="قبل عشرة أيام"/>
+        <key name="b20" value="قبل عشرون أيام"/>
+        <key name="b30" value="قبل ثلاثون أيام"/>
+        <key name="serno" value="الرقم التسلسلي"/>
+        <key name="moreinfo" value="معلومات اكثر"/>
+        <key name="dashboard" value="لوحة القيادة"/>
+        <key name="giveacess" value="إلى الأمام"/>
+        <key name="login" value="تسجيل الدخول"/>
+        <key name="username" value="اسم المستخدم"/>
+        <key name="password" value="كلمه السر"/>
+        <key name="register" value="التسجيل"/>
+        <key name="reg" value="سجل لل"/>
+        <key name="country" value="بلد"/>
+        <key name="signup" value="سجل"/>
+        <key name="leaser" value="المؤجر"/>
+        <key name="forgot" value="نسيت كلمة"/>
+        <key name="addclient2" value="زبون"/>
+        <key name="upgrade" value="تطوير"/>
+    </language>
     <language locale="en-US" direction="ltr" name="English">
+    <key name="login" value="LOGIN"/>
+    <key name="upgrade" value="Upgrade"/>
+    <key name="forgot" value="Forgot Password"/>
+    <key name="signup" value="Sign Up"/>
+    <key name="country" value="Country"/>
+    <key name="reg" value="Registration"/>
+    <key name="username" value="Username"/>
+    <key name="password" value="Password"/>
+    <key name="register" value="Register"/>
     <key name="giveacess" value="Forward"/>
-   <key name="moreinfo" value="More Info"/>
-   <key name="dashboard" value="Dashboard"/>
+    <key name="moreinfo" value="More Info"/>
+    <key name="dashboard" value="Dashboard"/>
     <key name="serno" value="Sr no"/>
     <key name="b10" value="Before 10 Days"/>
     <key name="b20" value="Before 20 Days"/>
@@ -149,11 +169,13 @@
     <key name="realstatesection"  value="Real State Section" />
     <key name="addnewproperty"    value="Add New Property" />
     <key name="addclient"         value="Customer" />
+    <key name="addclient2"         value="Client" />
     <key name="addnewunit"        value="Add New Unit" />
     <key name="addnewlease" value="Add New Lease" />
     <key name="overview" value="OverView" />
     <key name="properties" value="Properties" />
     <key name="lease" value="Lease" />
+    <key name="leaser" value="Leaser" />
     <key name="addcustomer" value="Customer" />
     <key name="finance" value="Finance" />
     <key name="notify" value="Notification" />

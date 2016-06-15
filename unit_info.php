@@ -523,7 +523,7 @@ include 'header_menu.php';
 </div>
    
    <div id="footer">
-       2013 &copy; Admin Lab Dashboard.
+       2016 &copy; Arrowtec LLC.
 
    </div>
     <script src="js/scripts.js"></script>

@@ -11,9 +11,13 @@ Website: http://thevectorlab.net/
 
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
+
+<?php 
+session_start();
+include 'raw_detail.php'; ?>
 <head>
   <meta charset="utf-8" />
-  <title>Registration</title>
+  <title><?php GetProperty('reg',$_SESSION['rtl']);?></title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
@@ -49,14 +53,8 @@ Website: http://thevectorlab.net/
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body id="login-body">
-  <div class="login-header">
-      <!-- BEGIN LOGO -->
-      <div id="logo" class="center">
-          <img src="img/amlac.png" alt="logo" class="center" />
-      </div>
-      <!-- END LOGO -->
-  </div>
-
+<?php include 'index_header.php';
+ ?>
   <!-- BEGIN LOGIN -->
   <div id="login">
     <!-- BEGIN LOGIN FORM -->
@@ -65,28 +63,10 @@ Website: http://thevectorlab.net/
       </div>
 	  <span class="help-inline">
   <?php
-session_start();
-
-
-
-
 if (isset($_SESSION['message']))
 {
-	
-	
-	
-	
-	
 	echo $_SESSION['message'];
-	
-	
-	
-	
 	unset($_SESSION['message']);
-	
-	
-	
-	
 }
 
 
@@ -97,14 +77,14 @@ if (isset($_SESSION['message']))
 ?>
 	  
 	  </span>
-      <div class="control-wrap">
+      <div class="control-wrap" <?php echo $_SESSION['rtl'];?>>
 
-          <h4>Company Registration</h4>
+          <h4><?php GetProperty('reg',$_SESSION['rtl']);?></h4>
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
                        <span class="add-on"><i class="icon-user"></i></span>
-					  <input name="user_name"id="user_name" pattern="[a-zA-Z\s]+" type="text" placeholder="Full Name" required/>
+					  <input name="user_name"id="user_name" pattern="[a-zA-Z\s]+" type="text" placeholder="<?php GetProperty('realname',$_SESSION['rtl']);?>" required/>
                   </div>
               </div>
           </div>
@@ -112,7 +92,7 @@ if (isset($_SESSION['message']))
               <div class="controls">
                   <div class="input-prepend">
                      <span class="add-on"><i class="icon-envelope"></i></span>
-					  <input name="user_email"id="user_email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" type="email" placeholder="Email" required/>
+					  <input name="user_email"id="user_email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" type="email" placeholder="<?php GetProperty('email',$_SESSION['rtl']);?>" required/>
                   </div>
               </div>
           </div>
@@ -120,7 +100,7 @@ if (isset($_SESSION['message']))
               <div class="controls">
                   <div class="input-prepend">
                        <span class="add-on"><i class="glyphicon glyphicon-phone"></i></span> 
-            <input name="tel_num"id="tel_num" pattern="^\d{3}\d{6}\d{3}$"  type="tel" placeholder="Mobile No" required/>
+            <input name="tel_num"id="tel_num" pattern="^\d{3}\d{6}\d{3}$"  type="tel" placeholder="<?php GetProperty('mobileno',$_SESSION['rtl']);?>" required/>
                   </div>
               </div>
           </div>
@@ -128,7 +108,7 @@ if (isset($_SESSION['message']))
               <div class="controls">
                   <div class="input-prepend">
                       <span class="add-on"><i class="icon-user"></i></span> 
-					  <input name="comp_name"id="comp_name" pattern="[a-zA-z\s]+" type="text" placeholder="Company Name" required/>
+					  <input name="comp_name"id="comp_name" pattern="[a-zA-z\s]+" type="text" placeholder="<?php GetProperty('cname',$_SESSION['rtl']);?>" required/>
                   </div>
               </div>
 			</div>
@@ -136,16 +116,16 @@ if (isset($_SESSION['message']))
               <div class="controls">
                   <div class="input-prepend">
                       <span class="add-on"><i class="icon-map-marker"></i></span> 
-					  <input name="addres"id="addres" pattern="[a-zA-z\s]+" type="text" placeholder="Address" required/>
+					  <input name="addres"id="addres" pattern="[a-zA-z\s]+" type="text" placeholder="<?php GetProperty('addresscust',$_SESSION['rtl']);?>" required/>
                   </div>
               </div>
-			</div>
+		 </div>
 			<div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
              <span class="add-on"><i class="icon-user"></i></span> 
 <select id="city" name="city" style="height: 43px; width: 228px;">  
-<option value="">Country...</option>
+<option value=""><?php GetProperty('country',$_SESSION['rtl']);?></option>
 <option value="Afganistan">Afghanistan</option>
 <option value="Albania">Albania</option>
 <option value="Algeria">Algeria</option>
@@ -401,7 +381,7 @@ if (isset($_SESSION['message']))
               <div class="controls">
                   <div class="input-prepend">
                       <span class="add-on"><i class="icon-pencil"></i></span>
-					  <input name="pin"id="pin" pattern="[0-9]+" type="text" placeholder="User Pin" required/>
+					  <input name="pin"id="pin" pattern="[0-9]+" type="text" placeholder="<?php GetProperty('password',$_SESSION['rtl']);?>" required/>
                       <input name="type"id="type"  type="hidden" value="rs" />
 
                   </div>
@@ -410,12 +390,11 @@ if (isset($_SESSION['message']))
            <input name="acctype"id="acctype"   type="hidden"  value="rs" required/>
           <input name="real_id"id="real_id"   type="hidden"  value="" required/>
 		        <div class="block-hint pull-right">
-                          <a href="index.php" class="" id="forget-password"><h6>Login!!</h6></a>
-
-					  </div>
-      </div>
+                          <a href="index.php" class="" id="forget-password"><h6><?php GetProperty('login',$_SESSION['rtl']);?> </h6></a>
+                </div>
+            </div>
 <div class="loader"></div>
-      <input type="button" id="login-btn" class="btn btn-block login-btn" value="Submit" onclick="sign_up(this)"/>
+      <input type="button" id="login-btn" class="btn btn-block login-btn" value="<?php GetProperty('signup',$_SESSION['rtl']);?>" onclick="sign_up(this)"/>
 	  
     </form>
 
