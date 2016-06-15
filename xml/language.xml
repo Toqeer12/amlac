@@ -131,7 +131,7 @@
         <key name="serno" value="الرقم التسلسلي"/>
         <key name="moreinfo" value="معلومات اكثر"/>
         <key name="dashboard" value="لوحة القيادة"/>
-        <key name="giveacess" value="إلى الأمام"/>
+        <key name="giveacess" value="ارسل طلب"/>
         <key name="login" value="تسجيل الدخول"/>
         <key name="username" value="اسم المستخدم"/>
         <key name="password" value="كلمه السر"/>
@@ -146,7 +146,7 @@
     </language>
     <language locale="en-US" direction="ltr" name="English">
     <key name="login" value="LOGIN"/>
-    <key name="upgrade" value="Upgrade"/>
+    <key name="upgrade" value="Upgrade Request"/>
     <key name="forgot" value="Forgot Password"/>
     <key name="signup" value="Sign Up"/>
     <key name="country" value="Country"/>
@@ -154,7 +154,7 @@
     <key name="username" value="Username"/>
     <key name="password" value="Password"/>
     <key name="register" value="Register"/>
-    <key name="giveacess" value="Forward"/>
+    <key name="giveacess" value="Send Request to Admin"/>
     <key name="moreinfo" value="More Info"/>
     <key name="dashboard" value="Dashboard"/>
     <key name="serno" value="Sr no"/>

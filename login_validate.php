@@ -47,7 +47,7 @@ if(!empty($Username)&&!empty($Password))
 									if($vartype=='admin')
 									{
 										
-										header("location: index_admin.php");
+										header("location: admin_index.php");
 									} 
 									else
 									{

@@ -497,12 +497,12 @@ function sponsor($var)
 	
 }
 
-function viewproperty($ownerid,$cid)
+function viewproperty()
 {
 	
 	global $array5;
 	
-	$sql= "SELECT * From add_property Where owner_id='$ownerid' AND cid='$cid'";
+	$sql= "SELECT * From add_property";
 	
 	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	
@@ -565,12 +565,12 @@ function propertytype($id)
 	
 }
 
-function viewpropertyUnit($cid,$propid)
+function viewpropertyUnit($propid)
 {
 	
 	global $array7;
 	
-	$sql= "SELECT * From real_state_unit Where  property_name='$propid' And cid='$cid'";
+	$sql= "SELECT * From real_state_unit Where  property_name='$propid'";
 	
 	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 	
@@ -1656,5 +1656,96 @@ function LeaseOnEnd($date)
 			}
 		}
 		return  $leaseend;
+}
+function viewRentInfo()
+{
+		 global $leaser;
+	$sqlnotify = "SELECT * from rent_property";
+		$resultNoftifcation=mysql_query($sqlnotify)or  die('Invalid query: ' . mysql_error());
+	if($resultNoftifcation)
+		{
+	     if(mysql_num_rows($resultNoftifcation) > 0) 
+            {
+				while($memberCsId=mysql_fetch_assoc($resultNoftifcation))
+				{						   
+				 
+				 
+				 $leaser[] = $memberCsId;
+				}
+			}
+		}
+		return  $leaser;
+}
+
+function upgradecount()
+{
+		 global $aceess;
+	$sqlacces= "SELECT Count(*) id from access_request";
+		$resultacess=mysql_query($sqlacces)or  die('Invalid query: ' . mysql_error());
+	
+	if($resultacess) 
+	{
+		
+		if(mysql_num_rows($resultacess) > 0)
+		{
+			
+			$memberaxee  = mysql_fetch_assoc($resultacess);
+			
+			echo $memberaxee['id'];
+			
+		}
+		
+	}
+}
+
+
+function clientDetail2()
+{
+	global $array;
+	$sql= "SELECT * From access_request";
+	$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+	if($result) 
+	{
+		if(mysql_num_rows($result) > 0)
+		{
+		  while($member  = mysql_fetch_assoc($result))
+			{
+				
+				
+				
+				$cid=$member['cid'];
+				$cusid=$member['customerId'];
+
+					$sql2= "SELECT  * From clients Where cid='$cid' And id='$cusid'";
+					$result2=mysql_query($sql2)or  die('Invalid query: ' . mysql_error());
+						if($result2) 
+					{
+						
+						if(mysql_num_rows($result2) > 0)
+						{
+							
+							while($member2  = mysql_fetch_assoc($result2))
+							{
+								
+								
+								
+								$array[]=$member2;
+								
+							}
+							
+						}
+						
+					}
+			}
+		}
+	}
+	
+	
+ 
+	
+return $array;
+	
+	
+	
 }
 ?>

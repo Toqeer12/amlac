@@ -43,7 +43,7 @@ else if($_GET['id']=='11')
 {
 	
 	
-$encryp=md5(FLOOR( 1000 + ( RAND( ) *8999 ) ));	
+$encryp=FLOOR( 1000 + ( RAND( ) *8999 ));	
 $realname=$_POST["realname"];
 $emid=$_POST['idnum'];
 $email=$_POST["email"];
@@ -619,6 +619,36 @@ $expdate = date("Y-m-d",$datee);
          }
  
  
+ 
+ }
+
+  else if ($_GET['id']=='1025')
+ {
+	$x=json_decode($HTTP_RAW_POST_DATA);
+	$email=$x->{'email'}; 
+	$id=$x->{'id'};
+   $sql=   "SELECT  * From access_request Where customerId='$id'";
+     $result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+	 				if($result)
+					{ 
+						if(mysql_num_rows($result) > 0)
+						 {
+							 		$data = array('id' => "1");
+									header('Content-Type: application/json');
+									echo json_encode($data);
+						 }
+						 else {
+							 	$sql= "INSERT INTO `access_request`(`customerId`, `cid`) VALUES ('$id','$email')";
+ 								$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+  								if($result)
+									{
+								 	$data = array('id' => "0");
+									header('Content-Type: application/json');
+									echo json_encode($data);
+									}
+						 }
+					}
+
  
  }
 else if($_GET['id']=='108')

@@ -39,26 +39,17 @@ session_start();
 <body class="fixed-top " onload="load()">>
 	<!-- BEGIN HEADER -->
 	<?php
-    include 'header_admin.php';
+    include 'admin_header.php';
      
     ?>
 
-   <div id="containerr" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
+   <div id="container" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
-      <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-
-      <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-      <div class="navbar-inverse">
-        <form class="navbar-search visible-phone">
-          <input type="text" class="search-query" placeholder="Search" />
-        </form>
-      </div>
-      <!-- END RESPONSIVE QUICK SEARCH FORM -->
+ 
       <!-- BEGIN SIDEBAR MENU -->
 <?php 
-include 'admin_header_menu.php';
+include 'admin_menu.php';
 
 ?>
       <!-- END SIDEBAR MENU -->

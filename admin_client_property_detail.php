@@ -25,17 +25,25 @@ if ($_SESSION['exp'] == 'invalid') {
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style_responsive.css" rel="stylesheet" />
-    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
-    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-    <link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-    <link href="assets/jqvmap/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
+<?php 
+
+    include 'css_header.php';
+?>
+
+
+<style>
+
+    .loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+</style>
+</style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -43,19 +51,19 @@ if ($_SESSION['exp'] == 'invalid') {
 <body class="fixed-top">
     <!-- BEGIN HEADER -->
     <?php 
-include 'header_admin.php';
-include 'raw_detail.php';
+include 'admin_header.php';
+
 
 ?>
 
     <div id="container" class="row-fluid">
         <div id="sidebar" class="nav-collapse collapse">
  
-            <div class="navbar-inverse">
-                <form class="navbar-search visible-phone">
-                    <input type="text" class="search-query" placeholder="Search" />
-                </form>
-            </div>
+    <?php 
+include 'admin_menu.php';
+
+
+?>
 
         </div>
 
@@ -77,8 +85,9 @@ include 'raw_detail.php';
                         <div class="span12">
                             <div class="widget">
                                 <div class="widget-body">
-                            
+                          
                                     <table class="table table-striped table-bordered" id="sample_1">
+                                          <div class="loader"></div>
                                         <thead>
                                             <tr>
                                                 <th>Property Name</th>
@@ -95,9 +104,8 @@ include 'raw_detail.php';
                                      
                                      <?php 
                                      
-                                                $varCL = $_GET['cid'];
-                                                $varowner = $_GET['owner'];
-                                                $viewpropertyDetail = viewproperty($varowner,$varCL);
+                
+                                                $viewpropertyDetail = viewproperty( );
                                                 for ($i = 0; $i < count($viewpropertyDetail); $i++) {
 
 
@@ -126,7 +134,7 @@ include 'raw_detail.php';
                                                    <?php echo $viewpropertyDetail[$i]['year_build']; ?>
                                                 </td>
                                                         <td>
-                                                   <a href="javascript:void(0);" data-cid="<?php echo $varCL?>" data-property="<?php echo $viewpropertyDetail[$i]['id'] ?>"onclick="unitcall(this)">View Detail </a>
+                                                   <a href="javascript:void(0);"  data-property="<?php echo $viewpropertyDetail[$i]['id'] ?>"onclick="unitcall(this)">View Detail </a>
                                                 </td>
                                             <tr>
             <?php
@@ -151,29 +159,22 @@ include 'raw_detail.php';
 
             </div>
 
-            <script src="js/jquery-1.8.3.min.js"></script>
-            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-            <script src="js/jquery.blockui.js"></script>
-            <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-            <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
-            <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
-            <script src="js/scripts.js"></script>
-            <script src="assets/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js"></script>
-            <script src="assets/jquery-knob/js/jquery.knob.js"></script>
-            <script src="assets/flot/jquery.flot.js"></script>
-            <script src="assets/flot/jquery.flot.resize.js"></script>
-            <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
-            <script src="js/jquery.peity.min.js"></script>
-            <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-            <script src="js/scripts.js"></script>
+                 <script src="js/scripts.js"></script>
+        
+ 
+  
+      
             
    <script type="text/javascript">
+      $(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
             function unitcall(obj)
             {
                 debugger;
                 var cid=obj.getAttribute("data-cid");
                 var propId=obj.getAttribute("data-property");
-                $( "#result" ).load("client_prop_unit_detail.php?cid="+cid+"&propId="+propId);
+                $( "#result" ).load("admin_client_prop_unit_detail.php?propId="+propId);
             }
             
             </script>

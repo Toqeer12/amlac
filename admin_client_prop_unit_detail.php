@@ -15,6 +15,7 @@ if ($_SESSION['exp'] == 'invalid') {
                         <div class="span12">
                             <div class="widget">
                                 <div class="widget-body">
+           
                                     <table class="table table-striped table-bordered" id="sample_1">
                                         <thead>
                                             <tr>
@@ -32,10 +33,8 @@ if ($_SESSION['exp'] == 'invalid') {
                                                 </td>
                                             <tr>
                                                <?php 
-                                     
-                                                $varCL = $_GET['cid'];
-                                                $varprop = $_GET['propId'];
-                                                $propertyUnit = viewpropertyUnit($varCL,$varprop);
+                                                $varpropId  = $_GET['propId'];
+                                                $propertyUnit = viewpropertyUnit($varpropId);
                                                 for ($i = 0; $i < count($propertyUnit); $i++) {
 
 
@@ -87,3 +86,4 @@ if ($_SESSION['exp'] == 'invalid') {
 
 
             </div>
+ 

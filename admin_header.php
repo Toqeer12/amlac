@@ -44,10 +44,7 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
-				<a class="brand" href="index_admin.php">
-
-					
-
+				<a class="brand" href="admin_index.php">
 				    <img style="margin-top: -15px;height: 90px;" src="images/amlac.png" alt="Admin Lab" onError="this.src='img/Amlacnew.png';"/>
 				</a>
 				<!-- END LOGO -->
@@ -59,19 +56,9 @@
 				<span class="arrow"></span>
 				</a>
 				<!-- END RESPONSIVE MENU TOGGLER -->
-				<div id="top_menu" class="nav notify-row" style="
-    margin-top: 33px;
-    align-content: center;
-    margin-left: 500px;
-    font-size: -webkit-xxx-large;
-">	  <span class="username"><?php echo $varcom ?></span>
-                    <!-- BEGIN NOTIFICATION -->
- 
-              
-    </div>
-
-
-                    <!-- END  NOTIFICATION -->
+				<div id="top_menu" class="nav notify-row" style="margin-top: 33px;align-content: center; margin-left: 500px;font-size: -webkit-xxx-large;">	  
+			     	<span class="username"><?php echo $varcom ?></span>
+   				 </div>
 
                 <div class="top-nav ">
                     					           
@@ -95,31 +82,11 @@
 					</ul>
 					<!-- END TOP NAVIGATION MENU -->
 				</div>
-                                 <div class="top-nav ">
-                    					           
-
-                  	<!--   <ul class="nav pull-right top-menu" >
-
-						 
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/avatar-mini.png" alt=""/>
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-							
-							
-							</ul>
-						</li>
-						  END USER LOGIN DROPDOWN  
-					</ul>
-				END TOP NAVIGATION MENU 
-				</div>-->
-			</div>
+                                
 		</div>
 		<!-- END TOP NAVIGATION BAR -->
 	</div>
-
+</div>
 	<div id="modal2" class="white-popup-block mfp-hide">
 <form action="getdata.php" enctype="multipart/form-data" method="post">
  <input class="popup-modal-dismiss" action="#" type="image" src="img/cross-sign.jpg" placeholder="Owner" required/>
