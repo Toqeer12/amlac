@@ -2,8 +2,8 @@
 
 <?php
  session_start();
-                                $varowner=$_SESSION['Id'];
-                                    $varreal=$_SESSION['cid'];
+                             echo   $varowner=$_SESSION['Id'];
+                             echo   $varreal=$_SESSION['cid'];
  
 
 ?>
@@ -40,11 +40,11 @@
 <body class="fixed-top">
 	<!-- BEGIN HEADER -->
 	<?php
-    include 'header_admin.php';
+    include 'owner_header.php';
      
     ?>
 
-   <div id="containerr" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -59,7 +59,7 @@
       <!-- END RESPONSIVE QUICK SEARCH FORM -->
       <!-- BEGIN SIDEBAR MENU -->
 <?php 
-include 'owner_header_menu.php';
+include 'owner_menu.php';
 
 ?>
       <!-- END SIDEBAR MENU -->

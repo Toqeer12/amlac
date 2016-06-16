@@ -29,6 +29,7 @@ if(!empty($Username)&&!empty($Password))
 								$member = mysql_fetch_assoc($result);
 								$_SESSION['user'] = $member['email'];
 								$_SESSION['company'] = $member['comp_name'];
+								$_SESSION['password'] = $member['pin'];
 								$_SESSION['Id'] = $member['Id'];
 							    $_SESSION['fulname'] = $member['full_name'];
 								$_SESSION['language']='English';
@@ -73,7 +74,8 @@ if(!empty($Username)&&!empty($Password))
 										{
 							 
 												$member2 = mysql_fetch_assoc($result2);
-												$_SESSION['user'] = $member2['email'];								 
+												$_SESSION['user'] = $member2['email'];
+												$_SESSION['password'] = $member['password'];								 
 												$_SESSION['Id'] = $member2['id'];
 												$_SESSION['cid'] = $member2['cid'];
 							    				$_SESSION['fulname'] = $member2['real_name'];

@@ -112,11 +112,11 @@ article {
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
  	<?php
-          include 'header_admin.php';
+          include 'owner_header.php';
     ?>
    <!-- END HEADER -->
    <!-- BEGIN CONTAINER -->
-   <div id="containerr" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
+   <div id="container" class="row-fluid" <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
     <div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -131,7 +131,7 @@ article {
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
 <?php 
-include 'owner_header_menu.php';
+include 'owner_menu.php';
 
 ?>
 			<!-- END SIDEBAR MENU -->
@@ -171,23 +171,21 @@ include 'owner_header_menu.php';
     <article id="tab3">
       
       
-                  <div class="span6">
+                  <div class="span6" <?php echo $_SESSION['rtl'];?>>
                     <!-- BEGIN SAMPLE TABLE widget-->       
                   <div class="widget">
-                     <div class="widget-title">
-                        <h4>Expense Voucher</h4>
-                     </div>
+      
                       <div class="loader"></div>
                      <div class="widget-body">
                          <table class="table table-striped table-bordered table-advance table-hover">
                              <thead>
                                 <tr>
                                     <th> #</th>
-                                    <th class="hidden-phone"> Amount</th>                                 
-                                    <th>Date</th>
-                                    <th>Statement</th>
-                                    <th>Customer</th>
-                                    <th>Print</th>
+                                    <th class="hidden-phone"><?php GetProperty('amount',$_SESSION['rtl']);?></th>                                 
+                                    <th><?php GetProperty('date',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('statment',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('statment',$_SESSION['rtl']);?></th>
+                                    <th><?php GetProperty('print',$_SESSION['rtl']);?></th>
                                 </tr>
                              </thead>
                              

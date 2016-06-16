@@ -5,7 +5,6 @@
                                 $varowner=$_SESSION['Id'];
                                 $varreal=$_SESSION['cid'];
  
-
 ?>
   
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -34,26 +33,19 @@
   </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body class="fixed-top " onload="load()">>
+<body class="fixed-top " onload="load()">
 	<!-- BEGIN HEADER -->
- 
+ <?php 
+include 'owner_header.php';
 
-   <div id="containerr" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
+?>
+
+   <div id="container" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
-      <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-
-      <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-      <div class="navbar-inverse">
-        <form class="navbar-search visible-phone">
-          <input type="text" class="search-query" placeholder="Search" />
-        </form>
-      </div>
-      <!-- END RESPONSIVE QUICK SEARCH FORM -->
-      <!-- BEGIN SIDEBAR MENU -->
+ 
 <?php 
-include 'owner_header_menu.php';
+include 'owner_menu.php';
 
 ?>
       <!-- END SIDEBAR MENU -->
@@ -222,3 +214,7 @@ include 'owner_header_menu.php';
     
 </body>
 </html>
+<?php
+ 
+
+?>

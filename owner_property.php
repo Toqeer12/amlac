@@ -39,30 +39,20 @@
 <body class="fixed-top">
 	<!-- BEGIN HEADER -->
 	<?php
-    include 'header_admin.php';
+    include 'owner_header.php';
      
     ?>
 
-   <div id="containerr" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
+   <div id="container" class="row-fluid"  <?php echo $_SESSION['rtl'];?>>
       <!-- BEGIN SIDEBAR -->
         <div id="sidebar" class="nav-collapse collapse">
-      <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-       <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+  
+            <?php 
+            include 'owner_menu.php';
 
-      <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-      <div class="navbar-inverse">
-        <form class="navbar-search visible-phone">
-          <input type="text" class="search-query" placeholder="Search" />
-        </form>
-      </div>
-      <!-- END RESPONSIVE QUICK SEARCH FORM -->
-      <!-- BEGIN SIDEBAR MENU -->
-<?php 
-include 'owner_header_menu.php';
-
-?>
-      <!-- END SIDEBAR MENU -->
-    </div>
+            ?>
+                <!-- END SIDEBAR MENU -->
+            </div>
 		<div id="main-content"  <?php echo $_SESSION['rtl'];?>>
 			<div class="container-fluid" >
 				<div class="row-fluid">
@@ -77,33 +67,7 @@ include 'owner_header_menu.php';
 				</div>
 
 				<div id="page" class="dashboard">
-                <div class="row-fluid circle-state-overview">
-                    <div class="span2 responsive clearfix" data-tablet="span3" data-desktop="span2">
-                        <div class="circle-wrap">
-                            <div class="stats-circle turquoise-color">
-                                    <i class="icon-user"></i>
-                            </div>
-                            <p><strong><?php propertyowner($varowner,$varreal)?></strong>  Total Properties </p>
-                        </div>
-                    </div>
-                    <div class="span2 responsive clearfix" data-tablet="span3" data-desktop="span2">
-                        <div class="circle-wrap">
-                            <div class="stats-circle turquoise-color">
-                                    <i class="icon-user"></i>
-                            </div>
-                            <p><strong><?php unit_propertyowner($varowner,$varreal)?></strong>  Total Unit </p>
-                        </div>
-                    </div>
-                    <div class="span2 responsive clearfix" data-tablet="span3" data-desktop="span2">
-                        <div class="circle-wrap">
-                            <div class="stats-circle turquoise-color">
-                                    <i class="icon-user"></i>
-                            </div>
-                            <p><strong><?php lease_propertyowner($varowner,$varreal)?></strong>Total Lease Property</p>
-                        </div>
-                    </div>
  
-                </div>
    <div class="loader"></div>
          <div class="container-fluid">
             <div class="row-fluid">

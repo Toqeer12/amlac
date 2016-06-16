@@ -1,4 +1,4 @@
-     <?php include'raw_detail.php';?>
+ 
 	 
 	  <ul class="sidebar-menu">
         <li class="has-sub active">

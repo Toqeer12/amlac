@@ -1744,8 +1744,25 @@ function clientDetail2()
  
 	
 return $array;
-	
-	
-	
+
+}
+function Logo($var)
+{
+	global $image;
+		$select_query = "SELECT `images_path` FROM  `images_tbl` where cid=$var";
+		$sql = mysql_query($select_query) or die(mysql_error());
+
+		if($sql) 
+		{
+			if(mysql_num_rows($sql) > 0)
+			{
+			while($member  = mysql_fetch_assoc($sql))
+				{
+					
+ 					$image = $member['images_path'];
+				}
+			}
+		}
+		return $image;
 }
 ?>

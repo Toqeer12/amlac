@@ -3901,3 +3901,6 @@ jQuery UI Datepicker(new in v1.2.2)
          text-align: right;
 }
  
+ [rtl] .span6{
+     float: right;
+ }

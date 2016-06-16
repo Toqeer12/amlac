@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 
 <?php
-
+session_destroy();
 session_start();
-                                $varowner=$_SESSION['Id'];
-  
+$varowner=$_SESSION['Id'];
+echo $_SESSION['user'];
+echo $_SESSION['password'];
+require('connect.php');
+		$sql= "SELECT * From  registration WHERE email='".$_SESSION['user']."' And pin='".$_SESSION['password']."'";   
+		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
+    echo $result;
+			if($result)
+				 {
+				 	$vardate=date("Y-m-d");
+	
 
+
+						if(mysql_num_rows($result) > 0) 
+						{
+              echo mysql_num_rows($result);
 ?>
   
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -218,3 +231,14 @@ include 'admin_menu.php';
     
 </body>
 </html>
+<?php
+            }
+    else
+            {
+            session_destory();
+            header("location: index.php");
+            
+            }
+}
+
+?>

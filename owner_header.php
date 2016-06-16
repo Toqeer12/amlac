@@ -1,8 +1,7 @@
 <!doctype html>
 
 <?php
-					  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  
-
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  
  include 'session.php';
  include 'raw_detail.php';
 ?>
@@ -17,10 +16,11 @@
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="css/style.css" rel="stylesheet" />
     <link href="css/style_default.css" rel="stylesheet" id="style_color" />
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ 
  <!--  <link rel="stylesheet" href="dist/magnific-popup.css"> -->
 
- 
+   <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/magnific-popup.css">
+
 
    <style type="text/css">
 
@@ -43,12 +43,11 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
-				<a class="brand" href="main_page.php">
+				<a class="brand" href="owner_admin.php">
 
- 
 				    <img style="margin-top: -15px;height: 90px;" src="<?php 
 					
-					$id = $_SESSION['Id'];
+					$id = $_SESSION['cid'];
 					echo Logo($id)?>" alt="Admin Lab" onError="this.src='img/Amlacnew.png';"/>
 				</a>
 				<!-- END LOGO -->
@@ -60,24 +59,9 @@
 				<span class="arrow"></span>
 				</a>
 				<!-- END RESPONSIVE MENU TOGGLER -->
-				<div id="top_menu" class="nav notify-row" style="
-    margin-top: 33px;
-    align-content: center;
-    margin-left: 500px;
-    font-size: -webkit-xxx-large;
-">
-                    <!-- BEGIN NOTIFICATION -->
-					<ul class="nav top-menu">
- 
-
-					</ul>
-			  <span class="username"><?php echo $varcom ?></span>
-              
-              
-    </div>
-
-
-                    <!-- END  NOTIFICATION -->
+				<div id="top_menu" class="nav notify-row" style="margin-top: 33px;align-content: center; margin-left: 500px;font-size: -webkit-xxx-large;">	  
+			     	<span class="username"><?php echo $varcom ?></span>
+   				 </div>
 
                 <div class="top-nav ">
                     					           
@@ -92,11 +76,7 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="profile.php"><i class="icon-user"></i> My Profile</a></li>
-								<li><a href="create_user.php"><i class="icon-tasks"></i>Access User</a></li>
-									<li><a href="language_selector.php?id=<?php echo urlencode($actual_link); ?>"><i class="icon-tasks"></i><?php  echo $_SESSION['language'];?></a></li>
-								<li><a href="update_password.php"><i class="icon-tasks"></i> Change Password</a></li>
- 								<li><a id="button2" href="#"><i class="icon-calendar"></i>Upload Logo</a></li>
+									<li><a href="language_selector.php?id=<?php echo urlencode($actual_link); ?>"><i class="icon-tasks"></i><?php  echo $_SESSION['language'];?></a></li>					 
 								<li class="divider"></li>
 								<li><a href="logout.php"><i class="icon-key"></i> Log Out</a></li>
 							</ul>
@@ -105,12 +85,11 @@
 					</ul>
 					<!-- END TOP NAVIGATION MENU -->
 				</div>
- 
-			</div>
+                                
 		</div>
 		<!-- END TOP NAVIGATION BAR -->
 	</div>
-
+</div>
 	<div id="modal2" class="white-popup-block mfp-hide">
 <form action="getdata.php" enctype="multipart/form-data" method="post">
  <input class="popup-modal-dismiss" action="#" type="image" src="img/cross-sign.jpg" placeholder="Owner" required/>
@@ -137,12 +116,18 @@
 
 </form>
 </div>
-
   <!-- // <script src="js/jquery-1.8.3.min.js"></script> -->
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
    <script src="js/jquery.blockui.js"></script>
+   <!-- ie8 fixes -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- Magnific Popup core JS file -->
 <script src="http://cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
 
+<script src="http://cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
+   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
  
 	   <script type="text/javascript">
 $(document).ready(function() {
